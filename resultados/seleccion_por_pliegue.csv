@@ -1,0 +1,51 @@
+pliegue,repeticion,configuracion,umbral
+0,0,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+1,0,"bm25(k1=1.2,b=0.5)[raices,sin_vacias,titulos]",3.5541
+2,0,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+3,0,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.3498
+4,0,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0543
+5,1,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+6,1,"bm25(k1=0.9,b=0.75)[raices,titulos]",4.8434
+7,1,"bm25(k1=1.2,b=0.5)[raices,sin_vacias,titulos]",3.5541
+8,1,"bm25(k1=1.2,b=0.5)[raices,sin_vacias,titulos]",3.5541
+9,1,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+10,2,"bm25(k1=1.2,b=0.5)[raices,titulos]",5.025
+11,2,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+12,2,"bm25(k1=1.2,b=0.5)[raices,sin_vacias,titulos]",3.5541
+13,2,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+14,2,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+15,3,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+16,3,"bm25(k1=1.2,b=0.5)[raices,sin_vacias,titulos]",3.5642
+17,3,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+18,3,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+19,3,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+20,4,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+21,4,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+22,4,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+23,4,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+24,4,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+25,5,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+26,5,"tfidf-char(3, 5)[sin_vacias,titulos]",0.199
+27,5,"bm25(k1=1.2,b=0.5)[raices,sin_vacias,titulos]",3.5541
+28,5,"bm25(k1=1.2,b=0.5)[raices,sin_vacias,titulos]",3.5642
+29,5,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+30,6,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+31,6,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.3498
+32,6,"bm25(k1=1.2,b=0.5)[raices,titulos]",5.025
+33,6,"bm25(k1=1.2,b=0.5)[raices,sin_vacias,titulos]",3.5541
+34,6,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+35,7,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0435
+36,7,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+37,7,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.3498
+38,7,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+39,7,"tfidf-char(3, 5)[raices,sin_vacias,titulos]",0.1934
+40,8,"tfidf-char(3, 5)[raices,titulos]",0.2204
+41,8,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+42,8,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+43,8,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+44,8,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+45,9,"tfidf-char(3, 5)[raices,sin_vacias,titulos]",0.1707
+46,9,"bm25(k1=1.5,b=0.5)[raices,sin_vacias,titulos]",3.4532
+47,9,"bm25(k1=2.0,b=0.5)[raices,titulos]",5.0195
+48,9,"tfidf-char(3, 5)[raices,titulos]",0.1903
+49,9,"bm25(k1=2.0,b=0.75)[raices,titulos]",5.011
