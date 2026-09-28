@@ -1,0 +1,54 @@
+{
+  "semilla": 20260925,
+  "datos": "80 casos sintéticos, sin datos personales",
+  "calibracion": {
+    "n": 60,
+    "VP": 33,
+    "VN": 22,
+    "FP": 0,
+    "FN": 5,
+    "exactitud": 0.917,
+    "precision": 1.0,
+    "exhaustividad": 0.868,
+    "f1": 0.93
+  },
+  "validacion": {
+    "n": 20,
+    "VP": 10,
+    "VN": 9,
+    "FP": 0,
+    "FN": 1,
+    "exactitud": 0.95,
+    "precision": 1.0,
+    "exhaustividad": 0.909,
+    "f1": 0.952
+  },
+  "ejemplo_propuesta": {
+    "id": "C061",
+    "agenda_propuesta": [
+      {
+        "hora": "09:00",
+        "actividad": "Bienvenida con talento humano"
+      },
+      {
+        "hora": "10:00",
+        "actividad": "Políticas y documentación"
+      },
+      {
+        "hora": "11:00",
+        "actividad": "Inducción de operaciones"
+      },
+      {
+        "hora": "14:00",
+        "actividad": "Seguridad y herramientas"
+      }
+    ],
+    "checklist": [
+      "Confirmar documentación",
+      "Confirmar equipo",
+      "Validar agenda con responsable",
+      "Inducción de operaciones"
+    ],
+    "revision_humana": true
+  }
+}
