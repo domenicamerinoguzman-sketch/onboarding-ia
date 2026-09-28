@@ -1,0 +1,163 @@
+id,pregunta,pasaje_correcto,tipo
+Q001,¿A qué hora debo presentarme el primer día de trabajo?,P01,directa
+Q002,El lunes empiezo: ¿a dónde llego y a qué hora?,P01,parafraseada
+Q003,¿Hasta qué hora dura mi jornada el día que ingreso?,P01,parafraseada
+Q004,¿Qué debo llevar el primer día?,P02,directa
+Q005,¿Tengo que traer mi laptop propia?,P02,parafraseada
+Q006,¿Cómo me visto la primera semana?,P02,parafraseada
+Q007,¿Cuánto tiempo es válida la credencial provisional?,P03,directa
+Q008,Se me perdió el carnet de ingreso: ¿qué hago?,P03,parafraseada
+Q009,¿Cuándo me dan el carnet definitivo con foto?,P03,parafraseada
+Q010,¿Qué hace el compañero guía?,P04,directa
+Q011,¿Me van a asignar a alguien que me acompañe al inicio?,P04,parafraseada
+Q012,¿Durante cuánto tiempo tengo un mentor en mi área?,P04,parafraseada
+Q013,¿Cuál es la agenda de la primera semana?,P05,directa
+Q014,¿Qué actividades hay cada día en mis primeros cinco días?,P05,parafraseada
+Q015,¿Qué día me reúno con mi jefe por primera vez?,P05,parafraseada
+Q016,¿Qué documentos necesito para el expediente de ingreso?,P06,directa
+Q017,¿Qué papeles me piden para poder empezar?,P06,parafraseada
+Q018,¿Necesito récord policial para entrar?,P06,parafraseada
+Q019,¿Cuál es el plazo para entregar los documentos?,P07,directa
+Q020,¿Con cuánta anticipación debo subir mis papeles?,P07,parafraseada
+Q021,¿En qué formato cargo los archivos al portal de ingreso?,P07,parafraseada
+Q022,¿Cuánto tarda la validación de documentos?,P08,directa
+Q023,Me rechazaron un archivo: ¿por qué pudo ser?,P08,parafraseada
+Q024,¿Qué pasa si el título que subí se ve borroso?,P08,parafraseada
+Q025,¿Necesito un certificado bancario para la cuenta de nómina?,P09,directa
+Q026,¿Me pueden depositar en una cuenta de otro banco?,P09,parafraseada
+Q027,¿Abrir una cuenta interna tiene costo para empleados?,P09,parafraseada
+Q028,¿Cómo registro cargas familiares en el seguro médico?,P10,directa
+Q029,Quiero incluir a mi hijo en el seguro: ¿qué entrego?,P10,parafraseada
+Q030,¿Hasta cuándo puedo añadir a mis dependientes?,P10,parafraseada
+Q031,¿Qué tipo de contrato voy a firmar?,P11,directa
+Q032,¿Mi contrato es temporal o indefinido?,P11,parafraseada
+Q033,¿En qué momento firmo el contrato y cómo recibo la copia?,P11,parafraseada
+Q034,¿Cuánto dura el período de prueba?,P12,directa
+Q035,¿Cuándo me evalúan durante los primeros tres meses?,P12,parafraseada
+Q036,¿Quién me dice si pasé la etapa de prueba?,P12,parafraseada
+Q037,¿Cuál es el horario laboral?,P13,directa
+Q038,¿Cuántas horas trabajo a la semana?,P13,parafraseada
+Q039,¿Puedo quedarme más tarde y cobrar horas extra sin permiso?,P13,parafraseada
+Q040,¿Cuándo se paga el sueldo?,P14,directa
+Q041,¿Qué día me depositan la quincena?,P14,parafraseada
+Q042,¿Mi primer pago será completo si entré a mitad de mes?,P14,parafraseada
+Q043,¿Cómo se registra la asistencia?,P15,directa
+Q044,Llegué 15 minutos tarde: ¿tengo que justificarlo?,P15,parafraseada
+Q045,¿Qué pasa si acumulo varios atrasos en el mes?,P15,parafraseada
+Q046,¿Cuándo se crea mi usuario de red y mi correo institucional?,P16,directa
+Q047,¿Cómo recibo mi clave inicial para entrar a la computadora?,P16,parafraseada
+Q048,¿Quién pide que me abran el email de la empresa?,P16,parafraseada
+Q049,¿Cómo solicito accesos a sistemas del área?,P17,directa
+Q050,¿Quién tramita mi permiso para entrar al CRM?,P17,parafraseada
+Q051,Mientras me habilitan: ¿puedo usar el usuario de un compañero?,P17,parafraseada
+Q052,¿Qué requisitos debe cumplir la contraseña?,P18,directa
+Q053,¿Cada cuánto debo cambiar mi clave?,P18,parafraseada
+Q054,Me equivoqué varias veces y ya no puedo entrar: ¿qué hago?,P18,parafraseada
+Q055,¿Cuándo me entregan la computadora y el equipo?,P19,directa
+Q056,¿Qué día recibo mi laptop de trabajo?,P19,parafraseada
+Q057,Se dañó el teclado que me dieron: ¿a quién aviso?,P19,parafraseada
+Q058,¿Cuál es el horario de la Mesa de Servicios?,P20,directa
+Q059,Tengo una falla en la noche fuera de horario: ¿a quién llamo?,P20,parafraseada
+Q060,¿Cómo abro un ticket de soporte técnico?,P20,parafraseada
+Q061,¿Cuándo debo aprobar el curso de seguridad de la información?,P21,directa
+Q062,¿Qué nota necesito en la capacitación de ciberseguridad?,P21,parafraseada
+Q063,¿Por qué todavía no puedo ver datos de clientes en el sistema?,P21,parafraseada
+Q064,¿Cómo se clasifica la información?,P22,directa
+Q065,¿Puedo mandarme archivos de clientes a mi Gmail para trabajar en casa?,P22,parafraseada
+Q066,¿Los datos de los empleados son confidenciales?,P22,parafraseada
+Q067,¿Qué hago si recibo un correo de phishing?,P23,directa
+Q068,Me llegó un mensaje raro con un enlace: ¿lo abro?,P23,parafraseada
+Q069,¿A dónde reenvío un email que parece fraude?,P23,parafraseada
+Q070,¿Qué es la política de escritorio limpio?,P24,directa
+Q071,¿Debo bloquear la computadora si voy al baño?,P24,parafraseada
+Q072,¿Dónde boto papeles que ya no sirven y tienen datos sensibles?,P24,parafraseada
+Q073,¿Puedo usar herramientas de inteligencia artificial en el trabajo?,P25,directa
+Q074,¿Está permitido pegar datos de un cliente en ChatGPT?,P25,parafraseada
+Q075,¿Dónde veo qué aplicaciones externas están aprobadas?,P25,parafraseada
+Q076,¿Cuándo firmo el código de ética?,P26,directa
+Q077,¿Qué temas cubre el código de conducta?,P26,parafraseada
+Q078,¿La firma de las normas de comportamiento es en papel?,P26,parafraseada
+Q079,¿Puedo aceptar regalos de clientes?,P27,directa
+Q080,Un proveedor me regaló una canasta de 80 dólares: ¿qué hago?,P27,parafraseada
+Q081,¿Cuál es el monto máximo de un obsequio que puedo recibir?,P27,parafraseada
+Q082,¿Qué debo declarar sobre conflicto de interés?,P28,directa
+Q083,Mi primo trabaja en otra área de la institución: ¿debo informarlo?,P28,parafraseada
+Q084,Tengo un negocio propio aparte: ¿tengo que reportarlo?,P28,parafraseada
+Q085,¿Cuándo debo hacer el curso de prevención de lavado de activos?,P29,directa
+Q086,¿Qué hago si veo una transacción inusual de un cliente?,P29,parafraseada
+Q087,¿Puedo contarle al cliente que reporté su operación?,P29,parafraseada
+Q088,¿Cómo uso el canal de denuncias?,P30,directa
+Q089,¿Puedo reportar acoso sin dar mi nombre?,P30,parafraseada
+Q090,¿Me pueden castigar por denunciar un fraude?,P30,parafraseada
+Q091,¿Desde cuándo tengo seguro médico privado?,P31,directa
+Q092,¿Cuánto paga la empresa del seguro de mi familia?,P31,parafraseada
+Q093,¿Cuándo me dan la tarjeta del seguro de salud?,P31,parafraseada
+Q094,¿Cuántos días de vacaciones tengo?,P32,directa
+Q095,¿Puedo tomarme unos días de descanso a los seis meses de haber entrado?,P32,parafraseada
+Q096,¿Con cuánta anticipación pido mis días libres anuales?,P32,parafraseada
+Q097,¿Hay subsidio de alimentación?,P33,directa
+Q098,¿Cómo pago el almuerzo en el comedor?,P33,parafraseada
+Q099,Trabajo en una agencia: ¿cómo recibo el beneficio de comida?,P33,parafraseada
+Q100,¿Puedo acceder a préstamos para colaboradores?,P34,directa
+Q101,¿Cuándo puedo pedir un crédito con tasa preferencial?,P34,parafraseada
+Q102,¿Cuál es la cuota máxima que me pueden aprobar?,P34,parafraseada
+Q103,¿Cómo registro un permiso por calamidad doméstica?,P35,directa
+Q104,Estuve enfermo dos días: ¿dónde subo el certificado médico?,P35,parafraseada
+Q105,¿Qué plazo tengo para reportar mi licencia por paternidad?,P35,parafraseada
+Q106,¿Quién puede hacer teletrabajo?,P36,directa
+Q107,¿Puedo trabajar desde casa en mis primeros meses?,P36,parafraseada
+Q108,¿El home office está permitido durante la etapa de prueba?,P36,parafraseada
+Q109,¿Cómo me conecto por VPN?,P37,directa
+Q110,¿Quién solicita mi acceso remoto a la red?,P37,parafraseada
+Q111,¿Cuánto tarda Tecnología en habilitarme la conexión desde casa?,P37,parafraseada
+Q112,¿Puedo trabajar remoto con mi computadora personal?,P38,directa
+Q113,¿Puedo conectarme a los sistemas desde el wifi de una cafetería?,P38,parafraseada
+Q114,¿Qué equipo uso si trabajo fuera de la oficina?,P38,parafraseada
+Q115,¿Qué horario tengo en teletrabajo?,P39,directa
+Q116,Cuando trabajo desde casa: ¿tengo que estar conectado al chat todo el día?,P39,parafraseada
+Q117,¿Cómo marco entrada y salida si estoy en remoto?,P39,parafraseada
+Q118,¿Hay un plan de capacitación inicial?,P40,directa
+Q119,¿Qué formación técnica recibo en los dos primeros meses?,P40,parafraseada
+Q120,¿Quién me entrega el plan de cursos de mi área?,P40,parafraseada
+Q121,¿Cómo entro a la plataforma de aprendizaje?,P41,directa
+Q122,¿Dónde descargo el certificado de un curso que aprobé?,P41,parafraseada
+Q123,¿Mi jefe puede ver mi avance en los cursos virtuales?,P41,parafraseada
+Q124,¿Cómo se evalúa la inducción?,P42,directa
+Q125,¿La encuesta de satisfacción del ingreso es anónima?,P42,parafraseada
+Q126,¿Para qué sirve la encuesta que me envían al final de la semana?,P42,parafraseada
+Q127,¿Qué pasa si repruebo un curso obligatorio?,P43,directa
+Q128,¿Cuántas veces puedo repetir un curso que no pasé?,P43,parafraseada
+Q129,No aprobé la capacitación tres veces: ¿qué sigue?,P43,parafraseada
+Q130,¿A quién acudo según el tema de mi duda?,P44,directa
+Q131,Tengo una pregunta sobre mi sueldo: ¿con quién hablo?,P44,parafraseada
+Q132,¿A quién consulto por un tema de ética?,P44,parafraseada
+Q133,¿Qué puedo hacer en el portal del colaborador?,P45,directa
+Q134,¿Dónde veo mi rol de pagos?,P45,parafraseada
+Q135,¿Cómo entro a la intranet para hacer trámites?,P45,parafraseada
+Q136,¿Cómo actualizo mis datos personales?,P46,directa
+Q137,Me mudé de casa: ¿dónde cambio mi dirección?,P46,parafraseada
+Q138,Quiero cambiar la cuenta donde me pagan: ¿qué necesito?,P46,parafraseada
+Q139,¿Cuál es el sueldo del cargo de analista de crédito?,NINGUNO,fuera_alcance
+Q140,¿Cuál es la tasa de interés de un crédito hipotecario para clientes?,NINGUNO,fuera_alcance
+Q141,¿Hay estacionamiento para empleados?,NINGUNO,fuera_alcance
+Q142,¿Cuándo es la fiesta de fin de año?,NINGUNO,fuera_alcance
+Q143,¿Cómo se calcula el décimo tercer sueldo?,NINGUNO,fuera_alcance
+Q144,¿Puedo llevar a mi mascota a la oficina?,NINGUNO,fuera_alcance
+Q145,¿Qué gimnasios tienen convenio con la institución?,NINGUNO,fuera_alcance
+Q146,¿Cuál es el procedimiento para abrir una cuenta de ahorros a un cliente?,NINGUNO,fuera_alcance
+Q147,¿Quién es el gerente general?,NINGUNO,fuera_alcance
+Q148,¿Hay transporte institucional desde el norte de la ciudad?,NINGUNO,fuera_alcance
+Q149,¿Cómo solicito un ascenso o cambio de área?,NINGUNO,fuera_alcance
+Q150,¿La institución paga maestrías?,NINGUNO,fuera_alcance
+Q151,¿Cuál es la política de uniformes en agencias?,NINGUNO,fuera_alcance
+Q152,¿Qué hago en caso de incendio o sismo?,NINGUNO,fuera_alcance
+Q153,¿Cuánto es el bono por cumplimiento de metas comerciales?,NINGUNO,fuera_alcance
+Q154,¿Puedo fumar dentro del edificio?,NINGUNO,fuera_alcance
+Q155,¿Cómo reservo una sala de reuniones?,NINGUNO,fuera_alcance
+Q156,¿Qué pasa con mis utilidades si salgo antes de fin de año?,NINGUNO,fuera_alcance
+Q157,¿Hay guardería para hijos de colaboradores?,NINGUNO,fuera_alcance
+Q158,¿Cuál es el límite diario de retiro en cajeros para clientes?,NINGUNO,fuera_alcance
+Q159,¿Cómo me afilio a la asociación de empleados?,NINGUNO,fuera_alcance
+Q160,¿Qué días son feriados este año?,NINGUNO,fuera_alcance
+Q161,¿Se puede trabajar los sábados para recuperar horas?,NINGUNO,fuera_alcance
+Q162,¿Cómo renuncio si decido irme?,NINGUNO,fuera_alcance
