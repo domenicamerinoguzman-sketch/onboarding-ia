@@ -1,0 +1,111 @@
+id,pregunta,pasaje_correcto,tipo
+R001,Mañana es mi primer día: ¿en qué piso me reciben?,P01,parafraseada
+R002,¿A qué hora salgo el día que empiezo?,P01,parafraseada
+R003,¿Qué documento de identidad tengo que llevar al ingresar?,P02,parafraseada
+R004,¿Hay algún código de vestimenta al inicio?,P02,parafraseada
+R005,¿Por cuántos días sirve la credencial temporal?,P03,parafraseada
+R006,Extravié mi identificación de acceso al edificio: ¿a quién le aviso?,P03,parafraseada
+R007,¿Quién me ayuda con las dudas del trabajo en el primer mes?,P04,parafraseada
+R008,¿Puedo preguntarle al compañero guía sobre mi sueldo?,P04,parafraseada
+R009,¿Qué se hace el tercer día de la inducción?,P05,parafraseada
+R010,¿Cuándo me mandan el cronograma de la primera semana?,P05,parafraseada
+R011,¿Los títulos deben estar registrados en la Senescyt?,P06,parafraseada
+R012,¿Cuántas referencias laborales tengo que presentar?,P06,parafraseada
+R013,¿Qué pasa si no entrego toda la documentación a tiempo?,P07,parafraseada
+R014,¿En qué formato subo los archivos al portal de ingreso?,P07,parafraseada
+R015,¿Cuánto se demoran en revisar lo que cargué?,P08,parafraseada
+R016,Me rechazaron un documento: ¿lo puedo volver a subir?,P08,parafraseada
+R017,No tengo cuenta en este banco: ¿me pueden pagar en otra entidad?,P09,parafraseada
+R018,¿Abrir una cuenta interna tiene costo para los empleados?,P09,parafraseada
+R019,¿Qué necesito para afiliar a mi hijo al seguro?,P10,parafraseada
+R020,¿Qué pasa si registro a mis cargas después del primer mes?,P10,parafraseada
+R021,¿Mi contrato es indefinido o a plazo fijo?,P11,parafraseada
+R022,¿En qué momento firmo el contrato?,P11,parafraseada
+R023,¿Cuánto dura el periodo de prueba?,P12,parafraseada
+R024,¿En qué día me hacen la evaluación de adaptación?,P12,parafraseada
+R025,¿Cuál es el horario normal de trabajo?,P13,parafraseada
+R026,¿Necesito autorización para hacer sobretiempo?,P13,parafraseada
+R027,¿Qué porcentaje del sueldo me dan como anticipo?,P14,parafraseada
+R028,¿Me pagan el mes completo si entro a mitad de mes?,P14,parafraseada
+R029,¿Cuántos minutos de atraso se permiten sin justificar?,P15,parafraseada
+R030,¿Qué consecuencia tienen varios atrasos en el mes?,P15,parafraseada
+R031,¿Cuándo me crean la cuenta de correo institucional?,P16,parafraseada
+R032,¿Tengo que cambiar la contraseña que me entregan al inicio?,P16,parafraseada
+R033,Necesito entrar al core bancario: ¿cómo pido el acceso?,P17,parafraseada
+R034,¿Puedo usar el usuario de un compañero mientras me dan mis permisos?,P17,parafraseada
+R035,¿Cuántos caracteres debe tener mi contraseña?,P18,parafraseada
+R036,Olvidé mi contraseña y se bloqueó el usuario: ¿qué hago?,P18,parafraseada
+R037,¿Qué día me dan el computador?,P19,parafraseada
+R038,¿Tengo que firmar algo cuando recibo el equipo?,P19,parafraseada
+R039,¿Hasta qué hora atiende la mesa de ayuda de tecnología?,P20,parafraseada
+R040,¿Cuál es la extensión de soporte de sistemas?,P20,parafraseada
+R041,¿Qué nota necesito para aprobar el curso de seguridad informática?,P21,parafraseada
+R042,¿En cuántos días debo completar la capacitación de seguridad?,P21,parafraseada
+R043,¿Los datos de los clientes son información confidencial?,P22,parafraseada
+R044,¿Puedo guardar archivos del trabajo en mi Google Drive personal?,P22,parafraseada
+R045,Recibí un correo que parece phishing: ¿cómo lo reporto?,P23,parafraseada
+R046,¿En cuánto tiempo responde el equipo de seguridad a un reporte?,P23,parafraseada
+R047,¿Debo bloquear la computadora cuando salgo a almorzar?,P24,parafraseada
+R048,¿Qué hago con los documentos confidenciales que ya no uso?,P24,parafraseada
+R049,¿Puedo usar ChatGPT con información de clientes?,P25,parafraseada
+R050,¿Dónde veo qué herramientas digitales están autorizadas?,P25,parafraseada
+R051,¿Cuándo tengo que firmar el código de conducta?,P26,parafraseada
+R052,¿Qué temas trata el código de ética?,P26,parafraseada
+R053,Un proveedor me regaló una canasta de 80 dólares: ¿qué hago?,P27,parafraseada
+R054,¿Hasta qué valor puedo aceptar un regalo?,P27,parafraseada
+R055,Mi hermana trabaja en la institución: ¿tengo que declararlo?,P28,parafraseada
+R056,¿Cada cuánto se actualiza la declaración de conflicto de interés?,P28,parafraseada
+R057,¿En qué plazo tengo que aprobar el curso de lavado de activos?,P29,parafraseada
+R058,¿A quién reporto una operación inusual de un cliente?,P29,parafraseada
+R059,¿Puedo denunciar un caso de acoso de forma anónima?,P30,parafraseada
+R060,¿Cuál es el número de la línea de ética?,P30,parafraseada
+R061,¿Desde cuándo tengo cobertura del seguro médico?,P31,parafraseada
+R062,¿Qué porcentaje de la prima de mis cargas cubre la empresa?,P31,parafraseada
+R063,¿Cuántos días de vacaciones tengo al año?,P32,parafraseada
+R064,¿Con cuánta anticipación pido mis vacaciones?,P32,parafraseada
+R065,¿Hay comedor en el edificio principal?,P33,parafraseada
+R066,Trabajo en una agencia: ¿cómo recibo el subsidio de comida?,P33,parafraseada
+R067,¿Cuándo puedo pedir un crédito de consumo como empleado?,P34,parafraseada
+R068,¿Qué porcentaje del sueldo puede ser la cuota de un préstamo?,P34,parafraseada
+R069,Voy a ser papá: ¿cómo registro la licencia?,P35,parafraseada
+R070,¿En cuántas horas debo registrar un permiso por calamidad doméstica?,P35,parafraseada
+R071,¿Puedo teletrabajar durante el periodo de prueba?,P36,parafraseada
+R072,¿Quién aprueba qué cargos pueden hacer teletrabajo?,P36,parafraseada
+R073,¿Cómo me conecto a los sistemas cuando no estoy en la oficina?,P37,parafraseada
+R074,¿Cuánto tarda Tecnología en habilitar la VPN?,P37,parafraseada
+R075,¿Puedo conectarme desde el wifi de una cafetería?,P38,parafraseada
+R076,¿Puedo trabajar remotamente con mi computadora personal?,P38,parafraseada
+R077,Si estoy teletrabajando: ¿tengo el mismo horario?,P39,parafraseada
+R078,¿Tengo que estar conectado al chat institucional cuando trabajo en casa?,P39,parafraseada
+R079,¿Quién me entrega el plan de capacitación técnica?,P40,parafraseada
+R080,¿Cuántos días abarca el plan de formación inicial?,P40,parafraseada
+R081,¿Con qué usuario entro a la plataforma de cursos?,P41,parafraseada
+R082,¿Me dan un certificado cuando apruebo un curso virtual?,P41,parafraseada
+R083,¿La encuesta de la inducción es anónima?,P42,parafraseada
+R084,¿Cuánto tiempo toma la encuesta de satisfacción de la inducción?,P42,parafraseada
+R085,¿Cuántas veces puedo repetir un curso obligatorio?,P43,parafraseada
+R086,Reprobé tres veces el curso de lavado de activos: ¿qué pasa ahora?,P43,parafraseada
+R087,No me funciona el correo: ¿a quién acudo?,P44,parafraseada
+R088,¿Con quién hablo si tengo una duda sobre regalos de clientes?,P44,parafraseada
+R089,¿Cómo entro al portal del colaborador?,P45,parafraseada
+R090,¿En qué sistema solicito mis permisos y vacaciones?,P45,parafraseada
+R091,Me cambié de casa: ¿dónde actualizo mi dirección?,P46,parafraseada
+R092,Cambié de banco: ¿desde cuándo me pagan en la nueva cuenta?,P46,parafraseada
+R093,¿Cuál es el salario mínimo de un cajero?,NINGUNO,fuera_alcance
+R094,¿Qué requisitos pide el banco a un cliente para una tarjeta de crédito?,NINGUNO,fuera_alcance
+R095,¿Cómo se calcula el fondo de reserva?,NINGUNO,fuera_alcance
+R096,¿Hay parqueadero para empleados?,NINGUNO,fuera_alcance
+R097,¿La empresa organiza fiesta de Navidad?,NINGUNO,fuera_alcance
+R098,¿Cuál es el horario de atención de las agencias al público?,NINGUNO,fuera_alcance
+R099,¿Quién es el gerente general de la institución?,NINGUNO,fuera_alcance
+R100,¿Puedo trabajar en otra empresa los fines de semana sin avisar a nadie?,P28,parafraseada
+R101,¿Cómo invierto en un depósito a plazo fijo?,NINGUNO,fuera_alcance
+R102,¿Hay gimnasio en el edificio?,NINGUNO,fuera_alcance
+R103,¿Cuándo pagan las utilidades?,NINGUNO,fuera_alcance
+R104,¿Cuál es la política de uniformes para cajeros?,NINGUNO,fuera_alcance
+R105,¿Qué beneficios tiene el plan de jubilación privada?,NINGUNO,fuera_alcance
+R106,¿Cómo reporto un robo en una agencia?,NINGUNO,fuera_alcance
+R107,¿Cuántos empleados tiene el banco?,NINGUNO,fuera_alcance
+R108,¿Puedo cambiar mi turno con un compañero?,NINGUNO,fuera_alcance
+R109,¿Qué idiomas ofrece la empresa en sus cursos?,NINGUNO,fuera_alcance
+R110,¿Cuál es el procedimiento para renunciar?,NINGUNO,fuera_alcance
