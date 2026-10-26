@@ -1,0 +1,15 @@
+Asunto: Bienvenida a la institución, $nombre
+
+Hola, $nombre:
+
+Te damos la bienvenida al equipo de $area como $cargo. Tu fecha de ingreso es el $fecha_ingreso.
+Ese día preséntate a las 08:30 en la recepción del edificio matriz, piso 2.
+
+Antes de tu ingreso, carga en el portal de ingreso, en PDF, los documentos del expediente
+(cédula y certificado de votación, hoja de vida, títulos registrados en la SENESCYT,
+certificado bancario, dos referencias laborales y certificado de antecedentes penales).
+El plazo vence el $fecha_limite_documentos.
+
+Si tienes dudas sobre la inducción, puedes escribirle al asistente de inducción.
+
+Talento Humano

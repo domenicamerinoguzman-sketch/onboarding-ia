@@ -1,0 +1,22 @@
+{
+  "_descripcion": "Definición del flujo TO-BE de onboarding (automatización tradicional, sin IA). Las actividades AS-IS provienen del modelo preliminar del informe (Figura 2), derivado de la propuesta: PENDIENTE DE VALIDACIÓN con Talento Humano. Los plazos replican las políticas sintéticas del corpus (P05, P07, P08, P16, P19, P21, P29, P37).",
+  "version": "1.0.0",
+  "dias_habiles": [0, 1, 2, 3, 4],
+  "_nota_feriados": "Calendario referencial de feriados nacionales de Ecuador 2026; verificar los traslados oficiales antes de un piloto.",
+  "feriados": ["2026-01-01", "2026-02-16", "2026-02-17", "2026-04-03", "2026-05-01", "2026-05-25", "2026-08-10", "2026-10-09", "2026-11-02", "2026-11-03", "2026-12-25"],
+  "tareas": [
+    {"id": "T01", "nombre": "Registrar al colaborador en el HRIS", "responsable": "Talento Humano", "dias": -10, "as_is": "manual", "to_be": "automatica", "conector": "hris", "justificacion": "Datos estructurados del formulario de ingreso; se copian hoy a mano."},
+    {"id": "T02", "nombre": "Enviar bienvenida y lista de documentos", "responsable": "Talento Humano", "dias": -10, "as_is": "manual", "to_be": "automatica", "conector": "correo", "plantilla": "bienvenida", "justificacion": "Contenido fijo con variables (nombre, fecha, piso); basta una plantilla."},
+    {"id": "T03", "nombre": "Recordar documentos pendientes", "responsable": "Talento Humano", "dias": -5, "as_is": "manual", "to_be": "automatica", "conector": "correo", "plantilla": "recordatorio_documentos", "condicion": "documentos_pendientes", "justificacion": "Regla: falta algún documento a 5 días hábiles del ingreso (plazo de P07: 3 días)."},
+    {"id": "T04", "nombre": "Validar documentos del expediente", "responsable": "Talento Humano", "dias": -3, "as_is": "manual", "to_be": "manual", "justificacion": "Exige verificar identidad y legibilidad de documentos con datos personales; fuera del alcance (sin OCR sobre documentos reales). Se conserva humano."},
+    {"id": "T05", "nombre": "Elaborar contrato", "responsable": "Talento Humano", "dias": -2, "as_is": "manual", "to_be": "asistida", "justificacion": "Se prellena con datos del HRIS; la revisión y firma son humanas (decisión con efecto legal)."},
+    {"id": "T06", "nombre": "Solicitar usuario de red y correo", "responsable": "Tecnología", "dias": -2, "as_is": "manual", "to_be": "automatica", "conector": "mesa_servicios", "condicion": "expediente_completo", "justificacion": "Se dispara al completar el expediente (P16); hoy se pide por correo."},
+    {"id": "T07", "nombre": "Solicitar acceso VPN", "responsable": "Jefe inmediato", "dias": -3, "as_is": "manual", "to_be": "automatica", "conector": "mesa_servicios", "condicion": "modalidad_remota", "justificacion": "Solo si la modalidad es remota; Tecnología tarda hasta 3 días hábiles (P37)."},
+    {"id": "T08", "nombre": "Preparar equipo de trabajo", "responsable": "Tecnología", "dias": 3, "as_is": "manual", "to_be": "automatica", "conector": "mesa_servicios", "justificacion": "El equipo se entrega el día 4 (P19); el ticket se crea con fecha objetivo."},
+    {"id": "T09", "nombre": "Enviar agenda de la primera semana", "responsable": "Talento Humano", "dias": -1, "as_is": "manual", "to_be": "automatica", "conector": "correo", "plantilla": "agenda", "justificacion": "La agenda es fija por bloques (P05) y se envía el día anterior."},
+    {"id": "T10", "nombre": "Asignar compañero guía", "responsable": "Jefe inmediato", "dias": -1, "as_is": "manual", "to_be": "manual", "justificacion": "Decisión de personas del área; el sistema solo la registra y la recuerda."},
+    {"id": "T11", "nombre": "Inscribir en cursos obligatorios", "responsable": "Talento Humano", "dias": 0, "as_is": "manual", "to_be": "automatica", "conector": "hris", "justificacion": "Seguridad (10 días, P21) y lavado de activos (30 días, P29): reglas fijas."},
+    {"id": "T12", "nombre": "Seguimiento de pendientes y escalamiento", "responsable": "Talento Humano", "dias": 0, "as_is": "manual", "to_be": "automatica", "justificacion": "Reglas de escalamiento con motivo trazable (src/reglas_escalamiento.py); hoy se hace en hojas de control."},
+    {"id": "T13", "nombre": "Responder consultas del nuevo colaborador", "responsable": "Talento Humano", "dias": 0, "as_is": "manual", "to_be": "ia", "justificacion": "Preguntas en lenguaje natural: asistente RAG con derivación a Talento Humano (componente de IA)."}
+  ]
+}

@@ -1,0 +1,11 @@
+Asunto: Tu agenda de la primera semana
+
+Hola, $nombre:
+
+Esta es tu agenda de inducción:
+$agenda
+
+La computadora y los periféricos se entregan el día 4. Tu compañero guía te acompañará
+durante los primeros 30 días.
+
+Talento Humano

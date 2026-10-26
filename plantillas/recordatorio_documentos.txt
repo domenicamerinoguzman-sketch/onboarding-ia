@@ -1,0 +1,9 @@
+Asunto: Documentos pendientes para tu ingreso
+
+Hola, $nombre:
+
+Aún faltan estos documentos en tu expediente: $documentos_pendientes.
+Recuerda que el plazo vence el $fecha_limite_documentos. Si falta algún documento,
+Talento Humano puede reprogramar tu fecha de inicio.
+
+Talento Humano
