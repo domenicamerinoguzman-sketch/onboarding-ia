@@ -41,3 +41,62 @@
 - Recuperación semántica con embeddings multilingües.
 - Etapa generativa con verificación de fidelidad.
 - Preguntas reales anonimizadas, con autorización.
+
+## 26 de octubre de 2026 · v1.0 (avance consolidado)
+
+**Decisión 5: atacar los tres errores de v0.2 con cambios medibles.** Se prueban, con las mismas 50
+particiones y el mismo protocolo: B1 diccionario de sinónimos, B2 n-gramas de caracteres, B3 ambos,
+B4 B3 + derivación por cobertura y B5 A4 + cobertura (ver `resultados/v1/metricas_validacion_v1.json`).
+
+| Variante | Exactitud (CV) | Respuesta errónea |
+|---|---|---|
+| A4 (v0.2) | 0,644 | 0,246 |
+| B1 + sinónimos | 0,807 | 0,157 |
+| B2 + caracteres | 0,696 | 0,213 |
+| B3 sinónimos + caracteres | 0,831 | 0,151 |
+| B4 B3 + cobertura | 0,832 | 0,140 |
+| B5 A4 + cobertura | 0,650 | 0,209 |
+
+**Advertencia registrada antes de la prueba final:** el diccionario se redactó con los errores de v0.2
+sobre estas mismas preguntas, por lo que la mejora de B1/B3/B4 es optimista.
+
+**Decisión 6: adoptar B3.** B4 no difiere de B3 (IC de la diferencia −0,037 a 0,012) y la cobertura se
+fijó en 0 en 45 de 50 pliegues. Umbral final 4,563 (`config/modelo_final.json`). Se congela el modelo
+(commit `v1.0 (1/5)`).
+
+**Decisión 7: conjunto de prueba reservado.** Después de congelar el modelo se redactan 110 preguntas
+nuevas (93 parafraseadas, 17 fuera de alcance; commit `v1.0 (2/5)`). No se usan para ninguna decisión.
+
+**Resultado de la prueba final (`resultados/v1/prueba_final.json`)**
+
+| Sistema | Exactitud | Respuesta errónea | Hit@1 | Fuera de alcance |
+|---|---|---|---|---|
+| A0 | 0,509 | 0,427 | 0,591 | 0,235 |
+| A4 | 0,773 | 0,173 | 0,785 | 0,765 |
+| v1.0 | 0,773 | 0,164 | 0,828 | 0,529 |
+
+- v1.0 = A4 en exactitud (McNemar p = 1; 4 aciertos exclusivos de cada uno). **La mejora de la
+  validación cruzada no se sostuvo.** v1.0 recupera mejor (más útil para el LLM, que recibe 3 pasajes)
+  pero deriva peor: los n-gramas de caracteres elevan el puntaje de preguntas ajenas al corpus.
+- No se reajusta nada con el conjunto reservado; hacerlo lo invalidaría como prueba.
+- A4 obtiene 0,773 en el reservado frente a 0,644 en CV: el conjunto reservado parece más fácil
+  (lo redactó el mismo equipo, que conoce el vocabulario del corpus). Limitación declarada.
+
+**Decisión 8: generación dual con verificación.** Sin API comercial, se usa un LLM abierto local
+(Ollama) para no enviar datos a terceros. Toda respuesta del LLM pasa un verificador (cita recuperada +
+cifras presentes en el pasaje); si falla, se entrega el respaldo extractivo. La ruta del LLM se probó con
+un servidor simulado; **la evaluación con el modelo real queda pendiente** (`evaluar_generacion --modo llm_local`).
+
+**Decisión 9: flujos como automatización tradicional.** 13 tareas del modelo AS-IS preliminar: 9 se
+automatizan, 1 la atiende el asistente de IA, 3 siguen siendo humanas (validar documentos, contrato
+asistido y asignar compañero guía). Conectores simulados con la interfaz de una integración REST.
+
+**Robustez y seguridad.** Tildes y mayúsculas no afectan; con dos erratas por pregunta v1.0 cae a 0,615
+(A4: 0,576). Guardas: 12/14 ataques detectados en la primera ejecución, 0/8 falsos positivos; S02 y S13
+se corrigieron después (la cifra posterior, 14/14, no es independiente). Datos personales: 6/6.
+
+**Pendientes:**
+- Evaluar la generación con el LLM real y completar la revisión humana de 30 respuestas.
+- Tratar la derivación como un problema propio (p. ej. clasificador de alcance o verificación del LLM),
+  con un nuevo conjunto de desarrollo y otro reservado.
+- Validar con Talento Humano el diccionario de sinónimos, el AS-IS y la línea base.

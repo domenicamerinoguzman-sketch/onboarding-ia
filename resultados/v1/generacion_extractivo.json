@@ -18,9 +18,9 @@
       "tasa_descarte_llm": null,
       "derivaciones_del_llm": 0,
       "latencia_s": {
-        "media": 0.0019827272727272727,
-        "mediana": 0.00195,
-        "p95": 0.0024
+        "media": 0.0023436363636363637,
+        "mediana": 0.0024,
+        "p95": 0.0026
       }
     },
     "desarrollo": {
@@ -38,9 +38,9 @@
       "tasa_descarte_llm": null,
       "derivaciones_del_llm": 0,
       "latencia_s": {
-        "media": 0.0022870370370370375,
-        "mediana": 0.0022,
-        "p95": 0.0031
+        "media": 0.002380864197530864,
+        "mediana": 0.0024,
+        "p95": 0.0028
       }
     }
   }
