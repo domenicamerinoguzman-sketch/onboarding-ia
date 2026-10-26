@@ -1,14 +1,27 @@
 {
-  "version": "0.2.0",
+  "version": "1.0.0",
   "recuperador": {
-    "modelo": "bm25",
+    "modelo": "hibrido",
     "k1": 1.2,
     "b": 0.75,
     "stopwords": true,
     "stemming": true,
-    "incluir_titulos": true
+    "incluir_titulos": true,
+    "sinonimos": true,
+    "peso_char": 5.0
   },
-  "umbral_derivacion": 3.614,
+  "umbral_derivacion": 4.563,
   "pasajes_contexto": 3,
-  "nota": "Umbral elegido con las 162 preguntas sintéticas; desempeño estimado por validación cruzada."
+  "generacion": {
+    "modo": "dual",
+    "backend_preferido": "ollama",
+    "modelo_ollama": "qwen2.5:3b",
+    "url_ollama": "http://localhost:11434",
+    "temperatura": 0.0,
+    "max_tokens": 220,
+    "timeout_s": 60,
+    "prompt": "prompts/respuesta_rag_v2.txt",
+    "respaldo": "extractivo"
+  },
+  "nota": "Umbral elegido con las 162 preguntas de desarrollo; desempeño estimado por validación cruzada (resultados/v1/) y verificado en el conjunto reservado (resultados/v1/prueba_final.json)."
 }
