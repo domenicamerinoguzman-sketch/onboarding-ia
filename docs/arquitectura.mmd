@@ -1,0 +1,38 @@
+%%{init: {"theme":"base","flowchart":{"nodeSpacing":28,"rankSpacing":34},"themeVariables":{"fontFamily":"Inter, Helvetica, Arial","fontSize":"15px","primaryColor":"#ffffff","primaryBorderColor":"#9a9994","lineColor":"#52514e","clusterBkg":"#faf9f6","clusterBorder":"#c3c2b7"}}}%%
+flowchart TB
+  U["Nuevo colaborador"]:::persona --> W["Demo web / CLI · app/servidor.py"]
+  TH["Analista de Talento Humano"]:::persona --> W
+  subgraph IA["COMPONENTE DE IA · asistente RAG (src/asistente.py)"]
+    direction TB
+    G1["1 · Guardas de entrada<br/>inyección de prompts · datos personales"]:::regla
+    R["2 · Recuperación híbrida<br/>BM25 + sinónimos + caracteres"]:::ia
+    D{"3 · ¿Puntaje ≥ 4,563?"}:::regla
+    L["4 · LLM local (Ollama)<br/>prompt v2 · temperatura 0"]:::ia
+    E["4b · Respaldo extractivo"]:::regla
+    V["5 · Verificador de fidelidad<br/>cita recuperada + cifras del pasaje"]:::regla
+    DER["Derivar a Talento Humano"]:::regla
+    G1 --> R --> D
+    D -- sí --> L --> V
+    D -- no --> DER
+    L -. no disponible / error .-> E --> V
+    V -- no fiel --> E
+  end
+  subgraph AUT["AUTOMATIZACIÓN TRADICIONAL · sin IA (src/flujos/)"]
+    direction TB
+    O["Orquestador TO-BE<br/>13 tareas · días hábiles · condiciones"]:::regla
+    RE["Reglas de escalamiento<br/>con motivo trazable"]:::regla
+    P["Plantillas de notificación"]:::regla
+    O --> RE --> P
+  end
+  subgraph SIM["Conectores simulados (API REST en un piloto)"]
+    direction LR
+    H["HRIS"] ~~~ M["Mesa de servicios"] ~~~ CO["Correo"] ~~~ DI["Directorio"]
+  end
+  DAT[("Datos versionados sintéticos<br/>corpus 46 pasajes · sinónimos · config · prompts")]
+  W --> G1
+  W --> O
+  DAT --> R
+  O --> SIM
+  classDef ia fill:#e8f0f7,stroke:#2a78d6,color:#0b0b0b
+  classDef regla fill:#ffffff,stroke:#9a9994,color:#0b0b0b
+  classDef persona fill:#f4efe4,stroke:#b08a3e,color:#0b0b0b
