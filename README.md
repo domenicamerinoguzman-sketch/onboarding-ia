@@ -121,13 +121,17 @@ python -m src.flujos.orquestador                 # los 3 casos de data/casos_dem
 python -m src.flujos.orquestador --caso C-DEMO-02 --completo
 ```
 
-**e) Demo web** (asistente + flujos):
+**e) Notebook de demostración** (ya ejecutado; se ve con sus salidas directamente en GitHub):
+[`notebooks/demo_prototipo.ipynb`](notebooks/demo_prototipo.ipynb). Para volver a ejecutarlo:
+`pip install notebook` y `jupyter notebook notebooks/demo_prototipo.ipynb`.
+
+**f) Demo web** (asistente + flujos):
 
 ```bash
 python -m app.servidor            # http://127.0.0.1:8000
 ```
 
-**f) Evaluar la generación con el LLM real** (en un equipo con Ollama):
+**g) Evaluar la generación con el LLM real** (en un equipo con Ollama):
 
 ```bash
 ollama serve &                                   # si no está corriendo
@@ -150,6 +154,7 @@ data/               corpus (46 pasajes), preguntas de desarrollo (162), prueba r
                     sinónimos, pruebas de seguridad, casos de demostración
 docs/               arquitectura, capturas, rúbrica de revisión humana, índice de anexos
 experimentos/       validación cruzada, prueba final, robustez, evaluación, figuras
+notebooks/          demo_prototipo.ipynb: recorrido ejecutado del pipeline completo
 plantillas/         plantillas de notificación de los flujos
 prompts/            respuesta_rag_v1.txt (v0.2) y respuesta_rag_v2.txt (v1.0)
 resultados/         v0.2 (raíz) y v1.0 (resultados/v1/): métricas JSON, predicciones, figuras
@@ -241,7 +246,7 @@ pliegues, así que se descartó por parsimonia.
 
 - **Modo extractivo** (`resultados/v1/generacion_extractivo.json`): exactitud 0,773 en el reservado,
   100 % de respuestas con cita verificada, latencia mediana < 0,01 s.
-- **Modo LLM local:** **pendiente de ejecución por el equipo** (sección 4f); el entorno donde se
+- **Modo LLM local:** **pendiente de ejecución por el equipo** (sección 4g); el entorno donde se
   construyó v1.0 no tenía acceso para descargar modelos.
 - **Flujos:** en los 3 casos de demostración, las actividades manuales pasan de 11–13 (AS-IS) a 3
   (TO-BE): validar documentos, elaborar el contrato (asistida) y asignar el compañero guía. Es un

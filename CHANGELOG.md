@@ -11,7 +11,7 @@
   de caracteres; descomposición exacta del puntaje por término en cada respuesta.
 - **Flujos de automatización** (`src/flujos/`): orquestador TO-BE de 13 tareas en días hábiles,
   conectores simulados (HRIS, mesa de servicios, directorio, correo), plantillas y escalamiento.
-- **Demo web** (`app/`), con biblioteca estándar.
+- **Demo web** (`app/`), con biblioteca estándar, y notebook ejecutado `notebooks/demo_prototipo.ipynb`.
 - **Conjunto de prueba reservado** de 110 preguntas, escrito tras congelar el modelo.
 - Experimentos: `validacion_v1`, `prueba_final`, `robustez`, `evaluar_generacion`, `graficos_v1`,
   `reproducir_todo`.
