@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "recuperador": {
+    "modelo": "bm25",
+    "k1": 1.2,
+    "b": 0.75,
+    "stopwords": true,
+    "stemming": true,
+    "incluir_titulos": true
+  },
+  "umbral_derivacion": 3.614,
+  "pasajes_contexto": 3,
+  "nota": "Umbral elegido con las 162 preguntas sintéticas; desempeño estimado por validación cruzada."
+}

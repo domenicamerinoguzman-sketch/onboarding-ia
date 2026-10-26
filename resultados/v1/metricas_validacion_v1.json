@@ -1,0 +1,971 @@
+{
+  "configuracion_experimento": {
+    "semilla": 20260928,
+    "pliegues": 5,
+    "repeticiones": 10,
+    "preguntas": 162,
+    "advertencia": "Diccionario de sinónimos redactado con el análisis de errores de estas mismas preguntas: la mejora de B1, B3 y B4 es optimista. Ver resultados/v1/prueba_final.json."
+  },
+  "modelos": {
+    "A4 BM25 (v0.2)": {
+      "exactitud_asistente": {
+        "media": 0.6444444444444445,
+        "de_entre_repeticiones": 0.006635603085019363,
+        "de_entre_pliegues": 0.06741690252099808,
+        "min_pliegue": 0.5151515151515151,
+        "max_pliegue": 0.7575757575757576,
+        "media_entrenamiento": 0.6836446034585569
+      },
+      "respuesta_erronea": {
+        "media": 0.2462962962962963,
+        "de_entre_repeticiones": 0.00940669090589504,
+        "de_entre_pliegues": 0.07056567791148205,
+        "min_pliegue": 0.09375,
+        "max_pliegue": 0.40625,
+        "media_entrenamiento": 0.22884913536076326
+      },
+      "hit1": {
+        "media": 0.7391304347826086,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.06471090573605184,
+        "min_pliegue": 0.5925925925925926,
+        "max_pliegue": 0.8928571428571429,
+        "media_entrenamiento": 0.7391253071253071
+      },
+      "hit3": {
+        "media": 0.8478260869565217,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.06376783078537342,
+        "min_pliegue": 0.7037037037037037,
+        "max_pliegue": 0.9642857142857143,
+        "media_entrenamiento": 0.8478345618345619
+      },
+      "mrr5": {
+        "media": 0.7927536231884058,
+        "de_entre_repeticiones": 1.1702778228589004e-16,
+        "de_entre_pliegues": 0.055270965140821006,
+        "min_pliegue": 0.6512345679012346,
+        "max_pliegue": 0.9197530864197531,
+        "media_entrenamiento": 0.7927514878514877
+      },
+      "precision_derivacion": {
+        "media": 0.33719728547314753,
+        "de_entre_repeticiones": 0.025435923136452872,
+        "de_entre_pliegues": 0.24301140299824994,
+        "min_pliegue": 0.0,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.47675110112599667
+      },
+      "recall_derivacion": {
+        "media": 0.375,
+        "de_entre_repeticiones": 0.039283710065919325,
+        "de_entre_pliegues": 0.22136865548819928,
+        "min_pliegue": 0.0,
+        "max_pliegue": 0.8,
+        "media_entrenamiento": 0.5097894736842106
+      },
+      "exactitud_por_tipo": {
+        "directa": 0.9456521739130436,
+        "parafraseada": 0.5641304347826086,
+        "fuera_alcance": 0.375
+      },
+      "umbrales_elegidos": {
+        "puntaje_mediana": 3.456246143226683,
+        "puntaje_rango": [
+          2.8098921128139285,
+          3.6135660497479276
+        ],
+        "cobertura_frecuencias": {
+          "0.0": 50
+        }
+      }
+    },
+    "B1 A4 + sinónimos": {
+      "exactitud_asistente": {
+        "media": 0.8074074074074075,
+        "de_entre_repeticiones": 0.008632171589877776,
+        "de_entre_pliegues": 0.04953834023732351,
+        "min_pliegue": 0.696969696969697,
+        "max_pliegue": 0.9090909090909091,
+        "media_entrenamiento": 0.8285533691115086
+      },
+      "respuesta_erronea": {
+        "media": 0.15740740740740738,
+        "de_entre_repeticiones": 0.004364856673991033,
+        "de_entre_pliegues": 0.04735907812852593,
+        "min_pliegue": 0.030303030303030304,
+        "max_pliegue": 0.25,
+        "media_entrenamiento": 0.14999403697078117
+      },
+      "hit1": {
+        "media": 0.8913043478260867,
+        "de_entre_repeticiones": 2.340555645717801e-16,
+        "de_entre_pliegues": 0.039865109301506586,
+        "min_pliegue": 0.7857142857142857,
+        "max_pliegue": 0.9642857142857143,
+        "media_entrenamiento": 0.8913054873054872
+      },
+      "hit3": {
+        "media": 0.9782608695652174,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.022080949643360347,
+        "min_pliegue": 0.9259259259259259,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.9782571662571662
+      },
+      "mrr5": {
+        "media": 0.9329710144927537,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.02705155403871364,
+        "min_pliegue": 0.8720238095238094,
+        "max_pliegue": 0.9814814814814815,
+        "media_entrenamiento": 0.9329687414687414
+      },
+      "precision_derivacion": {
+        "media": 0.6855417956656347,
+        "de_entre_repeticiones": 0.06530246096379945,
+        "de_entre_pliegues": 0.2201413135830525,
+        "min_pliegue": 0.25,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.8272710279057027
+      },
+      "recall_derivacion": {
+        "media": 0.5083333333333333,
+        "de_entre_repeticiones": 0.026352313834736484,
+        "de_entre_pliegues": 0.22068770066428667,
+        "min_pliegue": 0.0,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.5836315789473684
+      },
+      "exactitud_por_tipo": {
+        "directa": 0.9369565217391305,
+        "parafraseada": 0.8206521739130436,
+        "fuera_alcance": 0.5083333333333333
+      },
+      "umbrales_elegidos": {
+        "puntaje_mediana": 3.6135660497479276,
+        "puntaje_rango": [
+          3.55161036124685,
+          4.840697884312879
+        ],
+        "cobertura_frecuencias": {
+          "0.0": 50
+        }
+      }
+    },
+    "B2 A4 + caracteres": {
+      "exactitud_asistente": {
+        "media": 0.6956790123456791,
+        "de_entre_repeticiones": 0.008256132776847272,
+        "de_entre_pliegues": 0.06632680630999956,
+        "min_pliegue": 0.5454545454545454,
+        "max_pliegue": 0.8181818181818182,
+        "media_entrenamiento": 0.7120441264162193
+      },
+      "respuesta_erronea": {
+        "media": 0.21296296296296294,
+        "de_entre_repeticiones": 0.010184665572645746,
+        "de_entre_pliegues": 0.05837351488175679,
+        "min_pliegue": 0.12121212121212122,
+        "max_pliegue": 0.34375,
+        "media_entrenamiento": 0.20878831246273105
+      },
+      "hit1": {
+        "media": 0.7463768115942029,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.06782602841399075,
+        "min_pliegue": 0.5925925925925926,
+        "max_pliegue": 0.8928571428571429,
+        "media_entrenamiento": 0.7463734643734644
+      },
+      "hit3": {
+        "media": 0.8695652173913043,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.06126066230779721,
+        "min_pliegue": 0.7142857142857143,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.8695561015561016
+      },
+      "mrr5": {
+        "media": 0.8048309178743962,
+        "de_entre_repeticiones": 1.1702778228589004e-16,
+        "de_entre_pliegues": 0.058359652972006223,
+        "min_pliegue": 0.6543209876543209,
+        "max_pliegue": 0.9357142857142857,
+        "media_entrenamiento": 0.8048266175266175
+      },
+      "precision_derivacion": {
+        "media": 0.47198850574712636,
+        "de_entre_repeticiones": 0.028628461710228374,
+        "de_entre_pliegues": 0.21468577762145036,
+        "min_pliegue": 0.0,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.5313045513661343
+      },
+      "recall_derivacion": {
+        "media": 0.5541666666666666,
+        "de_entre_repeticiones": 0.06529255151968422,
+        "de_entre_pliegues": 0.2180643043148661,
+        "min_pliegue": 0.0,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.601421052631579
+      },
+      "exactitud_por_tipo": {
+        "directa": 0.9782608695652174,
+        "parafraseada": 0.591304347826087,
+        "fuera_alcance": 0.5541666666666666
+      },
+      "umbrales_elegidos": {
+        "puntaje_mediana": 4.320823173010226,
+        "puntaje_rango": [
+          4.027127919193108,
+          4.508950189033849
+        ],
+        "cobertura_frecuencias": {
+          "0.0": 50
+        }
+      }
+    },
+    "B3 sinónimos + caracteres": {
+      "exactitud_asistente": {
+        "media": 0.8314814814814815,
+        "de_entre_repeticiones": 0.006539196947354183,
+        "de_entre_pliegues": 0.04785973216214112,
+        "min_pliegue": 0.6875,
+        "max_pliegue": 0.9393939393939394,
+        "media_entrenamiento": 0.845685152057245
+      },
+      "respuesta_erronea": {
+        "media": 0.15123456790123457,
+        "de_entre_repeticiones": 0.004364856673991033,
+        "de_entre_pliegues": 0.044771643733219714,
+        "min_pliegue": 0.030303030303030304,
+        "max_pliegue": 0.24242424242424243,
+        "media_entrenamiento": 0.14427787716159812
+      },
+      "hit1": {
+        "media": 0.8913043478260867,
+        "de_entre_repeticiones": 2.340555645717801e-16,
+        "de_entre_pliegues": 0.04291450201555257,
+        "min_pliegue": 0.75,
+        "max_pliegue": 0.9642857142857143,
+        "media_entrenamiento": 0.8913071253071253
+      },
+      "hit3": {
+        "media": 0.9782608695652174,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.022080949643360347,
+        "min_pliegue": 0.9259259259259259,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.9782571662571662
+      },
+      "mrr5": {
+        "media": 0.9329710144927537,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.028586988509104135,
+        "min_pliegue": 0.8482142857142857,
+        "max_pliegue": 0.9821428571428571,
+        "media_entrenamiento": 0.9329706524706524
+      },
+      "precision_derivacion": {
+        "media": 0.8311958818615166,
+        "de_entre_repeticiones": 0.04737767894717394,
+        "de_entre_pliegues": 0.17522640267113773,
+        "min_pliegue": 0.3333333333333333,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.905495004995005
+      },
+      "recall_derivacion": {
+        "media": 0.5625,
+        "de_entre_repeticiones": 0.029462782549439508,
+        "de_entre_pliegues": 0.19049077325129832,
+        "min_pliegue": 0.2,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.6211052631578947
+      },
+      "exactitud_por_tipo": {
+        "directa": 0.9652173913043478,
+        "parafraseada": 0.8347826086956524,
+        "fuera_alcance": 0.5625
+      },
+      "umbrales_elegidos": {
+        "puntaje_mediana": 4.562524608085419,
+        "puntaje_rango": [
+          4.2677081939370245,
+          5.070207548426857
+        ],
+        "cobertura_frecuencias": {
+          "0.0": 50
+        }
+      }
+    },
+    "B4 B3 + derivación por cobertura": {
+      "exactitud_asistente": {
+        "media": 0.8320987654320987,
+        "de_entre_repeticiones": 0.008126920846967674,
+        "de_entre_pliegues": 0.05101303369675327,
+        "min_pliegue": 0.6875,
+        "max_pliegue": 0.9393939393939394,
+        "media_entrenamiento": 0.845685152057245
+      },
+      "respuesta_erronea": {
+        "media": 0.13950617283950617,
+        "de_entre_repeticiones": 0.004316085794938895,
+        "de_entre_pliegues": 0.04703022288747005,
+        "min_pliegue": 0.0,
+        "max_pliegue": 0.24242424242424243,
+        "media_entrenamiento": 0.13687895050685753
+      },
+      "hit1": {
+        "media": 0.8913043478260867,
+        "de_entre_repeticiones": 2.340555645717801e-16,
+        "de_entre_pliegues": 0.04291450201555257,
+        "min_pliegue": 0.75,
+        "max_pliegue": 0.9642857142857143,
+        "media_entrenamiento": 0.8913071253071253
+      },
+      "hit3": {
+        "media": 0.9782608695652174,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.022080949643360347,
+        "min_pliegue": 0.9259259259259259,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.9782571662571662
+      },
+      "mrr5": {
+        "media": 0.9329710144927537,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.028586988509104135,
+        "min_pliegue": 0.8482142857142857,
+        "max_pliegue": 0.9821428571428571,
+        "media_entrenamiento": 0.9329706524706524
+      },
+      "precision_derivacion": {
+        "media": 0.7726190476190476,
+        "de_entre_repeticiones": 0.06698008338054609,
+        "de_entre_pliegues": 0.1945464532633729,
+        "min_pliegue": 0.3333333333333333,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.8602850418502591
+      },
+      "recall_derivacion": {
+        "media": 0.6291666666666667,
+        "de_entre_repeticiones": 0.013176156917368237,
+        "de_entre_pliegues": 0.21863211109075448,
+        "min_pliegue": 0.2,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.645
+      },
+      "exactitud_por_tipo": {
+        "directa": 0.9521739130434783,
+        "parafraseada": 0.8250000000000002,
+        "fuera_alcance": 0.6291666666666667
+      },
+      "umbrales_elegidos": {
+        "puntaje_mediana": 4.562524608085419,
+        "puntaje_rango": [
+          4.562524608085419,
+          6.155280328229696
+        ],
+        "cobertura_frecuencias": {
+          "0.0": 45,
+          "0.25": 4,
+          "0.2": 1
+        }
+      }
+    },
+    "B5 A4 + derivación por cobertura": {
+      "exactitud_asistente": {
+        "media": 0.65,
+        "de_entre_repeticiones": 0.00772633059897885,
+        "de_entre_pliegues": 0.07358861961709698,
+        "min_pliegue": 0.5,
+        "max_pliegue": 0.8181818181818182,
+        "media_entrenamiento": 0.6836446034585569
+      },
+      "respuesta_erronea": {
+        "media": 0.20864197530864198,
+        "de_entre_repeticiones": 0.013271206170038763,
+        "de_entre_pliegues": 0.07878117947292167,
+        "min_pliegue": 0.0625,
+        "max_pliegue": 0.375,
+        "media_entrenamiento": 0.1851818723911747
+      },
+      "hit1": {
+        "media": 0.7391304347826086,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.06471090573605184,
+        "min_pliegue": 0.5925925925925926,
+        "max_pliegue": 0.8928571428571429,
+        "media_entrenamiento": 0.7391253071253071
+      },
+      "hit3": {
+        "media": 0.8478260869565217,
+        "de_entre_repeticiones": 0.0,
+        "de_entre_pliegues": 0.06376783078537342,
+        "min_pliegue": 0.7037037037037037,
+        "max_pliegue": 0.9642857142857143,
+        "media_entrenamiento": 0.8478345618345619
+      },
+      "mrr5": {
+        "media": 0.7927536231884058,
+        "de_entre_repeticiones": 1.1702778228589004e-16,
+        "de_entre_pliegues": 0.055270965140821006,
+        "min_pliegue": 0.6512345679012346,
+        "max_pliegue": 0.9197530864197531,
+        "media_entrenamiento": 0.7927514878514877
+      },
+      "precision_derivacion": {
+        "media": 0.33779367902807433,
+        "de_entre_repeticiones": 0.024226335139874045,
+        "de_entre_pliegues": 0.17714233656230857,
+        "min_pliegue": 0.0,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.409859001542315
+      },
+      "recall_derivacion": {
+        "media": 0.4875,
+        "de_entre_repeticiones": 0.05908902051717402,
+        "de_entre_pliegues": 0.24279200807208104,
+        "min_pliegue": 0.0,
+        "max_pliegue": 1.0,
+        "media_entrenamiento": 0.6053157894736843
+      },
+      "exactitud_por_tipo": {
+        "directa": 0.9369565217391305,
+        "parafraseada": 0.5489130434782609,
+        "fuera_alcance": 0.4875
+      },
+      "umbrales_elegidos": {
+        "puntaje_mediana": 3.661870127667206,
+        "puntaje_rango": [
+          3.3165702988799333,
+          3.66187012799291
+        ],
+        "cobertura_frecuencias": {
+          "0.15": 36,
+          "0.0": 9,
+          "0.2": 5
+        }
+      }
+    }
+  },
+  "comparaciones_pareadas": [
+    {
+      "A": "A4 BM25 (v0.2)",
+      "B": "B1 A4 + sinónimos",
+      "p_mcnemar_rango": [
+        1.3085082173347473e-07,
+        0.00019107642583549023
+      ],
+      "pruebas_por_repeticion": [
+        {
+          "repeticion": 0,
+          "solo_B_acierta": 31,
+          "solo_A_acierta": 2,
+          "p_mcnemar_exacta": 1.3085082173347473e-07
+        },
+        {
+          "repeticion": 1,
+          "solo_B_acierta": 30,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 1.4011748135089874e-06
+        },
+        {
+          "repeticion": 2,
+          "solo_B_acierta": 31,
+          "solo_A_acierta": 4,
+          "p_mcnemar_exacta": 3.4654513001441956e-06
+        },
+        {
+          "repeticion": 3,
+          "solo_B_acierta": 30,
+          "solo_A_acierta": 7,
+          "p_mcnemar_exacta": 0.00019107642583549023
+        },
+        {
+          "repeticion": 4,
+          "solo_B_acierta": 30,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 1.4011748135089874e-06
+        },
+        {
+          "repeticion": 5,
+          "solo_B_acierta": 32,
+          "solo_A_acierta": 4,
+          "p_mcnemar_exacta": 1.941574737429619e-06
+        },
+        {
+          "repeticion": 6,
+          "solo_B_acierta": 29,
+          "solo_A_acierta": 4,
+          "p_mcnemar_exacta": 1.0928604751825333e-05
+        },
+        {
+          "repeticion": 7,
+          "solo_B_acierta": 29,
+          "solo_A_acierta": 4,
+          "p_mcnemar_exacta": 1.0928604751825333e-05
+        },
+        {
+          "repeticion": 8,
+          "solo_B_acierta": 27,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 8.430331945419312e-06
+        },
+        {
+          "repeticion": 9,
+          "solo_B_acierta": 33,
+          "solo_A_acierta": 4,
+          "p_mcnemar_exacta": 1.0843941709026694e-06
+        }
+      ],
+      "bootstrap_repeticion_0": {
+        "correcta": {
+          "diferencia_B_menos_A": [
+            0.11728395061728392,
+            0.2407407407407407
+          ],
+          "diferencia_puntual": 0.17901234567901225
+        },
+        "erronea": {
+          "diferencia_B_menos_A": [
+            -0.14814814814814817,
+            -0.037037037037037035
+          ],
+          "diferencia_puntual": -0.09259259259259262
+        }
+      }
+    },
+    {
+      "A": "A4 BM25 (v0.2)",
+      "B": "B2 A4 + caracteres",
+      "p_mcnemar_rango": [
+        0.001953125,
+        0.109375
+      ],
+      "pruebas_por_repeticion": [
+        {
+          "repeticion": 0,
+          "solo_B_acierta": 8,
+          "solo_A_acierta": 1,
+          "p_mcnemar_exacta": 0.0390625
+        },
+        {
+          "repeticion": 1,
+          "solo_B_acierta": 8,
+          "solo_A_acierta": 2,
+          "p_mcnemar_exacta": 0.109375
+        },
+        {
+          "repeticion": 2,
+          "solo_B_acierta": 11,
+          "solo_A_acierta": 1,
+          "p_mcnemar_exacta": 0.00634765625
+        },
+        {
+          "repeticion": 3,
+          "solo_B_acierta": 9,
+          "solo_A_acierta": 1,
+          "p_mcnemar_exacta": 0.021484375
+        },
+        {
+          "repeticion": 4,
+          "solo_B_acierta": 8,
+          "solo_A_acierta": 0,
+          "p_mcnemar_exacta": 0.0078125
+        },
+        {
+          "repeticion": 5,
+          "solo_B_acierta": 10,
+          "solo_A_acierta": 0,
+          "p_mcnemar_exacta": 0.001953125
+        },
+        {
+          "repeticion": 6,
+          "solo_B_acierta": 9,
+          "solo_A_acierta": 2,
+          "p_mcnemar_exacta": 0.0654296875
+        },
+        {
+          "repeticion": 7,
+          "solo_B_acierta": 9,
+          "solo_A_acierta": 0,
+          "p_mcnemar_exacta": 0.00390625
+        },
+        {
+          "repeticion": 8,
+          "solo_B_acierta": 9,
+          "solo_A_acierta": 1,
+          "p_mcnemar_exacta": 0.021484375
+        },
+        {
+          "repeticion": 9,
+          "solo_B_acierta": 10,
+          "solo_A_acierta": 0,
+          "p_mcnemar_exacta": 0.001953125
+        }
+      ],
+      "bootstrap_repeticion_0": {
+        "correcta": {
+          "diferencia_B_menos_A": [
+            0.006172839506172867,
+            0.08024691358024694
+          ],
+          "diferencia_puntual": 0.043209876543209846
+        },
+        "erronea": {
+          "diferencia_B_menos_A": [
+            -0.05555555555555558,
+            0.018518518518518545
+          ],
+          "diferencia_puntual": -0.018518518518518545
+        }
+      }
+    },
+    {
+      "A": "A4 BM25 (v0.2)",
+      "B": "B3 sinónimos + caracteres",
+      "p_mcnemar_rango": [
+        1.0244548320770264e-08,
+        2.4299079086631536e-06
+      ],
+      "pruebas_por_repeticion": [
+        {
+          "repeticion": 0,
+          "solo_B_acierta": 35,
+          "solo_A_acierta": 2,
+          "p_mcnemar_exacta": 1.0244548320770264e-08
+        },
+        {
+          "repeticion": 1,
+          "solo_B_acierta": 32,
+          "solo_A_acierta": 2,
+          "p_mcnemar_exacta": 6.938353180885315e-08
+        },
+        {
+          "repeticion": 2,
+          "solo_B_acierta": 34,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 1.233129296451807e-07
+        },
+        {
+          "repeticion": 3,
+          "solo_B_acierta": 32,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 4.176981747150421e-07
+        },
+        {
+          "repeticion": 4,
+          "solo_B_acierta": 33,
+          "solo_A_acierta": 4,
+          "p_mcnemar_exacta": 1.0843941709026694e-06
+        },
+        {
+          "repeticion": 5,
+          "solo_B_acierta": 34,
+          "solo_A_acierta": 5,
+          "p_mcnemar_exacta": 2.4299079086631536e-06
+        },
+        {
+          "repeticion": 6,
+          "solo_B_acierta": 34,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 1.233129296451807e-07
+        },
+        {
+          "repeticion": 7,
+          "solo_B_acierta": 32,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 4.176981747150421e-07
+        },
+        {
+          "repeticion": 8,
+          "solo_B_acierta": 32,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 4.176981747150421e-07
+        },
+        {
+          "repeticion": 9,
+          "solo_B_acierta": 36,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 3.608874976634979e-08
+        }
+      ],
+      "bootstrap_repeticion_0": {
+        "correcta": {
+          "diferencia_B_menos_A": [
+            0.13580246913580252,
+            0.2716049382716049
+          ],
+          "diferencia_puntual": 0.2037037037037036
+        },
+        "erronea": {
+          "diferencia_B_menos_A": [
+            -0.16666666666666666,
+            -0.04938271604938271
+          ],
+          "diferencia_puntual": -0.1049382716049383
+        }
+      }
+    },
+    {
+      "A": "A4 BM25 (v0.2)",
+      "B": "B4 B3 + derivación por cobertura",
+      "p_mcnemar_rango": [
+        3.608874976634979e-08,
+        8.364584573428147e-06
+      ],
+      "pruebas_por_repeticion": [
+        {
+          "repeticion": 0,
+          "solo_B_acierta": 35,
+          "solo_A_acierta": 4,
+          "p_mcnemar_exacta": 3.353161446284503e-07
+        },
+        {
+          "repeticion": 1,
+          "solo_B_acierta": 33,
+          "solo_A_acierta": 4,
+          "p_mcnemar_exacta": 1.0843941709026694e-06
+        },
+        {
+          "repeticion": 2,
+          "solo_B_acierta": 36,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 3.608874976634979e-08
+        },
+        {
+          "repeticion": 3,
+          "solo_B_acierta": 34,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 1.233129296451807e-07
+        },
+        {
+          "repeticion": 4,
+          "solo_B_acierta": 34,
+          "solo_A_acierta": 6,
+          "p_mcnemar_exacta": 8.364584573428147e-06
+        },
+        {
+          "repeticion": 5,
+          "solo_B_acierta": 35,
+          "solo_A_acierta": 5,
+          "p_mcnemar_exacta": 1.382612026645802e-06
+        },
+        {
+          "repeticion": 6,
+          "solo_B_acierta": 34,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 1.233129296451807e-07
+        },
+        {
+          "repeticion": 7,
+          "solo_B_acierta": 34,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 1.233129296451807e-07
+        },
+        {
+          "repeticion": 8,
+          "solo_B_acierta": 32,
+          "solo_A_acierta": 5,
+          "p_mcnemar_exacta": 7.427530363202095e-06
+        },
+        {
+          "repeticion": 9,
+          "solo_B_acierta": 36,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 3.608874976634979e-08
+        }
+      ],
+      "bootstrap_repeticion_0": {
+        "correcta": {
+          "diferencia_B_menos_A": [
+            0.12345679012345678,
+            0.2592592592592593
+          ],
+          "diferencia_puntual": 0.191358024691358
+        },
+        "erronea": {
+          "diferencia_B_menos_A": [
+            -0.17901234567901234,
+            -0.06172839506172839
+          ],
+          "diferencia_puntual": -0.11728395061728397
+        }
+      }
+    },
+    {
+      "A": "A4 BM25 (v0.2)",
+      "B": "B5 A4 + derivación por cobertura",
+      "p_mcnemar_rango": [
+        0.453125,
+        1.0
+      ],
+      "pruebas_por_repeticion": [
+        {
+          "repeticion": 0,
+          "solo_B_acierta": 2,
+          "solo_A_acierta": 0,
+          "p_mcnemar_exacta": 0.5
+        },
+        {
+          "repeticion": 1,
+          "solo_B_acierta": 6,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 0.5078125
+        },
+        {
+          "repeticion": 2,
+          "solo_B_acierta": 2,
+          "solo_A_acierta": 0,
+          "p_mcnemar_exacta": 0.5
+        },
+        {
+          "repeticion": 3,
+          "solo_B_acierta": 3,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 1.0
+        },
+        {
+          "repeticion": 4,
+          "solo_B_acierta": 2,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 1.0
+        },
+        {
+          "repeticion": 5,
+          "solo_B_acierta": 4,
+          "solo_A_acierta": 2,
+          "p_mcnemar_exacta": 0.6875
+        },
+        {
+          "repeticion": 6,
+          "solo_B_acierta": 0,
+          "solo_A_acierta": 1,
+          "p_mcnemar_exacta": 1.0
+        },
+        {
+          "repeticion": 7,
+          "solo_B_acierta": 2,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 1.0
+        },
+        {
+          "repeticion": 8,
+          "solo_B_acierta": 1,
+          "solo_A_acierta": 1,
+          "p_mcnemar_exacta": 1.0
+        },
+        {
+          "repeticion": 9,
+          "solo_B_acierta": 5,
+          "solo_A_acierta": 2,
+          "p_mcnemar_exacta": 0.453125
+        }
+      ],
+      "bootstrap_repeticion_0": {
+        "correcta": {
+          "diferencia_B_menos_A": [
+            0.0,
+            0.030864197530864224
+          ],
+          "diferencia_puntual": 0.012345679012345623
+        },
+        "erronea": {
+          "diferencia_B_menos_A": [
+            -0.06172839506172839,
+            -0.006172839506172839
+          ],
+          "diferencia_puntual": -0.030864197530864224
+        }
+      }
+    },
+    {
+      "A": "B3 sinónimos + caracteres",
+      "B": "B4 B3 + derivación por cobertura",
+      "p_mcnemar_rango": [
+        0.5,
+        1.0
+      ],
+      "pruebas_por_repeticion": [
+        {
+          "repeticion": 0,
+          "solo_B_acierta": 1,
+          "solo_A_acierta": 3,
+          "p_mcnemar_exacta": 0.625
+        },
+        {
+          "repeticion": 1,
+          "solo_B_acierta": 1,
+          "solo_A_acierta": 2,
+          "p_mcnemar_exacta": 1.0
+        },
+        {
+          "repeticion": 2,
+          "solo_B_acierta": 3,
+          "solo_A_acierta": 1,
+          "p_mcnemar_exacta": 0.625
+        },
+        {
+          "repeticion": 3,
+          "solo_B_acierta": 2,
+          "solo_A_acierta": 0,
+          "p_mcnemar_exacta": 0.5
+        },
+        {
+          "repeticion": 4,
+          "solo_B_acierta": 1,
+          "solo_A_acierta": 2,
+          "p_mcnemar_exacta": 1.0
+        },
+        {
+          "repeticion": 5,
+          "solo_B_acierta": 1,
+          "solo_A_acierta": 0,
+          "p_mcnemar_exacta": 1.0
+        },
+        {
+          "repeticion": 6,
+          "solo_B_acierta": 1,
+          "solo_A_acierta": 1,
+          "p_mcnemar_exacta": 1.0
+        },
+        {
+          "repeticion": 7,
+          "solo_B_acierta": 2,
+          "solo_A_acierta": 0,
+          "p_mcnemar_exacta": 0.5
+        },
+        {
+          "repeticion": 8,
+          "solo_B_acierta": 3,
+          "solo_A_acierta": 5,
+          "p_mcnemar_exacta": 0.7265625
+        },
+        {
+          "repeticion": 9,
+          "solo_B_acierta": 1,
+          "solo_A_acierta": 1,
+          "p_mcnemar_exacta": 1.0
+        }
+      ],
+      "bootstrap_repeticion_0": {
+        "correcta": {
+          "diferencia_B_menos_A": [
+            -0.03703703703703709,
+            0.012345679012345623
+          ],
+          "diferencia_puntual": -0.012345679012345623
+        },
+        "erronea": {
+          "diferencia_B_menos_A": [
+            -0.030864197530864196,
+            0.0
+          ],
+          "diferencia_puntual": -0.012345679012345678
+        }
+      }
+    }
+  ]
+}
