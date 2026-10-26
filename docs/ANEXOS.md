@@ -11,7 +11,7 @@
 | G. Prompts | v1 (no ejecutado) y v2 (vigente) | `prompts/` |
 | H. Interpretabilidad | Descomposición exacta de BM25 por término (en cada respuesta: `trazabilidad.terminos_top1`) | `src/recuperadores.py` (`contribuciones`) |
 | I. Flujos | Definición TO-BE, plantillas, casos de demostración | `config/flujo_onboarding.json`, `plantillas/`, `data/casos_demo.json` |
-| J. Demo | Capturas de la demo web | `docs/img/demo_*.png` |
+| J. Demo | Capturas de la demo web y notebook ejecutado | `docs/img/demo_*.png`, `notebooks/demo_prototipo.ipynb` |
 | K. Arquitectura | Diagrama (fuente Mermaid y PNG) | `docs/arquitectura.mmd`, `docs/img/arquitectura_v1.png` |
 | L. Pruebas | 35 pruebas unitarias y de integración | `tests/` |
 | M. Decisiones | Bitácora y registro de cambios | `BITACORA.md`, `CHANGELOG.md` |
