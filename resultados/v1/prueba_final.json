@@ -1,0 +1,131 @@
+{
+  "conjunto": {
+    "preguntas": 110,
+    "por_tipo": {
+      "fuera_alcance": 17,
+      "parafraseada": 93
+    },
+    "nota": "Redactado después de congelar el modelo; ninguna decisión usó estas preguntas."
+  },
+  "sistemas": {
+    "A0 Baseline palabras clave": {
+      "exactitud_asistente": 0.509090909090909,
+      "respuesta_erronea": 0.42727272727272725,
+      "hit1": 0.5913978494623656,
+      "hit3": 0.6666666666666666,
+      "mrr5": 0.6487455197132617,
+      "precision_derivacion": 0.36363636363636365,
+      "recall_derivacion": 0.23529411764705882,
+      "umbral": 3.0,
+      "ic95_exactitud": [
+        0.4182,
+        0.6002
+      ],
+      "ic95_respuesta_erronea": [
+        0.3364,
+        0.5273
+      ],
+      "exactitud_por_tipo": {
+        "fuera_alcance": 0.23529411764705882,
+        "parafraseada": 0.5591397849462365
+      }
+    },
+    "A4 BM25 (v0.2)": {
+      "exactitud_asistente": 0.7727272727272727,
+      "respuesta_erronea": 0.17272727272727273,
+      "hit1": 0.7849462365591398,
+      "hit3": 0.9354838709677419,
+      "mrr5": 0.8659498207885304,
+      "precision_derivacion": 0.6842105263157895,
+      "recall_derivacion": 0.7647058823529411,
+      "umbral": 3.614,
+      "ic95_exactitud": [
+        0.7,
+        0.8455
+      ],
+      "ic95_respuesta_erronea": [
+        0.1,
+        0.2455
+      ],
+      "exactitud_por_tipo": {
+        "fuera_alcance": 0.7647058823529411,
+        "parafraseada": 0.7741935483870968
+      }
+    },
+    "v1 Final (sinónimos + caracteres)": {
+      "exactitud_asistente": 0.7727272727272727,
+      "respuesta_erronea": 0.16363636363636364,
+      "hit1": 0.8279569892473119,
+      "hit3": 0.956989247311828,
+      "mrr5": 0.8915770609318996,
+      "precision_derivacion": 0.5625,
+      "recall_derivacion": 0.5294117647058824,
+      "umbral": 4.563,
+      "ic95_exactitud": [
+        0.7,
+        0.8455
+      ],
+      "ic95_respuesta_erronea": [
+        0.1,
+        0.2364
+      ],
+      "exactitud_por_tipo": {
+        "fuera_alcance": 0.5294117647058824,
+        "parafraseada": 0.8172043010752689
+      }
+    }
+  },
+  "comparaciones": [
+    {
+      "A": "A4 BM25 (v0.2)",
+      "B": "v1 Final (sinónimos + caracteres)",
+      "solo_B_acierta": 4,
+      "solo_A_acierta": 4,
+      "p_mcnemar_exacta": 1.0,
+      "diferencia_exactitud": 0.0,
+      "ic95_diferencia_exactitud": [
+        -0.0545,
+        0.0455
+      ],
+      "diferencia_erronea": -0.009090909090909094,
+      "ic95_diferencia_erronea": [
+        -0.0636,
+        0.0455
+      ]
+    },
+    {
+      "A": "A0 Baseline palabras clave",
+      "B": "v1 Final (sinónimos + caracteres)",
+      "solo_B_acierta": 35,
+      "solo_A_acierta": 6,
+      "p_mcnemar_exacta": 4.873598300036974e-06,
+      "diferencia_exactitud": 0.26363636363636367,
+      "ic95_diferencia_exactitud": [
+        0.1636,
+        0.3636
+      ],
+      "diferencia_erronea": -0.2636363636363636,
+      "ic95_diferencia_erronea": [
+        -0.3727,
+        -0.1636
+      ]
+    },
+    {
+      "A": "A0 Baseline palabras clave",
+      "B": "A4 BM25 (v0.2)",
+      "solo_B_acierta": 34,
+      "solo_A_acierta": 5,
+      "p_mcnemar_exacta": 2.4299079086631536e-06,
+      "diferencia_exactitud": 0.26363636363636367,
+      "ic95_diferencia_exactitud": [
+        0.1636,
+        0.3636
+      ],
+      "diferencia_erronea": -0.2545454545454545,
+      "ic95_diferencia_erronea": [
+        -0.3545,
+        -0.1545
+      ]
+    }
+  ]
+}

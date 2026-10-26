@@ -1,0 +1,47 @@
+{
+  "modo": "extractivo",
+  "modelo": null,
+  "version": "1.0.0",
+  "umbral": 4.563,
+  "conjuntos": {
+    "reservado": {
+      "preguntas": 110,
+      "exactitud_extremo_a_extremo": 0.7727272727272727,
+      "exactitud_por_tipo": {
+        "fuera_alcance": 0.5294117647058824,
+        "parafraseada": 0.8172043010752689
+      },
+      "respuestas_entregadas": 94,
+      "respuestas_erroneas": 18,
+      "tasa_fidelidad_verificada": 1.0,
+      "respuestas_llm": 0,
+      "tasa_descarte_llm": null,
+      "derivaciones_del_llm": 0,
+      "latencia_s": {
+        "media": 0.0019827272727272727,
+        "mediana": 0.00195,
+        "p95": 0.0024
+      }
+    },
+    "desarrollo": {
+      "preguntas": 162,
+      "exactitud_extremo_a_extremo": 0.8395061728395061,
+      "exactitud_por_tipo": {
+        "directa": 0.9565217391304348,
+        "fuera_alcance": 0.625,
+        "parafraseada": 0.8369565217391305
+      },
+      "respuestas_entregadas": 144,
+      "respuestas_erroneas": 23,
+      "tasa_fidelidad_verificada": 1.0,
+      "respuestas_llm": 0,
+      "tasa_descarte_llm": null,
+      "derivaciones_del_llm": 0,
+      "latencia_s": {
+        "media": 0.0022870370370370375,
+        "mediana": 0.0022,
+        "p95": 0.0031
+      }
+    }
+  }
+}

@@ -15,11 +15,12 @@ import unicodedata
 
 PATRONES_INYECCION = [
     r"ignora\w*\s+(las|tus|todas|cualquier)?\s*(instrucciones|reglas|indicaciones)",
-    r"olvida\w*\s+(las|tus|todas)?\s*(instrucciones|reglas)",
+    r"olvida\w*\s+((las|tus|todas|cualquier)\s+){0,2}(instrucciones|reglas|indicaciones)",
     r"(nuevas|otras)\s+instrucciones",
     r"(act[uú]a|comp[oó]rtate|finge|haz de cuenta)\s+(como|que eres)",
     r"(eres|ahora eres)\s+(un|una)\s+(nuevo|nueva|otro|otra)?\s*(asistente|modelo|ia|hacker|administrador)",
     r"(muestra|revela|imprime|dime|repite)\w*\s+(tu|el|las|los)?\s*(prompt|instrucciones|sistema|system|configuraci[oó]n)",
+    r"(que|cuales)\s+(instrucciones|reglas|indicaciones)\s+(te\s+dieron|recibiste|tienes)",
     r"\b(system prompt|jailbreak|dan mode|developer mode|modo desarrollador)\b",
     r"ignore\s+(all|previous|the)?\s*(previous\s+)?instructions",
     r"\[\s*(sistema|system)\s*\]|<\s*/?\s*(system|sistema|pasaje)\b",

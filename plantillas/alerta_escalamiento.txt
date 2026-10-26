@@ -1,0 +1,6 @@
+Asunto: [Acción requerida] Incorporación $id_caso - $nombre
+
+El caso $id_caso (ingreso $fecha_ingreso, $area) requiere intervención de Talento Humano:
+$motivos
+
+Este aviso lo generaron reglas de negocio; revise el caso antes de la fecha de ingreso.

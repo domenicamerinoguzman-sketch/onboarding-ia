@@ -1,0 +1,17 @@
+{
+  "_descripcion": "Casos de incorporación SINTÉTICOS para la demostración de los flujos. Nombres ficticios; sin datos personales reales.",
+  "casos": [
+    {"id": "C-DEMO-01", "nombre": "Ana Torres", "cargo": "Analista de crédito", "area": "Operaciones",
+     "fecha_ingreso": "2026-11-16", "modalidad": "presencial",
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "entregado", "titulos_senescyt": "entregado",
+                    "certificado_bancario": "entregado", "referencias": "entregado", "antecedentes": "entregado"}},
+    {"id": "C-DEMO-02", "nombre": "Luis Paredes", "cargo": "Desarrollador", "area": "Tecnología",
+     "fecha_ingreso": "2026-11-16", "modalidad": "remota",
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "entregado", "titulos_senescyt": "pendiente",
+                    "certificado_bancario": "entregado", "referencias": "entregado", "antecedentes": "rechazado"}},
+    {"id": "C-DEMO-03", "nombre": "Sofía Cárdenas", "cargo": "Ejecutiva de servicio", "area": "Ventas",
+     "fecha_ingreso": "2026-11-23", "modalidad": "presencial", "aprobacion_especial": true, "choque_agenda": true,
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "entregado", "titulos_senescyt": "entregado",
+                    "certificado_bancario": "entregado", "referencias": "entregado", "antecedentes": "entregado"}}
+  ]
+}
