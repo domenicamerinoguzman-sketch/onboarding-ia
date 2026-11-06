@@ -1,0 +1,295 @@
+{
+  "fuente_datos": "data/reales/ejemplo",
+  "AVISO": "EJEMPLO SINTÉTICO: solo muestra el formato; no son resultados.",
+  "propuesta": {
+    "horas_por_incorporacion": 4.0,
+    "incorporaciones_mes": [
+      30,
+      36
+    ],
+    "incorporaciones_analista_mes": [
+      10,
+      12
+    ],
+    "analistas": 3,
+    "horas_hombre_mes": 132,
+    "horas_hombre_anio": 1584,
+    "etiqueta": "DATO PROPORCIONADO (propuesta del proyecto)"
+  },
+  "hris": {
+    "volumen": {
+      "meses": 12,
+      "periodo": [
+        "2025-11",
+        "2026-10"
+      ],
+      "incorporaciones": 337,
+      "por_mes": {
+        "media": 28.08,
+        "minimo": 22,
+        "maximo": 34,
+        "ic95_media": [
+          25.833,
+          30.333
+        ],
+        "etiqueta": "DATO VALIDADO (HRIS, n = 337)",
+        "contraste": "por debajo de la propuesta"
+      },
+      "analistas_distintos": 3,
+      "por_analista_mes": {
+        "media": 9.36,
+        "minimo": 5,
+        "maximo": 17,
+        "contraste": "por debajo de la propuesta"
+      },
+      "serie_mensual": {
+        "2025-11": 27,
+        "2025-12": 22,
+        "2026-01": 23,
+        "2026-02": 25,
+        "2026-03": 34,
+        "2026-04": 24,
+        "2026-05": 32,
+        "2026-06": 32,
+        "2026-07": 27,
+        "2026-08": 33,
+        "2026-09": 31,
+        "2026-10": 27
+      }
+    },
+    "tiempos_de_ciclo": {
+      "dias_solicitud_a_ingreso": {
+        "nombre": "Aprobación de la vacante → ingreso",
+        "n": 337,
+        "cobertura": 1.0,
+        "mediana": 28.0,
+        "p25": 18.0,
+        "p75": 37.0,
+        "p90": 43.0,
+        "etiqueta": "DATO VALIDADO (HRIS, n = 337)"
+      },
+      "dias_documentos_completos": {
+        "nombre": "Expediente completo (respecto al ingreso)",
+        "n": 337,
+        "cobertura": 1.0,
+        "mediana": -4.0,
+        "p25": -7.0,
+        "p75": -1.0,
+        "p90": 1.0,
+        "etiqueta": "DATO VALIDADO (HRIS, n = 337)"
+      },
+      "dias_contrato_firmado": {
+        "nombre": "Contrato firmado (respecto al ingreso)",
+        "n": 337,
+        "cobertura": 1.0,
+        "mediana": 0.0,
+        "p25": 0.0,
+        "p75": 0.0,
+        "p90": 1.0,
+        "etiqueta": "DATO VALIDADO (HRIS, n = 337)"
+      },
+      "dias_usuario_red": {
+        "nombre": "Usuario de red creado (respecto al ingreso)",
+        "n": 337,
+        "cobertura": 1.0,
+        "mediana": 1.0,
+        "p25": -1.0,
+        "p75": 2.0,
+        "p90": 3.0,
+        "etiqueta": "DATO VALIDADO (HRIS, n = 337)"
+      },
+      "dias_correo": {
+        "nombre": "Correo creado (respecto al ingreso)",
+        "n": 337,
+        "cobertura": 1.0,
+        "mediana": 0.0,
+        "p25": -1.0,
+        "p75": 2.0,
+        "p90": 3.0,
+        "etiqueta": "DATO VALIDADO (HRIS, n = 337)"
+      },
+      "dias_equipo_entregado": {
+        "nombre": "Equipo entregado (respecto al ingreso)",
+        "n": 269,
+        "cobertura": 0.798,
+        "mediana": 5.0,
+        "p25": 3.0,
+        "p75": 7.0,
+        "p90": 8.0,
+        "etiqueta": "DATO VALIDADO (HRIS, n = 269)"
+      }
+    },
+    "retrasos": {
+      "dias_usuario_red": {
+        "descripcion": "usuario de red creado después del ingreso",
+        "n": 337,
+        "proporcion": 0.501
+      },
+      "dias_equipo_entregado": {
+        "descripcion": "equipo entregado después del día 4",
+        "n": 269,
+        "proporcion": 0.546
+      },
+      "dias_documentos_completos": {
+        "descripcion": "expediente completo después del plazo (−3 días)",
+        "n": 337,
+        "proporcion": 0.407
+      }
+    },
+    "calidad": {
+      "casos_con_rechazo": {
+        "n": 337,
+        "proporcion": 0.288
+      },
+      "reprogramados": {
+        "n": 337,
+        "proporcion": 0.05
+      }
+    }
+  },
+  "esfuerzo": {
+    "casos_completos": 15,
+    "casos_excluidos": 0,
+    "analistas": 3,
+    "horas_por_incorporacion": {
+      "media": 3.963,
+      "mediana": 3.9,
+      "de": 0.402,
+      "minimo": 3.25,
+      "maximo": 4.733,
+      "ic95_media": [
+        3.77,
+        4.163
+      ],
+      "etiqueta": "DATO VALIDADO (bitácora de tiempos, n = 15)",
+      "contraste_con_4_horas": "4 h dentro del IC 95 %"
+    },
+    "actividades": {
+      "T01": {
+        "nombre": "Registrar al colaborador en el HRIS",
+        "to_be": "automatica",
+        "minutos_media": 14.07,
+        "participacion": 0.0592,
+        "casos_con_actividad": 15
+      },
+      "T02": {
+        "nombre": "Enviar bienvenida y lista de documentos",
+        "to_be": "automatica",
+        "minutos_media": 21.67,
+        "participacion": 0.0911,
+        "casos_con_actividad": 15
+      },
+      "T03": {
+        "nombre": "Recordar documentos pendientes",
+        "to_be": "automatica",
+        "minutos_media": 11.53,
+        "participacion": 0.0485,
+        "casos_con_actividad": 15
+      },
+      "T04": {
+        "nombre": "Validar documentos del expediente",
+        "to_be": "manual",
+        "minutos_media": 38.87,
+        "participacion": 0.1634,
+        "casos_con_actividad": 15
+      },
+      "T05": {
+        "nombre": "Elaborar contrato",
+        "to_be": "asistida",
+        "minutos_media": 45.4,
+        "participacion": 0.1909,
+        "casos_con_actividad": 15
+      },
+      "T06": {
+        "nombre": "Solicitar usuario de red y correo",
+        "to_be": "automatica",
+        "minutos_media": 13.13,
+        "participacion": 0.0552,
+        "casos_con_actividad": 15
+      },
+      "T07": {
+        "nombre": "Solicitar acceso VPN",
+        "to_be": "automatica",
+        "minutos_media": 1.53,
+        "participacion": 0.0064,
+        "casos_con_actividad": 3
+      },
+      "T08": {
+        "nombre": "Preparar equipo de trabajo",
+        "to_be": "automatica",
+        "minutos_media": 10.13,
+        "participacion": 0.0426,
+        "casos_con_actividad": 15
+      },
+      "T09": {
+        "nombre": "Enviar agenda de la primera semana",
+        "to_be": "automatica",
+        "minutos_media": 16.07,
+        "participacion": 0.0676,
+        "casos_con_actividad": 15
+      },
+      "T10": {
+        "nombre": "Asignar compañero guía",
+        "to_be": "manual",
+        "minutos_media": 10.47,
+        "participacion": 0.044,
+        "casos_con_actividad": 15
+      },
+      "T11": {
+        "nombre": "Inscribir en cursos obligatorios",
+        "to_be": "automatica",
+        "minutos_media": 10.53,
+        "participacion": 0.0443,
+        "casos_con_actividad": 15
+      },
+      "T12": {
+        "nombre": "Seguimiento de pendientes y escalamiento",
+        "to_be": "automatica",
+        "minutos_media": 22.8,
+        "participacion": 0.0959,
+        "casos_con_actividad": 15
+      },
+      "T13": {
+        "nombre": "Responder consultas del nuevo colaborador",
+        "to_be": "ia",
+        "minutos_media": 16.4,
+        "participacion": 0.069,
+        "casos_con_actividad": 15
+      },
+      "T99": {
+        "nombre": "Otra actividad del onboarding",
+        "to_be": "manual",
+        "minutos_media": 5.2,
+        "participacion": 0.0219,
+        "casos_con_actividad": 15
+      }
+    },
+    "participacion_tareas_automatizables_o_ia": 0.5798,
+    "minutos_por_caso": {
+      "B001": 227.0,
+      "B002": 221.0,
+      "B003": 284.0,
+      "B004": 234.0,
+      "B005": 242.0,
+      "B006": 256.0,
+      "B007": 218.0,
+      "B008": 195.0,
+      "B009": 225.0,
+      "B010": 255.0,
+      "B011": 236.0,
+      "B012": 279.0,
+      "B013": 232.0,
+      "B014": 251.0,
+      "B015": 212.0
+    }
+  },
+  "horas_hombre_estimadas": {
+    "mensuales": 111.3,
+    "anuales": 1335.4,
+    "etiqueta": "ESTIMACIÓN (horas por incorporación de la bitácora × volumen mensual del HRIS)",
+    "propuesta": {
+      "mensuales": 132,
+      "anuales": 1584
+    }
+  }
+}

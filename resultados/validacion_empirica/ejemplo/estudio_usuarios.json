@@ -1,0 +1,263 @@
+{
+  "AVISO": "EJEMPLO SINTÉTICO: solo muestra el formato; no son resultados.",
+  "criterios": {
+    "meta_reduccion_tiempo": 0.5,
+    "meta_satisfaccion": 0.85,
+    "sus_referencia": 68
+  },
+  "sesiones": {
+    "analistas": 3,
+    "pares": 12,
+    "minutos_por_caso": {
+      "manual": {
+        "media": 132.45,
+        "de": 6.43
+      },
+      "prototipo": {
+        "media": 51.57,
+        "de": 4.44
+      }
+    },
+    "reduccion_tareas_medidas": {
+      "valor": 0.6106,
+      "ic95": [
+        0.5896,
+        0.6308
+      ],
+      "wilcoxon_p": 0.00024,
+      "etiqueta": "DATO VALIDADO (experimento controlado, 12 pares)",
+      "veredicto_meta_50": "cumple con holgura (límite inferior del IC ≥ meta)"
+    },
+    "errores_por_caso": {
+      "manual": 1.083,
+      "prototipo": 0.333
+    },
+    "tareas_incompletas_por_caso": {
+      "manual": 0.0,
+      "prototipo": 0.0
+    },
+    "reduccion_por_orden": {
+      "AB": 0.6064,
+      "BA": 0.6166
+    },
+    "por_tarea": {
+      "T02": {
+        "nombre": "Enviar bienvenida y lista de documentos",
+        "to_be": "automatica",
+        "minutos_manual": 21.82,
+        "minutos_prototipo": 8.74,
+        "reduccion": 0.5995,
+        "n_manual": 12,
+        "n_prototipo": 12
+      },
+      "T03": {
+        "nombre": "Recordar documentos pendientes",
+        "to_be": "automatica",
+        "minutos_manual": 9.98,
+        "minutos_prototipo": 3.72,
+        "reduccion": 0.6277,
+        "n_manual": 12,
+        "n_prototipo": 12
+      },
+      "T06": {
+        "nombre": "Solicitar usuario de red y correo",
+        "to_be": "automatica",
+        "minutos_manual": 12.26,
+        "minutos_prototipo": 4.53,
+        "reduccion": 0.6302,
+        "n_manual": 12,
+        "n_prototipo": 12
+      },
+      "T07": {
+        "nombre": "Solicitar acceso VPN",
+        "to_be": "automatica",
+        "minutos_manual": 8.08,
+        "minutos_prototipo": 3.12,
+        "reduccion": 0.614,
+        "n_manual": 12,
+        "n_prototipo": 12
+      },
+      "T08": {
+        "nombre": "Preparar equipo de trabajo",
+        "to_be": "automatica",
+        "minutos_manual": 10.24,
+        "minutos_prototipo": 3.85,
+        "reduccion": 0.6241,
+        "n_manual": 12,
+        "n_prototipo": 12
+      },
+      "T09": {
+        "nombre": "Enviar agenda de la primera semana",
+        "to_be": "automatica",
+        "minutos_manual": 14.23,
+        "minutos_prototipo": 5.59,
+        "reduccion": 0.6071,
+        "n_manual": 12,
+        "n_prototipo": 12
+      },
+      "T11": {
+        "nombre": "Inscribir en cursos obligatorios",
+        "to_be": "automatica",
+        "minutos_manual": 10.07,
+        "minutos_prototipo": 4.48,
+        "reduccion": 0.5555,
+        "n_manual": 12,
+        "n_prototipo": 12
+      },
+      "T12": {
+        "nombre": "Seguimiento de pendientes y escalamiento",
+        "to_be": "automatica",
+        "minutos_manual": 25.23,
+        "minutos_prototipo": 8.92,
+        "reduccion": 0.6463,
+        "n_manual": 12,
+        "n_prototipo": 12
+      },
+      "T13": {
+        "nombre": "Responder consultas del nuevo colaborador",
+        "to_be": "ia",
+        "minutos_manual": 20.53,
+        "minutos_prototipo": 8.62,
+        "reduccion": 0.58,
+        "n_manual": 12,
+        "n_prototipo": 12
+      }
+    }
+  },
+  "reduccion_proceso_completo": {
+    "valor": 0.318,
+    "ic95": [
+      0.3065,
+      0.3296
+    ],
+    "veredicto_meta_50": "no cumple",
+    "tareas_sin_medicion_contadas_como_0": [
+      "T01",
+      "T04",
+      "T05",
+      "T10",
+      "T99"
+    ],
+    "casos_base": 15,
+    "etiqueta": "ESTIMACIÓN (bitácora real × reducciones del experimento controlado)"
+  },
+  "cuestionario": {
+    "todos": {
+      "n": 13,
+      "sus": {
+        "media": 81.9,
+        "de": 3.1,
+        "ic95": [
+          80.2,
+          83.5
+        ],
+        "sobre_68": 1.0
+      },
+      "satisfechos": {
+        "proporcion": 0.8462,
+        "ic95": [
+          0.5776,
+          0.9567
+        ],
+        "veredicto_meta_85": "no cumple"
+      },
+      "otros_items_media": {
+        "utilidad_respuestas": 3.92,
+        "confianza_respuestas": 4.15,
+        "recomendaria": 4.46
+      },
+      "etiqueta": "DATO VALIDADO (cuestionario, n = 13)"
+    },
+    "analista_th": {
+      "n": 3,
+      "sus": {
+        "media": 82.5,
+        "de": 2.5,
+        "ic95": [
+          80.0,
+          85.0
+        ],
+        "sobre_68": 1.0
+      },
+      "satisfechos": {
+        "proporcion": 0.6667,
+        "ic95": [
+          0.2077,
+          0.9385
+        ],
+        "veredicto_meta_85": "no cumple"
+      },
+      "otros_items_media": {
+        "utilidad_respuestas": 4.33,
+        "confianza_respuestas": 4.67,
+        "recomendaria": 4.67
+      },
+      "etiqueta": "DATO VALIDADO (cuestionario, n = 3)"
+    },
+    "colaborador_nuevo": {
+      "n": 10,
+      "sus": {
+        "media": 81.8,
+        "de": 3.3,
+        "ic95": [
+          79.8,
+          83.8
+        ],
+        "sobre_68": 1.0
+      },
+      "satisfechos": {
+        "proporcion": 0.9,
+        "ic95": [
+          0.5958,
+          0.9821
+        ],
+        "veredicto_meta_85": "cumple (estimación puntual); el IC incluye valores bajo la meta"
+      },
+      "otros_items_media": {
+        "utilidad_respuestas": 3.8,
+        "confianza_respuestas": 4.0,
+        "recomendaria": 4.4
+      },
+      "etiqueta": "DATO VALIDADO (cuestionario, n = 10)"
+    }
+  },
+  "usabilidad": {
+    "intentos": 120,
+    "participantes": 10,
+    "exito_tarea": {
+      "proporcion": 0.7917,
+      "ic95": [
+        0.7105,
+        0.8547
+      ]
+    },
+    "segundos": {
+      "mediana": 89.0,
+      "p90": 134.20000000000002
+    },
+    "ayuda": 0.1417,
+    "acierto_asistente_preguntas_reales": {
+      "proporcion": 0.7417,
+      "ic95": [
+        0.6567,
+        0.8116
+      ],
+      "n": 120
+    },
+    "exito_por_escenario": {
+      "E01": 0.7,
+      "E02": 0.9,
+      "E03": 0.6,
+      "E04": 0.6,
+      "E05": 1.0,
+      "E06": 0.9,
+      "E07": 0.9,
+      "E08": 0.7,
+      "E09": 0.8,
+      "E10": 0.9,
+      "E11": 0.7,
+      "E12": 0.8
+    },
+    "etiqueta": "DATO VALIDADO (prueba de usabilidad, 120 intentos)"
+  }
+}

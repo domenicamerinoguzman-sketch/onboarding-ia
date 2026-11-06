@@ -1,5 +1,31 @@
 # Registro de cambios
 
+## [1.1.0] - 2026-11-06
+
+Responde a la revisión del avance: evaluación con el LLM real, línea base con datos del HRIS y
+validación con usuarios de Talento Humano (OE4 y OE5).
+
+### Agregado
+- `EVALUAR_LLM_WINDOWS.bat` y `scripts/windows/evaluar_llm.ps1`: evaluación con Ollama en Windows de
+  principio a fin (instalación, descarga del modelo, pruebas, evaluación, empaquetado).
+- `evaluar_generacion.py`: `--url`, `--timeout`, `--conjuntos`, `--limite`; calentamiento del modelo;
+  reanudación tras una interrupción; registro del equipo y del modelo; errores del LLM;
+  dos copias de la muestra para revisión humana independiente.
+- `experimentos/analizar_revision_humana.py`: acuerdo entre revisores (kappa), alucinación humana,
+  utilidad e IC de Wilson.
+- `experimentos/linea_base_real.py`: contraste de la línea base con el HRIS y la bitácora, con etiquetas.
+- `experimentos/analizar_estudio_usuarios.py`: sesiones cronometradas (diseño cruzado), SUS,
+  satisfacción, usabilidad y reducción estimada sobre el proceso completo.
+- Protocolo de validación empírica con carta, consentimiento e instrumentos (`docs/validacion_empirica/`),
+  plantillas y ejemplos sintéticos (`data/reales/`), casos de estudio S1–S8, escenarios de usabilidad,
+  políticas sintéticas en PDF y `DEMO_WINDOWS.bat`.
+- `tests/ollama_simulado.py` y `tests/test_validacion_empirica.py` (45 pruebas en total).
+
+### Cambiado
+- Los CSV de evaluación registran el origen de cada respuesta (`origen_respuesta`); la fidelidad se
+  guarda como 0/1. Corregido el conteo de derivaciones del LLM, que siempre daba 0.
+- `.gitignore` excluye los datos y resultados reales de la institución.
+
 ## [1.0.0] - 2026-10-26
 
 ### Agregado

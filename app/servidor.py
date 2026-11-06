@@ -26,11 +26,11 @@ MAX_CUERPO = 4096
 
 
 class Aplicacion:
-    def __init__(self, modo: str | None):
+    def __init__(self, modo: str | None, ruta_casos: Path | None = None):
         self.asistentes = {"auto": Asistente(modo=None, registrar=True) if modo is None else Asistente(modo=modo, registrar=True),
                            "extractivo": Asistente(modo="extractivo", registrar=True)}
         self.orquestador = Orquestador()
-        self.casos = {c.id: c for c in cargar_casos()}
+        self.casos = {c.id: c for c in (cargar_casos(ruta_casos) if ruta_casos else cargar_casos())}
 
     def estado(self) -> dict:
         a = self.asistentes["auto"]
@@ -101,8 +101,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--puerto", type=int, default=8000)
     ap.add_argument("--modo", choices=["auto", "extractivo", "llm_local"], default="auto")
+    ap.add_argument("--casos", default=None, help="archivo de casos (p. ej. data/casos_estudio.json para las sesiones)")
     a = ap.parse_args()
-    app = Aplicacion(None if a.modo == "auto" else a.modo)
+    app = Aplicacion(None if a.modo == "auto" else a.modo, Path(a.casos) if a.casos else None)
     servidor = ThreadingHTTPServer(("127.0.0.1", a.puerto), crear_manejador(app))
     e = app.estado()
     print(f"Demo v{e['version']} en http://127.0.0.1:{a.puerto}  |  LLM local: "

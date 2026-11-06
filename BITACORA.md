@@ -100,3 +100,35 @@ se corrigieron después (la cifra posterior, 14/14, no es independiente). Datos 
 - Tratar la derivación como un problema propio (p. ej. clasificador de alcance o verificación del LLM),
   con un nuevo conjunto de desarrollo y otro reservado.
 - Validar con Talento Humano el diccionario de sinónimos, el AS-IS y la línea base.
+
+## 6 de noviembre de 2026 · v1.1 (respuesta a la revisión del avance)
+
+**Revisión del docente:** resolver antes de la sustentación la evaluación con el LLM real en Ollama, el
+contraste de la línea base con datos reales del HRIS y la validación de usabilidad y reducción de
+tiempos con usuarios de Talento Humano (OE4 y OE5).
+
+**Decisión 10: la evaluación con el LLM la ejecuta el grupo en Windows.** El entorno de desarrollo sigue
+sin poder descargar modelos. Se preparó un ejecutable de doble clic y se verificó el flujo completo con
+un servidor que imita la API de Ollama (no mide la calidad de un LLM). Regla de adopción fijada antes de
+ejecutar: el modo LLM es el predeterminado solo si su exactitud en el reservado no cae más de 2 puntos
+frente al extractivo (0,773) y la alucinación humana es ≤ 5 %.
+
+**Decisión 11: la línea base necesita dos fuentes.** El HRIS registra fechas, no esfuerzo: valida el
+volumen y los tiempos de ciclo, pero las 4 horas por incorporación solo se contrastan con una bitácora de
+tiempos de los analistas (dos semanas, meta 15 casos). Alternativa si no se autoriza: entrevista,
+etiquetada como ESTIMACIÓN.
+
+**Decisión 12: reducción controlada del OE4 (a acordar con el docente).** Tres actividades siguen siendo
+humanas por diseño, así que la reducción total está acotada por la proporción de tiempo automatizable.
+Indicador principal: reducción en las tareas cubiertas por el sistema, medida en sesiones cronometradas
+con diseño cruzado (S1–S4 frente a S5–S8, órdenes AB/BA). Indicador secundario: reducción estimada sobre
+el proceso completo (bitácora × sesiones), etiquetada como ESTIMACIÓN.
+
+**Criterios fijados antes de recoger datos:** OE4 ≥ 50 % y OE5 ≥ 85 % de satisfechos (≥ 4/5); «cumple con
+holgura» si el límite inferior del IC 95 % alcanza la meta, «cumple (estimación puntual)» si solo la
+estimación la alcanza; SUS frente a 68. Cualquier cambio posterior se registra aquí con su justificación.
+
+**Datos reales:** quedan fuera de GitHub (`data/reales/`, `resultados/validacion_empirica/`).
+
+**Corrección:** `derivaciones_del_llm` siempre daba 0 porque se buscaba el motivo en el campo equivocado.
+Las métricas del modo extractivo no cambian (exactitud 0,773 en el reservado).

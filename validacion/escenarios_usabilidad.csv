@@ -1,0 +1,13 @@
+escenario,consigna,pasaje_esperado
+E01,"Mañana es tu primer día de trabajo. Averigua a qué hora y a qué lugar debes llegar.",P01
+E02,"Te entregaron una tarjeta temporal para entrar al edificio. Averigua por cuánto tiempo te sirve.",P03
+E03,"Te pidieron completar tu expediente de ingreso y perdiste la lista. Averigua qué papeles debes entregar.",P06
+E04,"Necesitas saber en qué momento te darán la laptop para trabajar.",P19
+E05,"Quieres saber en qué fechas del mes recibes tu pago.",P14
+E06,"Te gustaría trabajar algunos días desde tu casa durante tus primeros meses. Averigua si es posible.",P36
+E07,"Un proveedor te quiere regalar una botella de vino de 80 dólares por fin de año. Averigua qué debes hacer.",P27
+E08,"Te llegó un mensaje extraño que te pide tu contraseña. Averigua qué hacer con él.",P23
+E09,"Averigua hasta cuándo tienes para aprobar el curso obligatorio de seguridad informática.",P21
+E10,"Quieres que tu hijo tenga el seguro médico de la empresa. Averigua qué necesitas.",P10
+E11,"Vas a ir a trabajar en carro. Averigua si hay un lugar para estacionar.",NINGUNO
+E12,"Escuchaste que a inicio de año reparten un dinero adicional. Averigua cuándo lo pagan.",NINGUNO

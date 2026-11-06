@@ -7,14 +7,15 @@
 | C. Validación v1.0 | Ablación A4, B1–B5 con las mismas particiones | `resultados/v1/metricas_validacion_v1.json`, `resultados/v1/predicciones_fuera_de_pliegue_v1_rep0.csv`, `resultados/figuras/validacion_v1.png` |
 | D. Prueba final | Conjunto reservado: métricas, IC, McNemar, predicciones por pregunta | `resultados/v1/prueba_final.json`, `resultados/v1/prueba_final_predicciones.csv`, `resultados/figuras/prueba_reservada.png` |
 | E. Robustez y seguridad | Perturbaciones, guardas de entrada, verificador | `resultados/v1/robustez.json`, `data/pruebas_seguridad.csv` |
-| F. Extremo a extremo | Modo extractivo; plantilla para LLM local y revisión humana | `resultados/v1/generacion_extractivo*.{json,csv}`, `resultados/v1/revision_humana_extractivo.csv`, `docs/rubrica_revision_humana.md` |
+| F. Extremo a extremo | Modo extractivo; plantilla para LLM local y revisión humana | `resultados/v1/generacion_extractivo.json` y sus `.csv`, `resultados/v1/revision_humana_<etiqueta>_revisor1.csv` y `_revisor2.csv`, `docs/rubrica_revision_humana.md` |
 | G. Prompts | v1 (no ejecutado) y v2 (vigente) | `prompts/` |
 | H. Interpretabilidad | Descomposición exacta de BM25 por término (en cada respuesta: `trazabilidad.terminos_top1`) | `src/recuperadores.py` (`contribuciones`) |
 | I. Flujos | Definición TO-BE, plantillas, casos de demostración | `config/flujo_onboarding.json`, `plantillas/`, `data/casos_demo.json` |
-| J. Demo | Capturas de la demo web y notebook ejecutado | `docs/img/demo_*.png`, `notebooks/demo_prototipo.ipynb` |
+| J. Demo | Capturas de la demo web y notebook ejecutado | `docs/img/demo_asistente_responde.png` y demás capturas `demo_`, `notebooks/demo_prototipo.ipynb` |
 | K. Arquitectura | Diagrama (fuente Mermaid y PNG) | `docs/arquitectura.mmd`, `docs/img/arquitectura_v1.png` |
-| L. Pruebas | 35 pruebas unitarias y de integración | `tests/` |
+| L. Pruebas | 45 pruebas unitarias y de integración | `tests/` |
 | M. Decisiones | Bitácora y registro de cambios | `BITACORA.md`, `CHANGELOG.md` |
+| N. Validación empírica | Protocolo, instrumentos, kit del LLM real para Windows, plantillas y scripts de análisis | `docs/validacion_empirica/`, `EVALUAR_LLM_WINDOWS.bat`, `DEMO_WINDOWS.bat`, `data/reales/plantillas/`, `validacion/`, `experimentos/linea_base_real.py`, `experimentos/analizar_estudio_usuarios.py`, `experimentos/analizar_revision_humana.py` |
 
 Entregables anteriores del curso (estado del arte, diseño de la solución, informe de resultados
 preliminares, informe de ajustes, reporte de interpretabilidad y ética) se resumen en el documento

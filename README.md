@@ -103,7 +103,7 @@ python -m experimentos.robustez               # 5. perturbaciones, guardas y ver
 python -m experimentos.evaluar_generacion     # 6. extremo a extremo (modo extractivo)
 python -m experimentos.graficos               # 7. figuras
 python -m experimentos.graficos_v1
-python -m unittest discover -s tests -t .     # 8. 35 pruebas
+python -m unittest discover -s tests -t .     # 8. 45 pruebas
 ```
 
 **c) Usar el asistente:**
@@ -131,17 +131,39 @@ python -m src.flujos.orquestador --caso C-DEMO-02 --completo
 python -m app.servidor            # http://127.0.0.1:8000
 ```
 
-**g) Evaluar la generación con el LLM real** (en un equipo con Ollama):
+**g) Evaluar la generación con el LLM real**
+
+En **Windows** (8 GB de RAM o más), con doble clic: `EVALUAR_LLM_WINDOWS.bat`. Verifica Python e
+instala las dependencias, comprueba Ollama, descarga `qwen2.5:3b`, ejecuta las pruebas y la
+evaluación, y deja un `.zip` con los resultados. Conviene empezar por la prueba rápida
+(10 preguntas): `EVALUAR_LLM_WINDOWS.bat -Rapido`. Si se interrumpe, al volver a ejecutarlo continúa
+donde quedó.
+
+En cualquier sistema, con Ollama en marcha:
 
 ```bash
-ollama serve &                                   # si no está corriendo
-python -m experimentos.evaluar_generacion --modo llm_local
+ollama pull qwen2.5:3b
+python -m experimentos.evaluar_generacion --modo llm_local --timeout 180
 python -m experimentos.evaluar_generacion --modo llm_local --modelo llama3.2:3b
 ```
 
 Esto escribe `resultados/v1/generacion_llm_local_<modelo>.json` (exactitud de extremo a extremo,
-fidelidad verificada, tasa de descarte, latencia) y una muestra de 30 respuestas para revisión
-humana con la rúbrica de `docs/rubrica_revision_humana.md`.
+fidelidad verificada, tasa de descarte, errores, latencia y el equipo usado) y dos copias de una
+muestra de 30 respuestas para la revisión humana independiente
+(`docs/rubrica_revision_humana.md`; análisis: `python -m experimentos.analizar_revision_humana`).
+
+**h) Validación empírica con la institución** (protocolo en `docs/validacion_empirica/`):
+
+```bash
+python -m experimentos.linea_base_real                    # HRIS + bitácora de tiempos
+python -m experimentos.analizar_estudio_usuarios --reevaluar   # sesiones, SUS, usabilidad
+# con datos de ejemplo SINTÉTICOS, para ver el formato:
+python -m experimentos.linea_base_real --ejemplo
+python -m experimentos.analizar_estudio_usuarios --ejemplo
+```
+
+Los datos reales van en `data/reales/` (ver su `LEEME.md`) y **no se suben a GitHub**. Para las
+sesiones con analistas, `DEMO_WINDOWS.bat` abre la demo con los casos S1–S8.
 
 Todos los resultados se regeneran con la semilla `20260928`.
 
@@ -151,8 +173,10 @@ Todos los resultados se regeneran con la semilla `20260928`.
 app/                demo web (servidor y página)
 config/             modelo_final.json (v1.0), modelo_v0.2.json, flujo_onboarding.json
 data/               corpus (46 pasajes), preguntas de desarrollo (162), prueba reservada (110),
-                    sinónimos, pruebas de seguridad, casos de demostración
-docs/               arquitectura, capturas, rúbrica de revisión humana, índice de anexos
+                    sinónimos, pruebas de seguridad, casos de demostración y de estudio (S1–S8);
+                    reales/ (plantillas y ejemplos; los datos reales no se suben)
+docs/               arquitectura, capturas, rúbrica de revisión humana, índice de anexos,
+                    validacion_empirica/ (protocolo, instrumentos, carta y consentimiento)
 experimentos/       validación cruzada, prueba final, robustez, evaluación, figuras
 notebooks/          demo_prototipo.ipynb: recorrido ejecutado del pipeline completo
 plantillas/         plantillas de notificación de los flujos
@@ -160,7 +184,9 @@ prompts/            respuesta_rag_v1.txt (v0.2) y respuesta_rag_v2.txt (v1.0)
 resultados/         v0.2 (raíz) y v1.0 (resultados/v1/): métricas JSON, predicciones, figuras
 src/                preprocesamiento, sinónimos, recuperadores, evaluación, guardas,
                     generación, asistente, reglas de escalamiento y flujos/
-tests/              35 pruebas unitarias y de integración
+scripts/windows/    evaluación con el LLM real en Windows (la lanza EVALUAR_LLM_WINDOWS.bat)
+tests/              45 pruebas unitarias y de integración
+validacion/         escenarios de usabilidad y políticas sintéticas en PDF para las sesiones
 v0_reglas/          entrega v0.1: baseline de reglas y 80 casos sintéticos
 BITACORA.md         decisiones y resultados por versión
 CHANGELOG.md        cambios por versión
@@ -246,8 +272,9 @@ pliegues, así que se descartó por parsimonia.
 
 - **Modo extractivo** (`resultados/v1/generacion_extractivo.json`): exactitud 0,773 en el reservado,
   100 % de respuestas con cita verificada, latencia mediana < 0,01 s.
-- **Modo LLM local:** **pendiente de ejecución por el equipo** (sección 4g); el entorno donde se
-  construyó v1.0 no tenía acceso para descargar modelos.
+- **Modo LLM local:** **pendiente de ejecución por el equipo** con `EVALUAR_LLM_WINDOWS.bat`
+  (sección 4g; programada del 9 al 20 de noviembre); el entorno donde se construyó v1.0 no tenía
+  acceso para descargar modelos.
 - **Flujos:** en los 3 casos de demostración, las actividades manuales pasan de 11–13 (AS-IS) a 3
   (TO-BE): validar documentos, elaborar el contrato (asistida) y asignar el compañero guía. Es un
   **conteo sobre el modelo AS-IS preliminar**, no una medición de tiempo.
@@ -258,7 +285,9 @@ pliegues, así que se descartó por parsimonia.
   también lo escribió el equipo, conociendo el corpus.
 - La etapa generativa con LLM real no se ha evaluado todavía.
 - La derivación de preguntas fuera de alcance sigue siendo débil (0,53 en el reservado).
-- Los conectores son simulados; no se ha medido tiempo real ni satisfacción de usuarios.
+- Los conectores son simulados; no se ha medido tiempo real ni satisfacción de usuarios. El protocolo
+  de validación empírica (`docs/validacion_empirica/`) define cómo medirlos con la institución, con
+  criterios fijados antes de recoger los datos.
 - El diccionario de sinónimos y el calendario de feriados están pendientes de validación.
 
 ## 9. Anexos técnicos

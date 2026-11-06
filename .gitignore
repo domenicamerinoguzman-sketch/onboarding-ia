@@ -5,3 +5,12 @@ logs/
 *.egg-info/
 .pytest_cache/
 .ipynb_checkpoints/
+# Datos reales de la institución: NUNCA se suben (el repositorio es público)
+data/reales/*
+!data/reales/LEEME.md
+!data/reales/plantillas/
+!data/reales/ejemplo/
+resultados/v1/cache/
+resultados_llm_local_*.zip
+resultados/validacion_empirica/*
+!resultados/validacion_empirica/ejemplo/

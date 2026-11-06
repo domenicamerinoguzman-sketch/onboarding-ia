@@ -1,0 +1,2 @@
+DATOS DE EJEMPLO SINTÉTICOS generados por experimentos/generar_ejemplo_validacion.py.
+Solo muestran el formato. NO son resultados.

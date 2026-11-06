@@ -1,0 +1,31 @@
+{
+  "_descripcion": "Casos SINTÉTICOS para las sesiones cronometradas con analistas (protocolo en docs/validacion_empirica/). Conjunto A: S1–S4; conjunto B: S5–S8. Cada conjunto tiene la misma composición: un caso completo, uno remoto con documentos pendientes, uno con aprobación especial y uno con un documento rechazado. Nombres ficticios; sin datos personales reales.",
+  "casos": [
+    {"id": "S1", "nombre": "Daniela Ortiz", "cargo": "Analista de riesgos", "area": "Riesgos", "fecha_ingreso": "2026-11-30", "modalidad": "presencial",
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "entregado", "titulos_senescyt": "entregado", "certificado_bancario": "entregado", "referencias": "entregado", "antecedentes": "entregado"}},
+    {"id": "S2", "nombre": "Mateo Salinas", "cargo": "Desarrollador", "area": "Tecnología", "fecha_ingreso": "2026-11-30", "modalidad": "remota",
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "entregado", "titulos_senescyt": "pendiente", "certificado_bancario": "entregado", "referencias": "pendiente", "antecedentes": "entregado"}},
+    {"id": "S3", "nombre": "Valeria Andrade", "cargo": "Ejecutiva comercial", "area": "Negocios", "fecha_ingreso": "2026-11-30", "modalidad": "presencial", "aprobacion_especial": true,
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "entregado", "titulos_senescyt": "entregado", "certificado_bancario": "entregado", "referencias": "entregado", "antecedentes": "entregado"}},
+    {"id": "S4", "nombre": "Jorge Peña", "cargo": "Cajero", "area": "Operaciones", "fecha_ingreso": "2026-11-30", "modalidad": "presencial",
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "entregado", "titulos_senescyt": "entregado", "certificado_bancario": "rechazado", "referencias": "entregado", "antecedentes": "entregado"}},
+    {"id": "S5", "nombre": "Camila Vega", "cargo": "Analista de cumplimiento", "area": "Cumplimiento", "fecha_ingreso": "2026-12-07", "modalidad": "presencial",
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "entregado", "titulos_senescyt": "entregado", "certificado_bancario": "entregado", "referencias": "entregado", "antecedentes": "entregado"}},
+    {"id": "S6", "nombre": "Andrés Cueva", "cargo": "Analista de datos", "area": "Tecnología", "fecha_ingreso": "2026-12-07", "modalidad": "remota",
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "pendiente", "titulos_senescyt": "entregado", "certificado_bancario": "entregado", "referencias": "entregado", "antecedentes": "pendiente"}},
+    {"id": "S7", "nombre": "Paula Rivas", "cargo": "Oficial de crédito", "area": "Negocios", "fecha_ingreso": "2026-12-07", "modalidad": "presencial", "aprobacion_especial": true,
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "entregado", "titulos_senescyt": "entregado", "certificado_bancario": "entregado", "referencias": "entregado", "antecedentes": "entregado"}},
+    {"id": "S8", "nombre": "Diego Muñoz", "cargo": "Asistente de operaciones", "area": "Operaciones", "fecha_ingreso": "2026-12-07", "modalidad": "presencial",
+     "documentos": {"cedula_votacion": "entregado", "hoja_vida": "entregado", "titulos_senescyt": "rechazado", "certificado_bancario": "entregado", "referencias": "entregado", "antecedentes": "entregado"}}
+  ],
+  "preguntas": {
+    "S1": ["¿A qué hora tengo que llegar el primer día?", "¿Cuándo me dan la computadora?"],
+    "S2": ["¿Cómo me conecto a los sistemas desde mi casa?", "¿Qué documentos me faltan entregar y hasta cuándo?"],
+    "S3": ["¿Cuánto dura el período de prueba?", "¿Puedo aceptar regalos de clientes?"],
+    "S4": ["¿Por qué me rechazaron el certificado bancario?", "¿Qué día me pagan?"],
+    "S5": ["¿Qué tengo que llevar el primer día?", "¿Cuándo empiezo a tener seguro médico?"],
+    "S6": ["¿Puedo trabajar con mi computadora personal?", "¿Cuántos días tengo para entregar los documentos?"],
+    "S7": ["¿Cuántos días de vacaciones tengo?", "¿Qué hago si recibo un correo sospechoso?"],
+    "S8": ["¿Puedo volver a subir un documento rechazado?", "¿Hasta cuándo tengo para el curso de seguridad?"]
+  }
+}

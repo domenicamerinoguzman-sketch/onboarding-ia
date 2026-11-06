@@ -1,8 +1,17 @@
 # Rúbrica de revisión humana de respuestas
 
 Complementa al verificador automático (`src/guardas.py`), que solo comprueba la cita y las cifras.
-`experimentos/evaluar_generacion.py` genera `resultados/v1/revision_humana_<modo>.csv` con una
-muestra aleatoria de 30 respuestas del conjunto reservado (semilla 20260928).
+`experimentos/evaluar_generacion.py` genera dos copias de la misma muestra aleatoria de 30 respuestas del
+conjunto reservado (semilla 20260928): `resultados/v1/revision_humana_<etiqueta>_revisor1.csv` y `_revisor2.csv`.
+Cada revisor llena la suya sin consultar al otro (se puede abrir y guardar en Excel; se acepta coma o
+punto y coma). Después:
+
+```bash
+python -m experimentos.analizar_revision_humana --etiqueta llm_local_qwen2.5_3b
+```
+
+calcula el acuerdo (kappa de Cohen) y lista los desacuerdos. Se discuten, se guarda el resultado como
+`revision_humana_<etiqueta>_consenso.csv` y se vuelve a ejecutar para el resultado final.
 
 **Revisores:** al menos dos integrantes del equipo, de forma independiente; idealmente, un analista
 de Talento Humano. Se reporta el acuerdo entre revisores (porcentaje de acuerdo y kappa de Cohen).

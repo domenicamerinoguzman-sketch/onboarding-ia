@@ -3,6 +3,17 @@
   "modelo": null,
   "version": "1.0.0",
   "umbral": 4.563,
+  "prompt": "prompts/respuesta_rag_v2.txt",
+  "temperatura": 0.0,
+  "timeout_s": 60,
+  "entorno": {
+    "fecha_utc": "2026-11-06T19:09:34+00:00",
+    "sistema": "Linux-6.18.44-fc-v242-x86_64-with-glibc2.39",
+    "procesador": "x86_64",
+    "nucleos": 2,
+    "python": "3.13.17",
+    "ram_gb": 7.8
+  },
   "conjuntos": {
     "reservado": {
       "preguntas": 110,
@@ -13,15 +24,18 @@
       },
       "respuestas_entregadas": 94,
       "respuestas_erroneas": 18,
+      "tasa_respuesta_erronea": 0.16363636363636364,
       "tasa_fidelidad_verificada": 1.0,
       "respuestas_llm": 0,
       "tasa_descarte_llm": null,
+      "errores_llm": 0,
       "derivaciones_del_llm": 0,
       "latencia_s": {
-        "media": 0.0023436363636363637,
-        "mediana": 0.0024,
-        "p95": 0.0026
-      }
+        "media": 0.0022154545454545456,
+        "mediana": 0.0019,
+        "p95": 0.0032
+      },
+      "latencia_llm_s": null
     },
     "desarrollo": {
       "preguntas": 162,
@@ -33,15 +47,18 @@
       },
       "respuestas_entregadas": 144,
       "respuestas_erroneas": 23,
+      "tasa_respuesta_erronea": 0.1419753086419753,
       "tasa_fidelidad_verificada": 1.0,
       "respuestas_llm": 0,
       "tasa_descarte_llm": null,
+      "errores_llm": 0,
       "derivaciones_del_llm": 0,
       "latencia_s": {
-        "media": 0.002380864197530864,
-        "mediana": 0.0024,
-        "p95": 0.0028
-      }
+        "media": 0.0017783950617283953,
+        "mediana": 0.0018,
+        "p95": 0.002
+      },
+      "latencia_llm_s": null
     }
   }
 }
