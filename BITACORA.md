@@ -142,3 +142,29 @@ siguen simulados: el sistema solicita el usuario de red a Tecnología (ticket), 
 documentos no se cargan como archivos, para no almacenar datos personales. Los casos S1–S8 de las
 sesiones cronometradas no cambian, así que el protocolo de validación se mantiene.
 
+## 6 de noviembre de 2026 · v1.3 (resultados del LLM real y demo de uso diario completa)
+
+**Resultado del LLM real (equipo del grupo, Windows).** En el reservado, exactitud 0,800 frente a 0,773
+del extractivo (diferencia no significativa, McNemar p = 0,68) y tasa de respuesta errónea 0,036 frente a
+0,164 (IC 95 % de la diferencia: −0,191 a −0,073). Criterio (a) de la regla de adopción: se cumple.
+Criterio (b): pendiente de la revisión humana. **No se ajusta la recuperación con estos resultados**: el
+reservado ya se usó y ajustar sobre él inflaría la medición; cualquier mejora futura se ajusta con
+desarrollo y se reporta como exploratoria.
+
+**Decisión 14: control de acceso para Talento Humano.** Cuentas locales con contraseña derivada
+(PBKDF2) y bloqueo por intentos; el historial registra quién hizo cada acción. En producción se
+reemplaza por el inicio de sesión corporativo.
+
+**Decisión 15: seguimiento y medición dentro del sistema.** El panel calcula el estado real de cada
+tarea y los pendientes de Talento Humano. Los indicadores salen del historial con fecha y hora; son
+tiempos de ciclo observados, no esfuerzo. El esfuerzo sigue midiéndose en las sesiones cronometradas.
+
+**Decisión 16: segundo componente de IA con supervisión humana.** El LLM redacta el borrador del correo
+de bienvenida. Riesgo de alcance declarado: todo componente de IA nuevo debe evaluarse; se fijan los
+criterios antes de generar (`docs/rubrica_bienvenida_ia.md`). Si no se evalúa a tiempo, se presenta
+como funcionalidad demostrativa, sin resultados.
+
+**Decisión 17: sin streaming de texto en el portal.** Mostrar el texto mientras se genera expondría
+respuestas que la guarda todavía no verificó. Se muestra primero la política consultada (paso rápido
+sin LLM) y después la respuesta verificada.
+

@@ -172,9 +172,19 @@ async function preguntar(ev){
   const espera = burbuja("bot", `<span class="muted">Buscando en las políticas…</span>`);
   $("#b-chat").disabled = true;
   try {
+    // Paso 1 (rápido, sin LLM): qué política se va a consultar.
+    const [rb, jb] = await post("/api/portal/buscar", {pregunta: q});
+    if (rb.status === 401) { espera.remove(); iniciar(); return; }
+    if (jb.encontrado) espera.innerHTML = `<span class="muted">Encontré información en «${esc(jb.titulo)}». Redactando y verificando la respuesta…</span>`;
+    // Paso 2: respuesta generada y verificada (no se muestra texto sin verificar).
     const [r, j] = await post("/api/portal/preguntar", {pregunta: q});
     if (r.status === 401) { espera.remove(); iniciar(); return; }
-    espera.innerHTML = esc(j.respuesta) + (j.fuente ? `<div class="fuente">Fuente: ${esc(j.fuente)}</div>` : "");
+    espera.innerHTML = esc(j.respuesta) + (j.fuente ? `<div class="fuente">Fuente: ${esc(j.fuente)}</div>` : "")
+      + `<div class="valorar" style="margin-top:8px;font-size:12px;color:var(--muted)">¿Te sirvió? <button class="sec" data-util="1" aria-label="Sí me sirvió">👍</button> <button class="sec" data-util="0" aria-label="No me sirvió">👎</button></div>`;
+    espera.querySelectorAll(".valorar button").forEach(btn => btn.onclick = async () => {
+      await post("/api/portal/valorar", {consulta: j.consulta, util: btn.dataset.util === "1"});
+      espera.querySelector(".valorar").textContent = btn.dataset.util === "1" ? "¡Gracias!" : "Gracias. Si lo necesitas, escribe a Talento Humano.";
+    });
   } catch (e) { espera.innerHTML = `<span class="muted">No se pudo consultar al asistente. Intenta de nuevo.</span>`; }
   finally { $("#b-chat").disabled = false; $("#q").focus(); }
 }

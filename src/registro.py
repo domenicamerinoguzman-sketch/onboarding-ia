@@ -28,6 +28,7 @@ from .flujos.orquestador import DOCUMENTOS, NOMBRE_DOC, CasoIncorporacion
 RAIZ = Path(__file__).resolve().parent.parent
 RUTA_REGISTRO = RAIZ / "data" / "registro_local" / "ingresos.json"
 ESTADOS_DOC = {"pendiente", "en_revision", "entregado", "rechazado"}
+TAREAS_MANUALES = {"T05": "Elaborar contrato", "T10": "Asignar compañero guía"}  # T04 se cumple al completar el expediente
 MODALIDADES = {"presencial", "remota"}
 DURACION_SESION_S = 8 * 3600
 ITERACIONES = 120_000
@@ -74,8 +75,8 @@ class RegistroIngresos:
         raise ErrorRegistro("ingreso no encontrado")
 
     @staticmethod
-    def _evento(ing: dict, actor: str, texto: str) -> None:
-        ing["historial"].append(dict(fecha=_ahora(), actor=actor, evento=texto))
+    def _evento(ing: dict, actor: str, texto: str, tipo: str = "otro", **extra) -> None:
+        ing["historial"].append(dict(fecha=_ahora(), actor=actor, evento=texto, tipo=tipo, **extra))
 
     # ---------- Talento Humano ----------
     def registrar(self, datos: dict, actor: str = "Talento Humano") -> tuple[dict, str]:
@@ -110,7 +111,8 @@ class RegistroIngresos:
             ing = dict(id=id_, **campos, aprobacion_especial=bool(datos.get("aprobacion_especial")),
                        documentos={d: dict(estado="pendiente", motivo="") for d in DOCUMENTOS},
                        portal=portal, creado=_ahora(), historial=[])
-            self._evento(ing, actor, "registró el ingreso y se generó el acceso al portal")
+            ing.update(tareas={}, bienvenida=None)
+            self._evento(ing, actor, "registró el ingreso y se generó el acceso al portal", "registro")
             self._datos["ingresos"].append(ing)
             self._guardar()
         return self.publico(ing), codigo
@@ -128,7 +130,7 @@ class RegistroIngresos:
             codigo, portal = self._nuevo_codigo(ing["portal"]["usuario"])
             ing["portal"].update(sal=portal["sal"], hash=portal["hash"])
             self._sesiones = {t: s for t, s in self._sesiones.items() if s[0] != id_}
-            self._evento(ing, actor, "generó un nuevo código de acceso al portal")
+            self._evento(ing, actor, "generó un nuevo código de acceso al portal", "codigo")
             self._guardar()
         return codigo
 
@@ -142,19 +144,84 @@ class RegistroIngresos:
     def documento(self, id_: str, doc: str, estado: str, actor: str, motivo: str = "") -> dict:
         if doc not in DOCUMENTOS or estado not in ESTADOS_DOC:
             raise ErrorRegistro("documento o estado no válido")
-        if actor == "colaborador" and estado != "en_revision":
+        es_colaborador = actor == "colaborador"
+        if es_colaborador and estado != "en_revision":
             raise ErrorRegistro("el colaborador solo puede enviar documentos a revisión")
         if estado == "rechazado" and not motivo.strip():
             raise ErrorRegistro("indique el motivo del rechazo")
         with self._lock:
             ing = self._buscar(id_)
-            if actor == "colaborador" and ing["documentos"][doc]["estado"] == "entregado":
+            if es_colaborador and ing["documentos"][doc]["estado"] == "entregado":
                 raise ErrorRegistro("ese documento ya fue aprobado")
             ing["documentos"][doc] = dict(estado=estado, motivo=motivo.strip()[:200] if estado == "rechazado" else "")
             verbo = {"en_revision": "envió a revisión", "entregado": "aprobó", "rechazado": "rechazó", "pendiente": "marcó como pendiente"}[estado]
-            self._evento(ing, actor, f"{verbo}: {NOMBRE_DOC[doc]}" + (f" (motivo: {motivo.strip()[:200]})" if estado == "rechazado" else ""))
+            self._evento(ing, actor, f"{verbo}: {NOMBRE_DOC[doc]}" + (f" (motivo: {motivo.strip()[:200]})" if estado == "rechazado" else ""),
+                         "documento", documento=doc, estado=estado)
+            if all(v["estado"] == "entregado" for v in ing["documentos"].values()) and \
+                    not any(h.get("tipo") == "expediente_completo" for h in ing["historial"]):
+                self._evento(ing, "sistema", "expediente completo: validación de documentos cumplida y solicitud de usuario a Tecnología",
+                             "expediente_completo")
             self._guardar()
             return self.publico(ing)
+
+    def completar_tarea(self, id_: str, tarea: str, actor: str, nota: str = "") -> dict:
+        if tarea not in TAREAS_MANUALES:
+            raise ErrorRegistro("esa tarea no se marca a mano")
+        nota = nota.strip()[:120]
+        if tarea == "T10" and not nota:
+            raise ErrorRegistro("indique el nombre del compañero guía")
+        with self._lock:
+            ing = self._buscar(id_)
+            ing.setdefault("tareas", {})[tarea] = dict(fecha=_ahora(), actor=actor, nota=nota)
+            self._evento(ing, actor, f"completó: {TAREAS_MANUALES[tarea]}" + (f" ({nota})" if nota else ""), "tarea", tarea=tarea)
+            self._guardar()
+            return self.publico(ing)
+
+    def aprobar_bienvenida(self, id_: str, actor: str, texto: str, borrador: dict) -> dict:
+        """Guarda el correo de bienvenida aprobado por Talento Humano y cuánto cambió frente al borrador."""
+        import difflib
+        texto = texto.strip()
+        if not 40 <= len(texto) <= 4000:
+            raise ErrorRegistro("el correo debe tener entre 40 y 4000 caracteres")
+        original = (borrador or {}).get("texto", "")
+        cambio = round(1 - difflib.SequenceMatcher(None, original, texto).ratio(), 3) if original else None
+        with self._lock:
+            ing = self._buscar(id_)
+            ing["bienvenida"] = dict(texto=texto, origen=(borrador or {}).get("origen", "manual"),
+                                     modelo=(borrador or {}).get("modelo"), prompt=(borrador or {}).get("prompt"),
+                                     verificacion=(borrador or {}).get("verificacion"),
+                                     proporcion_cambio=cambio, aprobado_por=actor, fecha=_ahora())
+            origen = {"llm_local": "redactado por IA", "plantilla": "de plantilla"}.get(ing["bienvenida"]["origen"], "escrito a mano")
+            self._evento(ing, actor, f"aprobó el correo de bienvenida ({origen}"
+                         + (f"; cambió el {round(100 * cambio)} % del texto)" if cambio is not None else ")"),
+                         "bienvenida", origen=ing["bienvenida"]["origen"], proporcion_cambio=cambio)
+            self._guardar()
+            return self.publico(ing)
+
+    def bienvenida(self, id_: str) -> dict | None:
+        return self._buscar(id_).get("bienvenida")
+
+    # ---------- consultas del portal y su valoración ----------
+    def registrar_consulta(self, id_: str, respuesta: dict) -> str:
+        """Guarda solo metadatos (sin el texto de la pregunta), igual que el registro del asistente."""
+        cid = secrets.token_hex(6)
+        with self._lock:
+            self._datos.setdefault("consultas", []).append(dict(
+                id=cid, ingreso=id_, fecha=_ahora(), accion=respuesta.get("accion"), fuente=respuesta.get("fuente"),
+                modo=(respuesta.get("generacion") or {}).get("modo"), latencia_s=respuesta.get("latencia_total_s"), util=None))
+            self._guardar()
+        return cid
+
+    def valorar_consulta(self, id_: str, cid: str, util: bool) -> None:
+        with self._lock:
+            c = next((c for c in self._datos.get("consultas", []) if c["id"] == cid and c["ingreso"] == id_), None)
+            if c is None:
+                raise ErrorRegistro("consulta no encontrada")
+            c["util"] = bool(util)
+            self._guardar()
+
+    def consultas(self) -> list[dict]:
+        return list(self._datos.get("consultas", []))
 
     # ---------- portal del colaborador ----------
     def autenticar(self, usuario: str, codigo: str) -> str | None:
@@ -166,7 +233,7 @@ class RegistroIngresos:
                         token = secrets.token_urlsafe(32)
                         self._sesiones[token] = (ing["id"], time.time() + DURACION_SESION_S)
                         p["ultimo_acceso"] = _ahora()
-                        self._evento(ing, "colaborador", "ingresó al portal")
+                        self._evento(ing, "colaborador", "ingresó al portal", "acceso_portal")
                         self._guardar()
                         return token
                     return None
@@ -216,4 +283,5 @@ class RegistroIngresos:
                     aprobados=aprobados, total_documentos=len(DOCUMENTOS),
                     por_revisar=estados.count("en_revision"), situacion=situacion,
                     usuario_portal=i["portal"]["usuario"], ultimo_acceso_portal=i["portal"]["ultimo_acceso"],
+                    tareas=i.get("tareas", {}), bienvenida=i.get("bienvenida"),
                     creado=i["creado"], historial=i["historial"])

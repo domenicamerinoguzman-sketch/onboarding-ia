@@ -22,12 +22,15 @@ solicitudes de accesos, coordinación con otras áreas, seguimiento en hojas de 
 las dudas del colaborador. La propuesta reporta unas 4 horas por incorporación y entre 30 y 36
 ingresos al mes (*dato proporcionado, pendiente de validación*).
 
-**Solución.** Un sistema con dos componentes **separados a propósito**:
+**Solución.** Un sistema donde Talento Humano registra a la persona que ingresa y el sistema conduce el
+resto del onboarding. Sus componentes están **separados a propósito** entre IA y automatización:
 
 | Componente | Tipo | Qué hace | Por qué ese tipo |
 |---|---|---|---|
 | Asistente de consultas (`src/asistente.py`) | **IA** · RAG | Responde preguntas en lenguaje natural sobre las políticas de inducción, cita la fuente y deriva a Talento Humano lo que no puede responder con confianza | Las preguntas llegan con sinónimos, coloquialismos y erratas que las reglas no cubren |
+| Correo de bienvenida (`src/bienvenida_ia.py`) | **IA** · LLM con revisión humana | Redacta un borrador personalizado según cargo, área, modalidad y documentos pendientes; una guarda lo verifica y Talento Humano lo edita y aprueba | La plantilla dice lo mismo a todos; la personalización en texto natural no se resuelve bien con reglas |
 | Flujos de onboarding (`src/flujos/`) | **Automatización tradicional** · reglas | Planifica 13 tareas por caso en días hábiles, crea tickets, encola notificaciones por plantilla y escala excepciones con su motivo | Las condiciones son explícitas y auditables; usar IA añadiría riesgo sin beneficio |
+| Registro, seguimiento y portal (`src/registro.py`, `src/seguimiento.py`, `src/cuentas.py`, `app/`) | **Automatización tradicional** · aplicación web | Registro de ingresos, acceso al portal, revisión de documentos, estado de cada tarea, atrasos, pendientes e indicadores del proceso | Son datos y estados; no requieren IA |
 
 ## 2. Pipeline del asistente
 
@@ -103,7 +106,7 @@ python -m experimentos.robustez               # 5. perturbaciones, guardas y ver
 python -m experimentos.evaluar_generacion     # 6. extremo a extremo (modo extractivo)
 python -m experimentos.graficos               # 7. figuras
 python -m experimentos.graficos_v1
-python -m unittest discover -s tests -t .     # 8. 45 pruebas
+python -m unittest discover -s tests -t .     # 8. 62 pruebas
 ```
 
 **c) Usar el asistente:**
@@ -131,16 +134,26 @@ python -m src.flujos.orquestador --caso C-DEMO-02 --completo
 python -m app.servidor            # Talento Humano: http://127.0.0.1:8000 · portal: http://127.0.0.1:8000/portal
 ```
 
-- **Nuevos ingresos (Talento Humano):** «Registrar nuevo ingreso» (nombre, cargo, área, fecha, modalidad).
-  El sistema arma el plan de onboarding, genera los tickets y los mensajes, propone el usuario de red a
-  Tecnología y crea el acceso al portal del colaborador (usuario y código temporal, que se muestra una
-  sola vez). Desde el detalle, el analista aprueba o rechaza documentos; al completar el expediente se
-  dispara sola la solicitud de usuario de red y correo.
-- **Portal del colaborador** (`/portal`): entra con su usuario y código, ve sus documentos y los envía a
-  revisión, su primera semana, sus cursos, los mensajes recibidos, y le pregunta al asistente.
+La primera vez se crea en pantalla la cuenta de Talento Humano (contraseña de 8 caracteres o más).
+
+- **Seguimiento:** indicadores arriba (en incorporación, ingresan en 7 días, documentos por revisar,
+  tareas atrasadas, pendientes), lista de personas con su avance total y próximo paso, y la bandeja
+  **Pendientes de Talento Humano** con todo lo que requiere acción, de todas las personas.
+- **Registrar nuevo ingreso:** el sistema arma el plan, genera tickets y mensajes, propone el usuario de
+  red a Tecnología y crea el acceso al portal (usuario y código temporal, visible una sola vez).
+- **Detalle de cada persona:** aprobar o rechazar documentos (con motivo), marcar las tareas humanas
+  (contrato, compañero guía), ver atrasos, tickets, comunicaciones e historial firmado por quien actuó.
+  Al completar el expediente se dispara sola la solicitud de usuario de red y correo.
+- **Correo de bienvenida con IA:** «Redactar borrador con IA» → la guarda lo verifica → el analista lo
+  edita y lo aprueba. Si el LLM no está o la guarda lo descarta, se propone la plantilla.
+- **Indicadores:** tiempos de ciclo (registro → expediente completo, respuesta de Talento Humano a un
+  documento), acciones por ingreso, uso y valoración del asistente, cambio del analista sobre los
+  borradores de IA; descarga en CSV para Excel. Son datos observados por el sistema, no esfuerzo.
+- **Portal del colaborador** (`/portal`): documentos, primera semana, cursos, mensajes y el asistente,
+  que primero muestra qué política está consultando y luego la respuesta ya verificada, con 👍/👎.
 - **Asistente (IA)** con trazabilidad y **Casos de estudio** S1–S8 para las sesiones cronometradas.
 
-Los ingresos se guardan en `data/registro_local/ingresos.json` (excluido de Git). Usar solo datos
+Los ingresos y las cuentas se guardan en `data/registro_local/` (excluido de Git). Usar solo datos
 ficticios. No se cargan archivos: el colaborador marca el documento como enviado y Talento Humano lo
 revisa, para que el prototipo no almacene documentos personales.
 
@@ -188,17 +201,18 @@ config/             modelo_final.json (v1.0), modelo_v0.2.json, flujo_onboarding
 data/               corpus (46 pasajes), preguntas de desarrollo (162), prueba reservada (110),
                     sinónimos, pruebas de seguridad, casos de demostración y de estudio (S1–S8);
                     reales/ (plantillas y ejemplos; los datos reales no se suben)
-docs/               arquitectura, capturas, rúbrica de revisión humana, índice de anexos,
+docs/               arquitectura, capturas, rúbricas de revisión humana (respuestas y bienvenida), anexos,
                     validacion_empirica/ (protocolo, instrumentos, carta y consentimiento)
 experimentos/       validación cruzada, prueba final, robustez, evaluación, figuras
 notebooks/          demo_prototipo.ipynb: recorrido ejecutado del pipeline completo
 plantillas/         plantillas de notificación de los flujos
-prompts/            respuesta_rag_v1.txt (v0.2) y respuesta_rag_v2.txt (v1.0)
+prompts/            respuesta_rag_v1.txt (v0.2), respuesta_rag_v2.txt (v1.0), bienvenida_v1.txt (v1.3)
 resultados/         v0.2 (raíz) y v1.0 (resultados/v1/): métricas JSON, predicciones, figuras
 src/                preprocesamiento, sinónimos, recuperadores, evaluación, guardas,
-                    generación, asistente, reglas de escalamiento y flujos/
+                    generación, asistente, bienvenida_ia, reglas de escalamiento, flujos/,
+                    registro, seguimiento y cuentas (demo de uso diario)
 scripts/windows/    evaluación con el LLM real en Windows (la lanza EVALUAR_LLM_WINDOWS.bat)
-tests/              45 pruebas unitarias y de integración
+tests/              62 pruebas unitarias y de integración
 validacion/         escenarios de usabilidad y políticas sintéticas en PDF para las sesiones
 v0_reglas/          entrega v0.1: baseline de reglas y 80 casos sintéticos
 BITACORA.md         decisiones y resultados por versión
@@ -285,9 +299,26 @@ pliegues, así que se descartó por parsimonia.
 
 - **Modo extractivo** (`resultados/v1/generacion_extractivo.json`): exactitud 0,773 en el reservado,
   100 % de respuestas con cita verificada, latencia mediana < 0,01 s.
-- **Modo LLM local:** **pendiente de ejecución por el equipo** con `EVALUAR_LLM_WINDOWS.bat`
-  (sección 4g; programada del 9 al 20 de noviembre); el entorno donde se construyó v1.0 no tenía
-  acceso para descargar modelos.
+- **Modo LLM local** (`resultados/v1/generacion_llm_local_qwen2.5_3b.json`; qwen2.5:3b Q4_K_M en
+  Ollama 0.40.15, Windows 11, CPU de 12 núcleos, 7,4 GB de RAM; ejecutado por el equipo el 6 de
+  noviembre de 2026). Comparación pareada con el modo extractivo sobre las mismas 110 preguntas
+  del reservado (`experimentos/comparar_generacion.py` → `comparacion_llm_local_qwen2.5_3b_vs_extractivo.json`):
+
+  | Indicador (reservado, n = 110) | LLM local | Extractivo | Diferencia (IC 95 % bootstrap) |
+  |---|---|---|---|
+  | Exactitud extremo a extremo | 0,800 | 0,773 | +0,027 (−0,055 a +0,109); McNemar p = 0,68 |
+  | Tasa de respuesta errónea | 0,036 | 0,164 | −0,127 (−0,191 a −0,073) |
+  | Fuera de alcance derivadas | 17/17 | 9/17 | |
+  | Parafraseadas correctas | 0,763 | 0,817 | |
+
+  Lectura: la exactitud no cambia de forma significativa, pero el LLM **se equivoca mucho menos**
+  porque deriva cuando los pasajes no responden. El costo: derivó 11 preguntas con respuesta (en 10 el
+  extractivo acertaba). Las 4 respuestas erróneas citan un pasaje real pero de otro tema (error de
+  recuperación, no invención). Latencia del LLM: media 9,9 s, p95 18,8 s en ese equipo. El conjunto
+  de desarrollo (n = 162) muestra lo mismo: exactitud 0,840 en ambos; erróneas 0,019 frente a 0,142.
+  **Regla de adopción** (fijada antes, BITACORA decisión 10): (a) exactitud no más de 2 puntos bajo el
+  extractivo → **se cumple**; (b) alucinación humana ≤ 5 % → **pendiente** de la revisión de dos
+  integrantes (`revision_humana_llm_local_qwen2.5_3b_revisor{1,2}.csv`, rúbrica en `docs/`).
 - **Flujos:** en los 3 casos de demostración, las actividades manuales pasan de 11–13 (AS-IS) a 3
   (TO-BE): validar documentos, elaborar el contrato (asistida) y asignar el compañero guía. Es un
   **conteo sobre el modelo AS-IS preliminar**, no una medición de tiempo.
@@ -296,7 +327,8 @@ pliegues, así que se descartó por parsimonia.
 
 - Datos sintéticos redactados por el mismo equipo (sesgo de vocabulario); el conjunto reservado
   también lo escribió el equipo, conociendo el corpus.
-- La etapa generativa con LLM real no se ha evaluado todavía.
+- La etapa generativa con LLM real ya se evaluó de forma automática; falta la revisión humana de
+  fidelidad (criterio b) y la evaluación del correo de bienvenida con IA (`docs/rubrica_bienvenida_ia.md`).
 - La derivación de preguntas fuera de alcance sigue siendo débil (0,53 en el reservado).
 - Los conectores son simulados; no se ha medido tiempo real ni satisfacción de usuarios. El protocolo
   de validación empírica (`docs/validacion_empirica/`) define cómo medirlos con la institución, con

@@ -1,0 +1,115 @@
+{
+ "a": "llm_local_qwen2.5_3b",
+ "b": "extractivo",
+ "reservado": {
+  "n": 110,
+  "exactitud": {
+   "llm_local_qwen2.5_3b": 0.8,
+   "extractivo": 0.7727,
+   "diferencia": 0.0273,
+   "ic95_bootstrap": [
+    -0.0548,
+    0.1091
+   ],
+   "mcnemar_p": 0.6776,
+   "solo_acierta_llm_local_qwen2.5_3b": 13,
+   "solo_acierta_extractivo": 10
+  },
+  "tasa_respuesta_erronea": {
+   "llm_local_qwen2.5_3b": 0.0364,
+   "extractivo": 0.1636,
+   "diferencia": -0.1273,
+   "ic95_bootstrap": [
+    -0.1909,
+    -0.0725
+   ]
+  },
+  "exactitud_por_tipo": {
+   "fuera_alcance": {
+    "n": 17,
+    "llm_local_qwen2.5_3b": 1.0,
+    "extractivo": 0.5294
+   },
+   "parafraseada": {
+    "n": 93,
+    "llm_local_qwen2.5_3b": 0.7634,
+    "extractivo": 0.8172
+   }
+  },
+  "derivaciones_de_a_en_preguntas_que_b_acertaba": {
+   "n": 10,
+   "ids": [
+    "R008",
+    "R017",
+    "R018",
+    "R020",
+    "R032",
+    "R038",
+    "R054",
+    "R071",
+    "R086",
+    "R100"
+   ]
+  }
+ },
+ "desarrollo": {
+  "n": 162,
+  "exactitud": {
+   "llm_local_qwen2.5_3b": 0.8395,
+   "extractivo": 0.8395,
+   "diferencia": 0.0,
+   "ic95_bootstrap": [
+    -0.0679,
+    0.0679
+   ],
+   "mcnemar_p": 1.0,
+   "solo_acierta_llm_local_qwen2.5_3b": 16,
+   "solo_acierta_extractivo": 16
+  },
+  "tasa_respuesta_erronea": {
+   "llm_local_qwen2.5_3b": 0.0185,
+   "extractivo": 0.142,
+   "diferencia": -0.1235,
+   "ic95_bootstrap": [
+    -0.179,
+    -0.0679
+   ]
+  },
+  "exactitud_por_tipo": {
+   "directa": {
+    "n": 46,
+    "llm_local_qwen2.5_3b": 0.9565,
+    "extractivo": 0.9565
+   },
+   "fuera_alcance": {
+    "n": 24,
+    "llm_local_qwen2.5_3b": 1.0,
+    "extractivo": 0.625
+   },
+   "parafraseada": {
+    "n": 92,
+    "llm_local_qwen2.5_3b": 0.7391,
+    "extractivo": 0.837
+   }
+  },
+  "derivaciones_de_a_en_preguntas_que_b_acertaba": {
+   "n": 14,
+   "ids": [
+    "Q012",
+    "Q015",
+    "Q018",
+    "Q026",
+    "Q027",
+    "Q042",
+    "Q057",
+    "Q063",
+    "Q075",
+    "Q084",
+    "Q095",
+    "Q107",
+    "Q127",
+    "Q129"
+   ]
+  }
+ }
+}

@@ -35,6 +35,8 @@ class Manejador(BaseHTTPRequestHandler):
         if self.path == "/api/show":
             return self._json({"details": {"family": "simulado", "parameter_size": "0", "quantization_level": "-"}})
         usuario = datos["messages"][-1]["content"]
+        if "<datos_ingreso>" in usuario:
+            return self._json({"message": {"role": "assistant", "content": self._bienvenida(usuario)}})
         m = re.search(r'<pasaje id="(P\d{2})"[^\n]*\n(.+?)\n</pasaje>', usuario, re.S)
         if not m:
             return self._json({"message": {"content": "No encuentro esa información en las políticas de inducción. "
@@ -44,6 +46,23 @@ class Manejador(BaseHTTPRequestHandler):
         if "INVENTA" in usuario:
             oracion = "El plazo es de 999 días."
         self._json({"message": {"role": "assistant", "content": f"{oracion} [Fuente: {pid}]"}})
+
+
+    @staticmethod
+    def _bienvenida(usuario: str) -> str:
+        """Borrador guionizado a partir de los datos (no evalúa la redacción de un LLM)."""
+        d = dict(l.split(": ", 1) for l in usuario.split("<datos_ingreso>")[1].split("</datos_ingreso>")[0].strip().splitlines())
+        nombre = d["nombre"].split()[0]
+        docs = d["documentos pendientes"]
+        parrafo_docs = (f"Para completar tu expediente aún nos falta: {docs}. El plazo es el {d['plazo para documentos']}."
+                        if not docs.startswith("ninguno") else "Gracias por completar tu expediente a tiempo.")
+        extra = " Te esperamos con 999 regalos." if "INVENTA" in d["cargo"] else ""
+        return (f"Asunto: Bienvenida al equipo de {d['área']}, {nombre}\n\nHola, {nombre}:\n\n"
+                f"Nos alegra mucho que te unas como {d['cargo']} en el área de {d['área']}. Tu ingreso es el "
+                f"{d['fecha de ingreso']}.{extra}\n\n{d['indicaciones de la modalidad']}\n\n{parrafo_docs}\n\n"
+                "Durante tu primera semana conocerás a tu equipo, recibirás la inducción de seguridad de la información "
+                "y tendrás una reunión con tu jefe inmediato. Si tienes dudas, el asistente de inducción del portal "
+                "puede ayudarte.\n\nTalento Humano")
 
 
 def iniciar(puerto: int = 0) -> ThreadingHTTPServer:

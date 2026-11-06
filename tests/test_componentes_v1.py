@@ -117,24 +117,39 @@ class TestFlujos(unittest.TestCase):
 class TestDemoWeb(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        import tempfile
+        from pathlib import Path
         from app.servidor import Aplicacion, crear_manejador
-        cls.srv = ThreadingHTTPServer(("127.0.0.1", 0), crear_manejador(Aplicacion("extractivo")))
+        cls.tmp = tempfile.TemporaryDirectory()
+        app = Aplicacion("extractivo", ruta_registro=Path(cls.tmp.name) / "ingresos.json")
+        app.cuentas.crear("Analista de prueba", "analista", "clave-segura-1")
+        cls.cookie = "th_sesion=" + app.cuentas.autenticar("analista", "clave-segura-1")
+        cls.srv = ThreadingHTTPServer(("127.0.0.1", 0), crear_manejador(app))
         threading.Thread(target=cls.srv.serve_forever, daemon=True).start()
         cls.url = f"http://127.0.0.1:{cls.srv.server_port}"
 
     @classmethod
     def tearDownClass(cls):
         cls.srv.shutdown()
+        cls.tmp.cleanup()
 
     def _post(self, ruta, datos):
-        req = urllib.request.Request(self.url + ruta, data=json.dumps(datos).encode(), headers={"Content-Type": "application/json"})
+        req = urllib.request.Request(self.url + ruta, data=json.dumps(datos).encode(),
+                                     headers={"Content-Type": "application/json", "Cookie": self.cookie})
         return json.loads(urllib.request.urlopen(req, timeout=10).read())
 
     def test_estado_pregunta_y_flujo(self):
-        e = json.loads(urllib.request.urlopen(self.url + "/api/estado", timeout=10).read())
+        req = urllib.request.Request(self.url + "/api/estado", headers={"Cookie": self.cookie})
+        e = json.loads(urllib.request.urlopen(req, timeout=10).read())
         self.assertEqual(e["version"], "1.0.0")
         self.assertEqual(self._post("/api/preguntar", {"pregunta": "¿Qué día me entregan la laptop?"})["accion"], "responder")
         self.assertIn("plan", self._post("/api/flujo", {"id": "C-DEMO-01"}))
+
+    def test_sin_sesion_no_hay_acceso(self):
+        import urllib.error
+        with self.assertRaises(urllib.error.HTTPError) as e:
+            urllib.request.urlopen(self.url + "/api/estado", timeout=10)
+        self.assertEqual(e.exception.code, 401)
 
     def test_pagina_principal(self):
         html = urllib.request.urlopen(self.url + "/", timeout=10).read().decode()

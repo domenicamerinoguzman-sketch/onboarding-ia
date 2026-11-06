@@ -1,5 +1,29 @@
 # Registro de cambios
 
+## [1.3.0] - 2026-11-06
+
+Demo de uso diario completa y resultados del LLM real.
+
+### Agregado
+- Inicio de sesión de Talento Humano (`src/cuentas.py`): primera cuenta en pantalla, PBKDF2 con sal,
+  bloqueo temporal tras 5 intentos, sesiones con vencimiento; el historial queda firmado por el analista.
+- Panel de seguimiento (`src/seguimiento.py`): estado real de cada tarea (completada, programada,
+  pendiente, atrasada), avance total por persona, bandeja de pendientes de Talento Humano e indicadores
+  arriba; tareas humanas marcables (contrato, compañero guía); registro tardío reprograma lo vencido.
+- Indicadores medidos por el sistema y exportación CSV: tiempos de ciclo, acciones por ingreso, uso y
+  valoración (👍/👎) del asistente, cambio del analista sobre los borradores de IA.
+- Correo de bienvenida redactado por el LLM con guarda determinista y aprobación humana
+  (`src/bienvenida_ia.py`, `prompts/bienvenida_v1.txt`); evaluación con dos revisores
+  (`experimentos/evaluar_bienvenida.py`, `docs/rubrica_bienvenida_ia.md`).
+- Portal: el asistente muestra primero la política que consulta y después la respuesta verificada
+  (no se muestra texto sin verificar).
+- Resultados del LLM real (qwen2.5:3b) y comparación pareada con el extractivo
+  (`experimentos/comparar_generacion.py`).
+- 62 pruebas (servidor Ollama simulado ampliado para el borrador de bienvenida).
+
+### Cambiado
+- Todas las rutas de Talento Humano requieren sesión, incluidas las del asistente técnico y los casos S1–S8.
+
 ## [1.2.0] - 2026-11-06
 
 La demo pasa de mostrar casos precargados a usarse como en el trabajo diario.
