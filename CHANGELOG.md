@@ -1,5 +1,22 @@
 # Registro de cambios
 
+## [1.2.0] - 2026-11-06
+
+La demo pasa de mostrar casos precargados a usarse como en el trabajo diario.
+
+### Agregado
+- `src/registro.py`: registro local de nuevos ingresos, revisión de documentos (pendiente, en revisión,
+  aprobado, rechazado con motivo), historial con fecha y actor, y acceso al portal con código temporal
+  (PBKDF2 con sal; el código no se guarda en claro; sesiones que expiran).
+- Demo web: pestaña «Nuevos ingresos» (registro, panel de seguimiento, detalle con plan, tickets,
+  comunicaciones e historial) y portal del colaborador (`/portal`) con documentos, primera semana,
+  cursos, mensajes y asistente.
+- `tests/test_registro_portal.py`: registro, validaciones, autenticación, flujo de documentos y
+  recorrido completo por la API (50 pruebas en total).
+
+### Cambiado
+- La pestaña «Flujos» se llama «Casos de estudio (sesiones)»; los casos S1–S8 no cambian.
+
 ## [1.1.0] - 2026-11-06
 
 Responde a la revisión del avance: evaluación con el LLM real, línea base con datos del HRIS y

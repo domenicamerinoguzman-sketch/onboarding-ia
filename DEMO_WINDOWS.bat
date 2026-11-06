@@ -1,5 +1,5 @@
 @echo off
-REM Doble clic para abrir la demo (asistente + flujos) con los casos de las sesiones S1-S8.
+REM Doble clic para abrir la demo: Talento Humano (nuevos ingresos), portal del colaborador, asistente y casos S1-S8.
 REM Requiere haber ejecutado antes EVALUAR_LLM_WINDOWS.bat (prepara el entorno y el modelo).
 chcp 65001 >nul
 set PYTHONUTF8=1

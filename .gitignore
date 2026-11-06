@@ -14,3 +14,6 @@ resultados/v1/cache/
 resultados_llm_local_*.zip
 resultados/validacion_empirica/*
 !resultados/validacion_empirica/ejemplo/
+
+# Ingresos registrados en la demo local (datos de uso, no se suben)
+data/registro_local/

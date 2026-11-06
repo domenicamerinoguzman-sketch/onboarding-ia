@@ -125,11 +125,24 @@ python -m src.flujos.orquestador --caso C-DEMO-02 --completo
 [`notebooks/demo_prototipo.ipynb`](notebooks/demo_prototipo.ipynb). Para volver a ejecutarlo:
 `pip install notebook` y `jupyter notebook notebooks/demo_prototipo.ipynb`.
 
-**f) Demo web** (asistente + flujos):
+**f) Demo web** (uso como en el trabajo diario). En Windows: `DEMO_WINDOWS.bat`. En cualquier sistema:
 
 ```bash
-python -m app.servidor            # http://127.0.0.1:8000
+python -m app.servidor            # Talento Humano: http://127.0.0.1:8000 · portal: http://127.0.0.1:8000/portal
 ```
+
+- **Nuevos ingresos (Talento Humano):** «Registrar nuevo ingreso» (nombre, cargo, área, fecha, modalidad).
+  El sistema arma el plan de onboarding, genera los tickets y los mensajes, propone el usuario de red a
+  Tecnología y crea el acceso al portal del colaborador (usuario y código temporal, que se muestra una
+  sola vez). Desde el detalle, el analista aprueba o rechaza documentos; al completar el expediente se
+  dispara sola la solicitud de usuario de red y correo.
+- **Portal del colaborador** (`/portal`): entra con su usuario y código, ve sus documentos y los envía a
+  revisión, su primera semana, sus cursos, los mensajes recibidos, y le pregunta al asistente.
+- **Asistente (IA)** con trazabilidad y **Casos de estudio** S1–S8 para las sesiones cronometradas.
+
+Los ingresos se guardan en `data/registro_local/ingresos.json` (excluido de Git). Usar solo datos
+ficticios. No se cargan archivos: el colaborador marca el documento como enviado y Talento Humano lo
+revisa, para que el prototipo no almacene documentos personales.
 
 **g) Evaluar la generación con el LLM real**
 
@@ -170,7 +183,7 @@ Todos los resultados se regeneran con la semilla `20260928`.
 ## 5. Estructura
 
 ```
-app/                demo web (servidor y página)
+app/                demo web: panel de Talento Humano, portal del colaborador, asistente
 config/             modelo_final.json (v1.0), modelo_v0.2.json, flujo_onboarding.json
 data/               corpus (46 pasajes), preguntas de desarrollo (162), prueba reservada (110),
                     sinónimos, pruebas de seguridad, casos de demostración y de estudio (S1–S8);

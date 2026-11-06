@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Asistente de onboarding · demo</title>
+<title>Onboarding · Talento Humano</title>
 <style>
   :root{
     --bg:#f6f5f1; --panel:#ffffff; --ink:#1d1c1a; --muted:#5f5d57; --line:#e3e1da;
@@ -54,22 +54,101 @@
   .stat{display:flex;gap:18px;margin-bottom:12px}
   .stat div{font-size:12px;color:var(--muted)} .stat b{display:block;font-size:22px;color:var(--ink)}
   [hidden]{display:none !important}
+  input,select{font:inherit}
+  .campo{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+  .campo input,.campo select{padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+  .form-ingreso{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;align-items:end}
+  button.sec{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+  button.sec:hover{border-color:var(--accent);color:var(--accent)}
+  button.peligro{color:var(--bad)}
+  button.mini{padding:3px 9px;font-size:12px}
+  tr.fila{cursor:pointer} tr.fila:hover td{background:var(--accent-soft)}
+  .credenciales{background:var(--ok-soft);border:1px solid #cfe6d6;border-radius:10px;padding:14px 16px;margin:14px 0}
+  .credenciales code{font-family:var(--mono);font-size:16px;background:#fff;border:1px solid #cfe6d6;border-radius:6px;padding:2px 8px}
+  .error{color:var(--bad);font-size:13px;margin-top:8px}
+  .barra-acciones{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
+  .doc-pendiente{color:var(--muted)} .doc-en_revision{color:var(--accent);font-weight:600} .doc-entregado{color:var(--ok)} .doc-rechazado{color:var(--bad)}
+  .vacio{padding:24px;text-align:center;color:var(--muted)}
   footer{max-width:1080px;margin:0 auto;padding:0 24px 24px;color:var(--muted);font-size:12px}
 </style>
 </head>
 <body>
 <header>
-  <h1>Asistente de onboarding con IA</h1>
+  <h1>Sistema de onboarding · Talento Humano</h1>
   <div class="sub">Prototipo académico · MIA UDLA · Grupo 1 · <span id="version">…</span> · datos 100 % sintéticos</div>
   <div style="margin-top:10px" id="chips"></div>
   <nav role="tablist">
-    <button role="tab" aria-selected="true" data-tab="asistente">Asistente (IA)</button>
-    <button role="tab" aria-selected="false" data-tab="flujos">Flujos (automatización)</button>
+    <button role="tab" aria-selected="true" data-tab="ingresos">Nuevos ingresos</button>
+    <button role="tab" aria-selected="false" data-tab="asistente">Asistente (IA)</button>
+    <button role="tab" aria-selected="false" data-tab="flujos">Casos de estudio (sesiones)</button>
+    <a href="/portal" target="_blank" rel="noopener" style="margin-left:auto;align-self:center;font-size:13px;color:var(--accent)">Abrir portal del colaborador ↗</a>
   </nav>
 </header>
 
 <main>
-  <section id="tab-asistente">
+  <section id="tab-ingresos">
+    <div id="vista-lista">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <h2 style="margin:0">Personas en proceso de incorporación</h2>
+          <button class="primary" id="btn-nuevo">+ Registrar nuevo ingreso</button>
+        </div>
+        <form id="form-ingreso" hidden style="margin-top:16px;display:block">
+          <div class="form-ingreso">
+            <label class="campo">Nombres y apellidos<input name="nombre" required maxlength="80" placeholder="Usa un nombre ficticio"></label>
+            <label class="campo">Cargo<input name="cargo" required maxlength="80" placeholder="Ej.: Analista de crédito"></label>
+            <label class="campo">Área<input name="area" required maxlength="80" list="areas" placeholder="Ej.: Riesgos"></label>
+            <label class="campo">Fecha de ingreso<input name="fecha_ingreso" type="date" required></label>
+            <label class="campo">Modalidad<select name="modalidad"><option value="presencial">Presencial</option><option value="remota">Remota</option></select></label>
+            <label class="campo" style="flex-direction:row;align-items:center;gap:8px;color:var(--ink)"><input type="checkbox" name="aprobacion_especial"> Requiere aprobación especial</label>
+          </div>
+          <datalist id="areas"><option>Riesgos</option><option>Operaciones</option><option>Negocios</option><option>Tecnología</option><option>Cumplimiento</option><option>Talento Humano</option><option>Agencias</option></datalist>
+          <div class="barra-acciones"><button class="primary">Registrar e iniciar onboarding</button><button type="button" class="sec" id="btn-cancelar">Cancelar</button></div>
+          <div class="error" id="form-error"></div>
+        </form>
+        <div id="credenciales"></div>
+        <div style="overflow-x:auto;margin-top:12px">
+          <table><thead><tr><th>Código</th><th>Nombre</th><th>Cargo · área</th><th>Ingreso</th><th>Documentos</th><th>Situación</th><th>Portal</th></tr></thead>
+          <tbody id="lista-ingresos"></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <div id="vista-detalle" hidden>
+      <button class="sec" id="btn-volver" style="margin-bottom:12px">← Volver a la lista</button>
+      <div class="grid">
+        <div>
+          <div class="card">
+            <h2 id="d-titulo">Ingreso</h2>
+            <dl class="kv" id="d-datos"></dl>
+            <div class="barra-acciones">
+              <button class="sec" id="btn-codigo">Generar nuevo código de portal</button>
+              <button class="sec peligro" id="btn-eliminar">Eliminar ingreso</button>
+            </div>
+            <div id="d-credenciales"></div>
+          </div>
+          <div class="card" style="margin-top:18px">
+            <h2>Expediente de documentos</h2>
+            <table><thead><tr><th>Documento</th><th>Estado</th><th></th></tr></thead><tbody id="d-docs"></tbody></table>
+            <div class="error" id="d-error"></div>
+          </div>
+          <div class="card" style="margin-top:18px">
+            <h2>Plan de onboarding (automatización)</h2>
+            <div id="d-alerta"></div>
+            <div class="stat" id="d-stat"></div>
+            <table><thead><tr><th>Fecha</th><th>Tarea</th><th>Responsable</th><th>Estado</th></tr></thead><tbody id="d-plan"></tbody></table>
+          </div>
+        </div>
+        <div>
+          <div class="card"><h2>Solicitudes a otras áreas (tickets)</h2><div id="d-tickets"></div></div>
+          <div class="card" style="margin-top:18px"><h2>Comunicaciones generadas</h2><div id="d-msgs"></div></div>
+          <div class="card" style="margin-top:18px"><h2>Historial</h2><div id="d-historial"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-asistente" hidden>
     <div class="grid">
       <div class="card">
         <h2>Consulta del nuevo colaborador</h2>
@@ -117,7 +196,7 @@
     </div>
   </section>
 </main>
-<footer>Las respuestas son informativas y no sustituyen a Talento Humano. Los conectores (HRIS, mesa de servicios, correo) son simulados.</footer>
+<footer>Prototipo local con datos ficticios. Los conectores (HRIS, mesa de servicios, directorio, correo) son simulados: los tickets y correos se registran, no se envían. En producción, el panel de Talento Humano usaría el inicio de sesión corporativo.</footer>
 
 <script>
 const $ = s => document.querySelector(s);
@@ -131,6 +210,7 @@ async function api(ruta, cuerpo){
 }
 document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
   document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x === b));
+  $("#tab-ingresos").hidden = b.dataset.tab !== "ingresos";
   $("#tab-asistente").hidden = b.dataset.tab !== "asistente";
   $("#tab-flujos").hidden = b.dataset.tab !== "flujos";
 });
@@ -194,6 +274,115 @@ $("#ff").onsubmit = async ev => {
   $("#ftickets").innerHTML = r.tickets.map(t => `<div style="font-size:13px;margin-bottom:4px"><b>${esc(t.ticket)}</b> ${esc(t.tipo)} <span class="muted">· objetivo ${t.fecha_objetivo}</span></div>`).join("") || `<span class="muted">Ninguno</span>`;
   $("#fmsgs").innerHTML = r.bandeja_salida.map(m => `<details style="margin-bottom:6px"><summary style="font-size:13px;cursor:pointer"><b>${esc(m.para)}</b> · ${esc(m.asunto)} <span class="muted">(${m.fecha})</span></summary><pre>${esc(m.texto)}</pre></details>`).join("");
 };
+
+/* ================= Nuevos ingresos (Talento Humano) ================= */
+const SIT = {"expediente completo":"ok","documento rechazado":"bad","documentos por revisar":"warn","esperando documentos":""};
+const EST_DOC = {pendiente:"Pendiente", en_revision:"Enviado · por revisar", entregado:"Aprobado", rechazado:"Rechazado"};
+let actual = null;
+const fecha = s => s ? new Date(s).toLocaleString("es-EC",{dateStyle:"short",timeStyle:"short"}) : "—";
+
+function cajaCredenciales(usuario, codigo, nombre){
+  const url = location.origin + "/portal";
+  return `<div class="credenciales"><b>Acceso al portal ${nombre ? "de " + esc(nombre) : ""}</b>
+    <div style="margin:8px 0;font-size:14px">Dirección: <code>${esc(url)}</code><br>Usuario: <code>${esc(usuario)}</code> &nbsp; Código temporal: <code>${esc(codigo)}</code></div>
+    <div class="muted" style="font-size:13px">Entrega el código al colaborador por un canal separado del correo de bienvenida. Se muestra <b>una sola vez</b>; si se pierde, genera uno nuevo desde el detalle.</div></div>`;
+}
+
+async function cargarLista(){
+  const r = await api("/api/ingresos");
+  const filas = r.ingresos.slice().reverse();
+  $("#lista-ingresos").innerHTML = filas.map(i => `<tr class="fila" data-id="${esc(i.id)}">
+      <td class="num" style="text-align:left">${esc(i.id)}</td><td><b>${esc(i.nombre)}</b></td>
+      <td>${esc(i.cargo)}<div class="muted">${esc(i.area)} · ${esc(i.modalidad)}</div></td>
+      <td class="num" style="text-align:left">${esc(i.fecha_ingreso)}</td>
+      <td style="min-width:110px">${i.aprobados}/${i.total_documentos}<div class="bar"><span style="width:${100*i.aprobados/i.total_documentos}%"></span></div>${i.por_revisar ? `<div style="font-size:12px;color:var(--accent)">${i.por_revisar} por revisar</div>` : ""}</td>
+      <td><span class="chip ${SIT[i.situacion]}">${esc(i.situacion)}</span></td>
+      <td class="muted" style="font-size:12px">${i.ultimo_acceso_portal ? "entró " + fecha(i.ultimo_acceso_portal) : "aún no entra"}</td></tr>`).join("")
+    || `<tr><td colspan="7" class="vacio">Todavía no hay ingresos registrados. Usa «Registrar nuevo ingreso».</td></tr>`;
+  document.querySelectorAll("tr.fila").forEach(tr => tr.onclick = () => abrir(tr.dataset.id));
+}
+
+$("#btn-nuevo").onclick = () => { $("#form-ingreso").hidden = false; $("#credenciales").innerHTML = ""; $("#form-ingreso [name=nombre]").focus(); };
+$("#btn-cancelar").onclick = () => { $("#form-ingreso").hidden = true; $("#form-ingreso").reset(); $("#form-error").textContent = ""; };
+$("#form-ingreso").onsubmit = async ev => {
+  ev.preventDefault();
+  const f = new FormData(ev.target), datos = Object.fromEntries(f.entries());
+  datos.aprobacion_especial = f.has("aprobacion_especial");
+  const r = await fetch("/api/ingresos", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(datos)});
+  const j = await r.json();
+  if (!r.ok) { $("#form-error").textContent = "No se pudo registrar: " + j.error; return; }
+  $("#form-error").textContent = ""; ev.target.reset(); ev.target.hidden = true;
+  $("#credenciales").innerHTML = cajaCredenciales(j.ingreso.usuario_portal, j.codigo_temporal, j.ingreso.nombre)
+    + `<button class="sec" id="btn-ver-nuevo">Ver el plan de onboarding de ${esc(j.ingreso.nombre)} →</button>`;
+  $("#btn-ver-nuevo").onclick = () => abrir(j.ingreso.id);
+  cargarLista();
+};
+
+function mostrarDetalle(ver){ $("#vista-lista").hidden = ver; $("#vista-detalle").hidden = !ver; }
+$("#btn-volver").onclick = () => { mostrarDetalle(false); actual = null; $("#d-credenciales").innerHTML = ""; cargarLista(); };
+
+async function abrir(id){
+  const r = await api("/api/ingreso", {id});
+  if (r.error) return;
+  actual = id; $("#d-credenciales").innerHTML = ""; $("#btn-eliminar").textContent = "Eliminar ingreso";
+  pintarDetalle(r); mostrarDetalle(true); window.scrollTo(0,0);
+}
+
+function pintarDetalle(r){
+  const i = r.ingreso, f = r.flujo, e = f.escalamiento, ind = f.indicador_actividades;
+  $("#d-titulo").textContent = `${i.id} · ${i.nombre}`;
+  $("#d-datos").innerHTML = [["Cargo", i.cargo], ["Área", i.area], ["Fecha de ingreso", i.fecha_ingreso], ["Modalidad", i.modalidad],
+      ["Aprobación especial", i.aprobacion_especial ? "sí" : "no"], ["Situación", i.situacion], ["Usuario del portal", i.usuario_portal],
+      ["Último acceso al portal", i.ultimo_acceso_portal ? fecha(i.ultimo_acceso_portal) : "aún no entra"]]
+    .map(([k,v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
+  $("#d-docs").innerHTML = i.documentos.map(d => `<tr><td>${esc(d.nombre)}</td>
+      <td class="doc-${d.estado}">${EST_DOC[d.estado]}${d.motivo ? `<div class="muted" style="font-size:12px">${esc(d.motivo)}</div>` : ""}</td>
+      <td style="white-space:nowrap;text-align:right">
+        ${d.estado !== "entregado" ? `<button class="sec mini" data-doc="${d.id}" data-estado="entregado">Aprobar</button>` : ""}
+        ${d.estado !== "rechazado" ? `<button class="sec mini peligro" data-doc="${d.id}" data-estado="rechazado">Rechazar</button>` : ""}
+      </td></tr>
+      <tr data-motivo="${d.id}" hidden><td colspan="3"><form class="motivo" data-doc="${d.id}" style="display:flex;gap:6px">
+        <input type="text" maxlength="200" placeholder="Motivo del rechazo (lo verá el colaborador)" required>
+        <button class="sec mini peligro">Confirmar rechazo</button></form></td></tr>`).join("");
+  document.querySelectorAll("#d-docs button[data-doc]").forEach(b => b.onclick = () => {
+    if (b.dataset.estado === "rechazado") { const tr = document.querySelector(`tr[data-motivo="${b.dataset.doc}"]`); tr.hidden = !tr.hidden; tr.querySelector("input").focus(); }
+    else cambiarDoc(b.dataset.doc, "entregado", "");
+  });
+  document.querySelectorAll("#d-docs form.motivo").forEach(fm => fm.onsubmit = ev => { ev.preventDefault(); cambiarDoc(fm.dataset.doc, "rechazado", fm.querySelector("input").value); });
+  $("#d-alerta").innerHTML = e.requiere_intervencion
+    ? `<div class="alerta"><b>Requiere intervención de Talento Humano:</b> ${e.motivos.map(esc).join(" · ")}</div>`
+    : `<div class="chip ok" style="margin-bottom:12px">Sin excepciones</div>`;
+  $("#d-stat").innerHTML = `<div><b>${ind.manuales_as_is}</b>manuales antes (AS-IS)</div><div><b>${ind.manuales_to_be}</b>manuales ahora</div><div><b>${ind.automatizadas_to_be}</b>automatizadas</div><div><b>${ind.asistidas_por_ia}</b>con IA</div>`;
+  $("#d-plan").innerHTML = f.plan.map(p => `<tr><td class="num" style="text-align:left">${p.fecha}</td><td>${esc(p.tarea)}</td><td>${esc(p.responsable)}</td><td class="estado-${p.estado}">${p.estado.replace(/_/g," ")}</td></tr>`).join("");
+  $("#d-tickets").innerHTML = f.tickets.map(t => `<div style="font-size:13px;margin-bottom:4px"><b>${esc(t.ticket)}</b> ${esc(t.tipo)} <span class="muted">· objetivo ${t.fecha_objetivo}</span></div>`).join("")
+    || `<span class="muted" style="font-size:13px">Ninguno todavía.</span>`;
+  const usu = f.bitacora.find(x => x.operacion === "proponer_usuario");
+  if (usu) $("#d-tickets").innerHTML += `<div class="muted" style="font-size:12px;margin-top:8px">Usuario de red propuesto a Tecnología: <b>${esc(usu.usuario)}</b>. La cuenta la crea Tecnología al atender el ticket.</div>`;
+  else $("#d-tickets").innerHTML += `<div class="muted" style="font-size:12px;margin-top:8px">La solicitud de usuario de red y correo se genera sola cuando el expediente esté completo.</div>`;
+  const hoy = new Date().toLocaleDateString("sv-SE");
+  $("#d-msgs").innerHTML = f.bandeja_salida.map(m => `<details style="margin-bottom:6px"><summary style="font-size:13px;cursor:pointer"><b>${esc(m.para.replace("_"," "))}</b> · ${esc(m.asunto)} <span class="muted">(${m.fecha > hoy ? "programado para el " : "enviado el "}${m.fecha})</span></summary><pre>${esc(m.texto)}</pre></details>`).join("");
+  $("#d-historial").innerHTML = i.historial.slice().reverse().map(h => `<div style="font-size:13px;margin-bottom:6px"><span class="muted">${fecha(h.fecha)}</span> · <b>${esc(h.actor)}</b> ${esc(h.evento)}</div>`).join("");
+}
+
+async function cambiarDoc(documento, estado, motivo){
+  const r = await fetch("/api/ingreso/documento", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({id:actual, documento, estado, motivo})});
+  const j = await r.json();
+  if (!r.ok) { $("#d-error").textContent = j.error; return; }
+  $("#d-error").textContent = ""; pintarDetalle(j);
+}
+$("#btn-codigo").onclick = async () => {
+  const r = await api("/api/ingreso/codigo", {id: actual});
+  $("#d-credenciales").innerHTML = cajaCredenciales(r.usuario, r.codigo_temporal) + `<div class="muted" style="font-size:12px">El código anterior dejó de funcionar.</div>`;
+  abrirSinLimpiar();
+};
+async function abrirSinLimpiar(){ const r = await api("/api/ingreso", {id: actual}); pintarDetalle(r); }
+$("#btn-eliminar").onclick = async () => {
+  const b = $("#btn-eliminar");
+  if (b.textContent !== "¿Seguro? Clic otra vez para eliminar") { b.textContent = "¿Seguro? Clic otra vez para eliminar"; return; }
+  await api("/api/ingreso/eliminar", {id: actual});
+  $("#btn-volver").click();
+};
+cargarLista();
 </script>
 </body>
 </html>

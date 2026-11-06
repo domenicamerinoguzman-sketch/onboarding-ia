@@ -132,3 +132,13 @@ estimación la alcanza; SUS frente a 68. Cualquier cambio posterior se registra 
 
 **Corrección:** `derivaciones_del_llm` siempre daba 0 porque se buscaba el motivo en el campo equivocado.
 Las métricas del modo extractivo no cambian (exactitud 0,773 en el reservado).
+
+## 6 de noviembre de 2026 · v1.2 (demo de uso diario)
+
+**Decisión 13: la demo arranca donde arranca el proceso.** El prototipo mostraba casos precargados, pero el
+proceso TO-BE empieza cuando Talento Humano registra a la persona que ingresa. Se agregó el registro de
+nuevos ingresos, la revisión de documentos y el portal del colaborador con acceso propio. Los conectores
+siguen simulados: el sistema solicita el usuario de red a Tecnología (ticket), no lo crea. Los
+documentos no se cargan como archivos, para no almacenar datos personales. Los casos S1–S8 de las
+sesiones cronometradas no cambian, así que el protocolo de validación se mantiene.
+

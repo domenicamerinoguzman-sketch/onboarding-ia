@@ -138,7 +138,7 @@ class TestDemoWeb(unittest.TestCase):
 
     def test_pagina_principal(self):
         html = urllib.request.urlopen(self.url + "/", timeout=10).read().decode()
-        self.assertIn("Asistente de onboarding", html)
+        self.assertIn("Sistema de onboarding", html)
 
 
 if __name__ == "__main__":

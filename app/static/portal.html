@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi portal de ingreso</title>
+<style>
+  :root{
+    --bg:#f6f5f1; --panel:#ffffff; --ink:#1d1c1a; --muted:#5f5d57; --line:#e3e1da;
+    --accent:#1f5e8c; --accent-soft:#e8f0f7; --ok:#2f7a4b; --ok-soft:#e6f3ea;
+    --warn:#9a5a00; --warn-soft:#fbf0dc; --bad:#a23a2a; --bad-soft:#f8e5e1;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  header{background:var(--panel);border-bottom:1px solid var(--line)}
+  .barra{max-width:1000px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .marca{font-weight:700;letter-spacing:-.01em}
+  main{max-width:1000px;margin:0 auto;padding:22px 20px 48px}
+  h1{font-size:24px;margin:0 0 4px;letter-spacing:-.01em}
+  .sub{color:var(--muted)}
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:18px}
+  @media (max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .card h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 12px;font-weight:600}
+  .ancho{grid-column:1/-1}
+  input{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;width:100%}
+  button.primary{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;white-space:nowrap}
+  button.primary:disabled{opacity:.6}
+  button.sec{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer}
+  button.sec:hover{border-color:var(--accent);color:var(--accent)}
+  .login{max-width:380px;margin:60px auto}
+  .login label{display:block;font-size:13px;color:var(--muted);margin:12px 0 4px}
+  .error{color:var(--bad);font-size:13px;margin-top:10px}
+  .bar{height:8px;background:var(--accent-soft);border-radius:4px;overflow:hidden;margin:6px 0 2px}
+  .bar>span{display:block;height:100%;background:var(--ok)}
+  .doc{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .doc:last-child{border-bottom:0}
+  .chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;border:1px solid var(--line);background:#fff;white-space:nowrap}
+  .chip.ok{background:var(--ok-soft);border-color:#cfe6d6;color:var(--ok)}
+  .chip.warn{background:var(--warn-soft);border-color:#f0dcb5;color:var(--warn)}
+  .chip.bad{background:var(--bad-soft);border-color:#efcbc4;color:var(--bad)}
+  .chip.info{background:var(--accent-soft);border-color:#cfe0ee;color:var(--accent)}
+  .muted{color:var(--muted)}
+  ol,ul{margin:0;padding-left:20px} li{margin-bottom:4px}
+  .chat{display:flex;flex-direction:column;gap:10px;max-height:420px;overflow-y:auto;margin-bottom:12px}
+  .burbuja{padding:10px 13px;border-radius:12px;max-width:85%;white-space:pre-wrap}
+  .yo{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:4px}
+  .bot{align-self:flex-start;background:#f1f0eb;border-bottom-left-radius:4px}
+  .bot .fuente{font-size:12px;color:var(--muted);margin-top:6px}
+  .ejemplos{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .ejemplos button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer;color:var(--muted)}
+  .ejemplos button:hover{border-color:var(--accent);color:var(--accent)}
+  pre{font:13px/1.5 system-ui,sans-serif;white-space:pre-wrap;background:#faf9f6;border:1px solid var(--line);border-radius:8px;padding:10px;margin:6px 0 0}
+  [hidden]{display:none !important}
+  footer{max-width:1000px;margin:0 auto;padding:0 20px 24px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<header><div class="barra"><span class="marca">Portal de ingreso</span><button class="sec" id="salir" hidden>Cerrar sesión</button></div></header>
+
+<main>
+  <section id="vista-login" hidden>
+    <div class="card login">
+      <h1 style="font-size:20px">Bienvenido</h1>
+      <div class="sub" style="font-size:14px">Ingresa con el usuario y el código temporal que te entregó Talento Humano.</div>
+      <form id="f-login">
+        <label for="usuario">Usuario</label><input id="usuario" autocomplete="username" required>
+        <label for="codigo">Código temporal</label><input id="codigo" autocomplete="one-time-code" placeholder="XXXX-XXXX" required>
+        <button class="primary" style="width:100%;margin-top:16px">Entrar</button>
+        <div class="error" id="login-error"></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="vista-portal" hidden>
+    <h1 id="saludo"></h1>
+    <div class="sub" id="resumen"></div>
+    <div class="grid">
+      <div class="card">
+        <h2>Mis documentos</h2>
+        <div id="avance"></div>
+        <div id="docs"></div>
+        <div class="error" id="doc-error"></div>
+        <div class="muted" style="font-size:12px;margin-top:10px">En esta demo no se cargan archivos: al marcar un documento como enviado, Talento Humano lo revisa y lo aprueba o te indica qué corregir.</div>
+      </div>
+      <div class="card">
+        <h2>Mi primera semana</h2>
+        <ol id="agenda"></ol>
+        <h2 style="margin-top:18px">Cursos obligatorios</h2>
+        <ul id="cursos"></ul>
+        <h2 style="margin-top:18px">Mensajes de Talento Humano</h2>
+        <div id="mensajes"></div>
+      </div>
+      <div class="card ancho">
+        <h2>Pregúntale al asistente de inducción</h2>
+        <div class="chat" id="chat"></div>
+        <form id="f-chat" style="display:flex;gap:8px">
+          <input id="q" placeholder="Escribe tu duda sobre la inducción, beneficios, horarios…" maxlength="500" autocomplete="off">
+          <button class="primary" id="b-chat">Preguntar</button>
+        </form>
+        <div class="ejemplos" id="ejemplos"></div>
+        <div class="muted" style="font-size:12px;margin-top:10px">El asistente responde solo con las políticas de inducción y te dice de dónde sacó la respuesta. Si no encuentra la información, te deriva a Talento Humano.</div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>Prototipo académico con datos ficticios. Las respuestas del asistente son informativas y no sustituyen a Talento Humano.</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const EST = {pendiente:["Pendiente",""], en_revision:["En revisión","info"], entregado:["Aprobado","ok"], rechazado:["Corregir","bad"]};
+const EJ = ["¿Cuándo me pagan?", "¿Qué día me entregan la laptop?", "¿Cuánto dura el período de prueba?", "¿Qué hago si se bloquea mi usuario?", "¿Hay parqueadero?"];
+
+async function post(ruta, datos){
+  const r = await fetch(ruta, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(datos || {})});
+  return [r, await r.json()];
+}
+
+async function iniciar(){
+  const r = await fetch("/api/portal/yo");
+  if (r.status === 401) { $("#vista-login").hidden = false; $("#vista-portal").hidden = true; $("#salir").hidden = true; return; }
+  pintar(await r.json());
+}
+
+$("#f-login").onsubmit = async ev => {
+  ev.preventDefault();
+  const [r, j] = await post("/api/portal/entrar", {usuario: $("#usuario").value, codigo: $("#codigo").value});
+  if (!r.ok) { $("#login-error").textContent = "Usuario o código incorrectos."; return; }
+  $("#login-error").textContent = ""; $("#codigo").value = ""; iniciar();
+};
+$("#salir").onclick = async () => { await post("/api/portal/salir"); $("#chat").innerHTML = ""; iniciar(); };
+
+function diasHasta(f){
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  return Math.round((new Date(f + "T00:00:00") - hoy) / 86400000);
+}
+
+function pintar(d){
+  $("#vista-login").hidden = true; $("#vista-portal").hidden = false; $("#salir").hidden = false;
+  const nombre = d.nombre.split(" ")[0];
+  $("#saludo").textContent = `Hola, ${nombre}`;
+  const dias = diasHasta(d.fecha_ingreso);
+  const cuando = dias > 1 ? `faltan ${dias} días` : dias === 1 ? "es mañana" : dias === 0 ? "es hoy" : "ya iniciaste";
+  $("#resumen").textContent = `${d.cargo} · ${d.area} · modalidad ${d.modalidad} · ingreso el ${d.fecha_ingreso} (${cuando})`;
+  $("#avance").innerHTML = `<div style="font-size:14px"><b>${d.aprobados} de ${d.total_documentos}</b> documentos aprobados</div><div class="bar"><span style="width:${100*d.aprobados/d.total_documentos}%"></span></div>`;
+  $("#docs").innerHTML = d.documentos.map(x => {
+    const [txt, cls] = EST[x.estado];
+    const puede = x.estado === "pendiente" || x.estado === "rechazado";
+    return `<div class="doc"><div>${esc(x.nombre)}${x.motivo ? `<div style="font-size:12px;color:var(--bad)">Talento Humano: ${esc(x.motivo)}</div>` : ""}</div>
+      <div style="display:flex;gap:6px;align-items:center"><span class="chip ${cls}">${txt}</span>${puede ? `<button class="sec" data-doc="${x.id}">Marcar como enviado</button>` : ""}</div></div>`;
+  }).join("");
+  document.querySelectorAll("#docs button[data-doc]").forEach(b => b.onclick = async () => {
+    const [r, j] = await post("/api/portal/documento", {documento: b.dataset.doc});
+    if (!r.ok) { $("#doc-error").textContent = j.error; return; }
+    $("#doc-error").textContent = ""; pintar(j);
+  });
+  $("#agenda").innerHTML = d.agenda.map(a => `<li>${esc(a.replace(/^Día \d+: /, ""))}</li>`).join("");
+  $("#cursos").innerHTML = d.cursos.map(c => `<li>${esc(c.curso)} <span class="muted">· hasta el ${c.fecha_limite}</span></li>`).join("") || `<li class="muted">Sin cursos asignados.</li>`;
+  $("#mensajes").innerHTML = d.mensajes.map(m => `<details style="margin-bottom:6px"><summary style="font-size:14px;cursor:pointer">${esc(m.asunto)} <span class="muted">(${m.fecha})</span></summary><pre>${esc(m.texto)}</pre></details>`).join("")
+    || `<span class="muted">Todavía no tienes mensajes.</span>`;
+  if (d.programados.length) $("#mensajes").innerHTML += `<div class="muted" style="font-size:12px;margin-top:8px">Próximos: ${d.programados.map(m => `${esc(m.asunto)} (${m.fecha})`).join(" · ")}</div>`;
+}
+
+function burbuja(clase, html){ const d = document.createElement("div"); d.className = "burbuja " + clase; d.innerHTML = html; $("#chat").appendChild(d); $("#chat").scrollTop = $("#chat").scrollHeight; return d; }
+
+async function preguntar(ev){
+  ev && ev.preventDefault();
+  const q = $("#q").value.trim(); if (!q) return;
+  $("#q").value = ""; burbuja("yo", esc(q));
+  const espera = burbuja("bot", `<span class="muted">Buscando en las políticas…</span>`);
+  $("#b-chat").disabled = true;
+  try {
+    const [r, j] = await post("/api/portal/preguntar", {pregunta: q});
+    if (r.status === 401) { espera.remove(); iniciar(); return; }
+    espera.innerHTML = esc(j.respuesta) + (j.fuente ? `<div class="fuente">Fuente: ${esc(j.fuente)}</div>` : "");
+  } catch (e) { espera.innerHTML = `<span class="muted">No se pudo consultar al asistente. Intenta de nuevo.</span>`; }
+  finally { $("#b-chat").disabled = false; $("#q").focus(); }
+}
+$("#f-chat").onsubmit = preguntar;
+EJ.forEach(t => { const b = document.createElement("button"); b.type = "button"; b.textContent = t; b.onclick = () => { $("#q").value = t; preguntar(); }; $("#ejemplos").appendChild(b); });
+iniciar();
+</script>
+</body>
+</html>
