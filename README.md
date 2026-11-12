@@ -1,4 +1,4 @@
-# Asistente de onboarding con IA · prototipo v1.0
+# Asistente de onboarding con IA · versión final v1.4
 
 Proyecto de titulación de la Maestría en Inteligencia Artificial Aplicada (UDLA), Grupo 1:
 María Doménica Merino Guzmán, Limber Alexander Mosquera Herrera e Ivonne Elizabeth Moscoso Valencia.
@@ -10,7 +10,16 @@ financiera en Ecuador.*
 > **Todos los datos son sintéticos.** Las políticas, preguntas, casos y nombres los redactó el equipo.
 > Ninguna cifra de este repositorio mide desempeño en una organización real ni ahorro de tiempo.
 
-![Demo del asistente](docs/img/demo_asistente_responde.png)
+## Entrega final
+
+| Producto | Ubicación |
+|---|---|
+| Informe final (PDF y Word) | [`docs/Informe_Final_MIA_Grupo1.pdf`](docs/Informe_Final_MIA_Grupo1.pdf) · [`.docx`](docs/Informe_Final_MIA_Grupo1.docx) |
+| Video de demostración (3 min) | [`docs/video/Demo_prototipo_onboarding_Grupo1.mp4`](docs/video/Demo_prototipo_onboarding_Grupo1.mp4) |
+| Prototipo y resultados | este repositorio, etiqueta `v1.4.0` |
+| Reproducir todo y las 62 pruebas | `python -m experimentos.reproducir_todo` (sección 4) |
+
+![Asistente con trazabilidad](docs/img/final_asistente.png)
 
 ---
 
@@ -34,7 +43,7 @@ resto del onboarding. Sus componentes están **separados a propósito** entre IA
 
 ## 2. Pipeline del asistente
 
-![Arquitectura](docs/img/arquitectura_v1.png)
+![Arquitectura](docs/img/arquitectura_v1.4.png)
 
 1. **Guardas de entrada** (`src/guardas.py`). Detectan intentos de inyección de instrucciones y los
    derivan sin consultar al modelo; enmascaran cédulas, correos, teléfonos y tarjetas antes de que
@@ -201,7 +210,8 @@ config/             modelo_final.json (v1.0), modelo_v0.2.json, flujo_onboarding
 data/               corpus (46 pasajes), preguntas de desarrollo (162), prueba reservada (110),
                     sinónimos, pruebas de seguridad, casos de demostración y de estudio (S1–S8);
                     reales/ (plantillas y ejemplos; los datos reales no se suben)
-docs/               arquitectura, capturas, rúbricas de revisión humana (respuestas y bienvenida), anexos,
+docs/               informe final (PDF y Word), video de demostración, arquitectura, capturas,
+                    rúbricas de revisión humana (respuestas y bienvenida), anexos,
                     validacion_empirica/ (protocolo, instrumentos, carta y consentimiento)
 experimentos/       validación cruzada, prueba final, robustez, evaluación, figuras
 notebooks/          demo_prototipo.ipynb: recorrido ejecutado del pipeline completo
@@ -317,8 +327,12 @@ pliegues, así que se descartó por parsimonia.
   recuperación, no invención). Latencia del LLM: media 9,9 s, p95 18,8 s en ese equipo. El conjunto
   de desarrollo (n = 162) muestra lo mismo: exactitud 0,840 en ambos; erróneas 0,019 frente a 0,142.
   **Regla de adopción** (fijada antes, BITACORA decisión 10): (a) exactitud no más de 2 puntos bajo el
-  extractivo → **se cumple**; (b) alucinación humana ≤ 5 % → **pendiente** de la revisión de dos
-  integrantes (`revision_humana_llm_local_qwen2.5_3b_revisor{1,2}.csv`, rúbrica en `docs/`).
+  extractivo → **se cumple**; (b) alucinación humana ≤ 5 % → **no ejecutada** en el período: las
+  planillas (`revision_humana_llm_local_qwen2.5_3b_revisor{1,2}.csv`, rúbrica en `docs/`) siguen sin calificar.
+- **Correo de bienvenida con IA:** implementado y probado (una cifra inventada o la falta de LLM activan
+  la plantilla; Talento Humano siempre aprueba), pero **no evaluado con revisores**. Según la regla fijada
+  en `BITACORA.md` el 6 de noviembre, se presenta como **funcionalidad demostrativa, sin resultados de
+  calidad**. La evaluación está lista: `EVALUAR_BIENVENIDA_WINDOWS.bat` + `docs/rubrica_bienvenida_ia.md`.
 - **Flujos:** en los 3 casos de demostración, las actividades manuales pasan de 11–13 (AS-IS) a 3
   (TO-BE): validar documentos, elaborar el contrato (asistida) y asignar el compañero guía. Es un
   **conteo sobre el modelo AS-IS preliminar**, no una medición de tiempo.
@@ -327,10 +341,10 @@ pliegues, así que se descartó por parsimonia.
 
 - Datos sintéticos redactados por el mismo equipo (sesgo de vocabulario); el conjunto reservado
   también lo escribió el equipo, conociendo el corpus.
-- La etapa generativa con LLM real ya se evaluó de forma automática; falta la revisión humana de
-  fidelidad (criterio b) y la evaluación del correo de bienvenida con IA (`docs/rubrica_bienvenida_ia.md`).
+- La etapa generativa con LLM real se evaluó de forma automática; la revisión humana de fidelidad
+  (criterio b) y la evaluación del correo de bienvenida con IA no se ejecutaron en el período.
 - La derivación de preguntas fuera de alcance sigue siendo débil (0,53 en el reservado).
-- Los conectores son simulados; no se ha medido tiempo real ni satisfacción de usuarios. El protocolo
+- Los conectores son simulados; no se midió tiempo real ni satisfacción de usuarios. El protocolo
   de validación empírica (`docs/validacion_empirica/`) define cómo medirlos con la institución, con
   criterios fijados antes de recoger los datos.
 - El diccionario de sinónimos y el calendario de feriados están pendientes de validación.

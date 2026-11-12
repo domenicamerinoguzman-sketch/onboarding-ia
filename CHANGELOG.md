@@ -1,5 +1,27 @@
 # Registro de cambios
 
+## [1.4.0] - 2026-11-12
+
+Versión final para la entrega del proyecto de titulación. El código del prototipo no cambia respecto a 1.3.0.
+
+### Agregado
+- `docs/Informe_Final_MIA_Grupo1.pdf` y `.docx`: informe final en el formato de titulación.
+- `docs/video/Demo_prototipo_onboarding_Grupo1.mp4`: demostración de 3 minutos del prototipo funcionando
+  (modo extractivo; los resultados del LLM real se muestran como tarjeta).
+- `docs/img/arquitectura_v1.4.png` y capturas finales (`docs/img/final_*.png`).
+
+### Cambiado
+- `docs/arquitectura.mmd`: arquitectura final con los dos componentes de IA (asistente RAG y borrador de
+  bienvenida con guarda y aprobación humana), panel de Talento Humano y portal del colaborador.
+- README con la sección «Entrega final» y el estado final de las evaluaciones.
+
+### Eliminado
+- `docs/Avance_Documento_Final_MIA_Grupo1.pdf`, reemplazado por el informe final (queda en el historial).
+
+### Sin ejecutar en el período (se documenta como limitación)
+- Revisión humana de las respuestas del LLM, evaluación del correo de bienvenida con IA (presentado como
+  funcionalidad demostrativa) y validación empírica con la institución (línea base, sesiones, SUS).
+
 ## [1.3.0] - 2026-11-06
 
 Demo de uso diario completa y resultados del LLM real.

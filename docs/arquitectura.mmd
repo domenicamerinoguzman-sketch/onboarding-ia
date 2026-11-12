@@ -1,13 +1,13 @@
-%%{init: {"theme":"base","flowchart":{"nodeSpacing":28,"rankSpacing":34},"themeVariables":{"fontFamily":"Inter, Helvetica, Arial","fontSize":"15px","primaryColor":"#ffffff","primaryBorderColor":"#9a9994","lineColor":"#52514e","clusterBkg":"#faf9f6","clusterBorder":"#c3c2b7"}}}%%
+%%{init: {"theme":"base","flowchart":{"nodeSpacing":24,"rankSpacing":40,"wrappingWidth":320},"themeVariables":{"fontFamily":"Inter, Helvetica, Arial","fontSize":"15px","primaryColor":"#ffffff","primaryBorderColor":"#9a9994","lineColor":"#52514e","clusterBkg":"#faf9f6","clusterBorder":"#c3c2b7"}}}%%
 flowchart TB
-  U["Nuevo colaborador"]:::persona --> W["Demo web / CLI · app/servidor.py"]
-  TH["Analista de Talento Humano"]:::persona --> W
-  subgraph IA["COMPONENTE DE IA · asistente RAG (src/asistente.py)"]
-    direction TB
+  U["Nuevo colaborador"]:::persona --> PO["Portal del colaborador · /portal<br/>código temporal (PBKDF2)"]
+  TH["Analista de Talento Humano"]:::persona --> PA["Panel de Talento Humano · /<br/>sesión con contraseña (PBKDF2) · bloqueo por intentos"]
+  subgraph IA["COMPONENTES DE IA"]
+    direction LR
     G1["1 · Guardas de entrada<br/>inyección de prompts · datos personales"]:::regla
     R["2 · Recuperación híbrida<br/>BM25 + sinónimos + caracteres"]:::ia
     D{"3 · ¿Puntaje ≥ 4,563?"}:::regla
-    L["4 · LLM local (Ollama)<br/>prompt v2 · temperatura 0"]:::ia
+    L["4 · LLM local (Ollama · qwen2.5:3b)<br/>prompt v2 · temperatura 0"]:::ia
     E["4b · Respaldo extractivo"]:::regla
     V["5 · Verificador de fidelidad<br/>cita recuperada + cifras del pasaje"]:::regla
     DER["Derivar a Talento Humano"]:::regla
@@ -16,23 +16,31 @@ flowchart TB
     D -- no --> DER
     L -. no disponible / error .-> E --> V
     V -- no fiel --> E
+    B["Borrador de bienvenida<br/>LLM · prompt bienvenida_v1"]:::ia
+    GB["Guarda determinista<br/>cifras · enlaces · nombre · fechas"]:::regla
+    AH["Aprobación humana obligatoria<br/>(si falla: plantilla)"]:::persona
+    B --> GB --> AH
   end
-  subgraph AUT["AUTOMATIZACIÓN TRADICIONAL · sin IA (src/flujos/)"]
-    direction TB
+  subgraph AUT["AUTOMATIZACIÓN TRADICIONAL · sin IA"]
+    direction LR
+    RG["Registro de ingresos y<br/>revisión de documentos"]:::regla
     O["Orquestador TO-BE<br/>13 tareas · días hábiles · condiciones"]:::regla
     RE["Reglas de escalamiento<br/>con motivo trazable"]:::regla
     P["Plantillas de notificación"]:::regla
-    O --> RE --> P
+    S["Seguimiento e indicadores<br/>estado de tareas · atrasos · CSV"]:::regla
+    RG --> O --> RE --> P
+    O --> S
   end
-  subgraph SIM["Conectores simulados (API REST en un piloto)"]
-    direction LR
-    H["HRIS"] ~~~ M["Mesa de servicios"] ~~~ CO["Correo"] ~~~ DI["Directorio"]
-  end
+  SIM["Conectores simulados (API REST en un piloto)<br/>HRIS · mesa de servicios · correo · directorio"]:::regla
   DAT[("Datos versionados sintéticos<br/>corpus 46 pasajes · sinónimos · config · prompts")]
-  W --> G1
-  W --> O
+  REG[("Registro local JSON<br/>historial con fecha y actor")]
+  PO --> G1
+  PA --> RG
+  PA --> B
+  PA --> G1
   DAT --> R
   O --> SIM
+  RG --> REG
   classDef ia fill:#e8f0f7,stroke:#2a78d6,color:#0b0b0b
   classDef regla fill:#ffffff,stroke:#9a9994,color:#0b0b0b
   classDef persona fill:#f4efe4,stroke:#b08a3e,color:#0b0b0b

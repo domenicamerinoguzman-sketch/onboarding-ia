@@ -168,3 +168,15 @@ como funcionalidad demostrativa, sin resultados.
 respuestas que la guarda todavía no verificó. Se muestra primero la política consultada (paso rápido
 sin LLM) y después la respuesta verificada.
 
+## 12 de noviembre de 2026 · v1.4 (versión final)
+
+**Decisión 18: el correo de bienvenida con IA se presenta como funcionalidad demostrativa.** Las planillas
+de revisión de los 22 borradores no se calificaron a tiempo. Se aplica la regla fijada en la decisión 16:
+el componente queda implementado (guarda determinista, plantilla de respaldo y aprobación humana
+obligatoria) y se reporta sin resultados de calidad. No se afirma que el texto generado sea correcto o útil.
+
+**Estado final de las evaluaciones.** Medido: recuperación y derivación (validación cruzada y reservado),
+robustez, seguridad, extremo a extremo con el LLM real (criterio a de la regla de adopción). No ejecutado
+en el período: revisión humana del LLM (criterio b), evaluación de la bienvenida, línea base con el HRIS y
+la bitácora, sesiones cronometradas y SUS. Todo lo no ejecutado conserva su protocolo y sus criterios.
+
